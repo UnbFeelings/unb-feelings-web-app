@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  react:
+    build: .
+    command: npm start
+    volumes:
+      - .:/unb-feelings-web-app
+      - /unb-feelings-web-app/node_modules
+    ports:
+      - "3000:3000"
