@@ -1,17 +1,17 @@
-language: node_js
+sudo: required
 
-node_js:
-  - "9.8.0"
-
-branches:
-  only:
-    - master
-
-service:
+services:
   - docker
 
 env:
-  - DOCKER_COMPOSE_VERSION=1.4.2
+  - DOCKER_COMPOSE_VERSION=1.17.1
 
-install:
-  - docker-compose -f docker-compose-test.ym up
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+script:
+  - docker-compose -f docker-compose.develop.yml up -d
+  - docker-compose -f docker-compose.develop.yml exec react npm test
