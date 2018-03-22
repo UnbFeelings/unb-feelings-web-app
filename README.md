@@ -7,16 +7,16 @@
 Web app construido sobre a biblioteca [React Js](https://reactjs.org/). O app consome a [api](https://github.com/UnbFeelings/unb-feelings-api) unb-feelings.
 
 >## Mais informações
-* Repositório com a [documentação](https://github.com/UnbFeelings/unb-feelings-docs)
+* Repositório de [documentação](https://github.com/UnbFeelings/unb-feelings-docs)
 
 >## Como contribuir?
-1. Clone o repositório
+1. Clone o repositório:
   ```
   git clone https://github.com/UnbFeelings/unb-feelings-web-app
   ```
 2. Instale o [docker](https://docs.docker.com/engine/installation/)
 3. Instale o [docker-compose](https://docs.docker.com/compose/install/)
-4. Execute o comando
+4. Execute o comando:
   ```
   sudo docker-compose up
   ```
