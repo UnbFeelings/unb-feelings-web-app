@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import Nsei from './Component/Nsei'
+import Nsei from './Components/Nsei'
 
 class App extends React.Component {
 
