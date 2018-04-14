@@ -1,5 +1,5 @@
 import React from 'react';
-import FormLogin from './FormLogin'
+import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 
 class Home extends React.Component {
@@ -7,8 +7,8 @@ class Home extends React.Component {
         return (
           <div>
             <h1>Home</h1>
-            <FormLogin />
             <SignUpForm />
+            <LoginForm />
           </div>
         )
     }
