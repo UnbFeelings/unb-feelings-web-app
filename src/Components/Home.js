@@ -24,8 +24,7 @@ class Home extends React.Component {
     		</Col>
   		</Row>	
         </Grid>  
-          
-
+         
         )
     }
 }
