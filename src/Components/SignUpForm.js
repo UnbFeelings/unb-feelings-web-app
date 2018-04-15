@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormControl, FormGroup, Form, Button, Checkbox, Col } from 'react-bootstrap'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -52,15 +53,31 @@ class SignUpForm extends React.Component{
 
   render(){
     return (
-      <div className="container">
-        <h1>Welcome</h1>
-
-        <input type="text" placeholder="email" onChange={this.handleChangeEmail}/>
-        <input type="password" placeholder="senha" onChange={this.handleChangePassword}/>
-        <input type="text" placeholder="curso" onChange={this.handleChangeCourse}/>
-
-        <button onClick={this.handleClick}>Cadastrar</button>
-      </div>
+        <Form horizontal>
+        <FormGroup controlId="formInlineCurso">
+          <h2>Participe!</h2>
+        </FormGroup>{' '}
+        
+        <FormGroup controlId="formInlineCurso">
+          {/* <ControlLabel>Curso{' '}</ControlLabel>*/}
+           <FormControl type="text" placeholder="curso" onChange={this.handleChangeCourse} />
+        </FormGroup>{' '}
+        <FormGroup controlId="formInlineEmail">
+          {/* <ControlLabel>Email{' '}</ControlLabel>*/}
+           <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
+        </FormGroup>{' '}
+        <FormGroup controlId="formInlineSenha">
+          {/* <ControlLabel>{' '}Senha{' '}</ControlLabel>*/}
+          <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
+        </FormGroup>{' '}
+        <FormGroup>
+          <Col sm={10}>
+            <Checkbox>Aceito todos os termos</Checkbox> 
+          </Col>
+        </FormGroup>
+      <Button bsStyle="info"type="submit" onClick={this.handleClick}>Cadastrar</Button>
+      </Form>
+      
     );
   }
 }

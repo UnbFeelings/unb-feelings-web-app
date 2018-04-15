@@ -1,5 +1,6 @@
 import React from 'react';
-import Nsei from './Nsei'
+// import Nsei from './Nsei'
+import { FormControl, FormGroup, Form, Button} from 'react-bootstrap'
 
 class LoginForm extends React.Component{
   constructor(props){
@@ -48,15 +49,27 @@ class LoginForm extends React.Component{
 
   render(){
     return (
-      <div className="container">
-        <h1>Login</h1>
-
-        <input type="text" placeholder="email" onChange={this.handleChangeEmail}/>
-        <input type="password" placeholder="senha" onChange={this.handleChangePassword}/>
-
-        <button onClick={this.handleClick}>Entrar</button>
-        <Nsei texto="Esqueci minha senha" alert="diferente" />
+      
+      <Form inline>    
+        <div>
+        <FormGroup controlId="formInlineEmail">
+          {/* <ControlLabel>Email</ControlLabel>*/}
+           <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
+        </FormGroup>{' '}
+        <FormGroup controlId="formInlineEmail">
+          {/* <ControlLabel>Senha</ControlLabel>*/}
+          <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
+        </FormGroup>{' '} 
+        
+        <FormGroup> 
+               
+            <Button bsStyle="primary" type="submit" onClick={this.handleClick}>Entrar</Button>
+            
+        
+      </FormGroup>
       </div>
+      </Form>
+
     );
   }
 }

@@ -3,6 +3,7 @@ import './App.css'
 //import { Grid, Row, Col } from 'react-bootstrap';
 import { Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+// import { FormGroup, FormControl } from 'react-bootstrap'
 
 class App extends React.Component {
   constructor(props){
@@ -19,17 +20,17 @@ class App extends React.Component {
       <div>
         <Navbar fluid>
           <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/home">Home</Link>
+            <Navbar.Brand>      
+              <Link to="/home">UNB Feelings</Link>
               <Button
-                bsStyle="primary"
+                bsStyle="success"
                 className="btn-margin"
                 onClick={this.goTo.bind(this, 'test')}
               >
                 Test
-              </Button>
+              </Button>                            
             </Navbar.Brand>
-          </Navbar.Header>
+          </Navbar.Header>          
         </Navbar>
       </div>
     );
