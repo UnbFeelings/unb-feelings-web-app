@@ -6,27 +6,21 @@ import SignUpForm from './SignUpForm'
 // import HeaderForm from './HeaderForm'
 
 class Home extends React.Component {
-    render(){
-        return (
-        <Grid>
-        <Row className="show-grid">
-    		<Col xs={6}>
-      			
-    		</Col>
-    		<Col xs={6}>
-      			
-	    		<div>   
-	            	<LoginForm />
-          		</div>
-          		<div>
-      				<SignUpForm />
-      			</div>
-    		</Col>
-  		</Row>	
-        </Grid>  
-         
-        )
-    }
+  render(){
+    return (
+      <Grid>
+        <Row>
+          <Col sm={12} md={6}>
+
+          </Col>
+          <Col sm={12} md={6}>
+            <LoginForm />
+            <SignUpForm />
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
 }
 
 export default Home;

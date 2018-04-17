@@ -1,6 +1,6 @@
 import React from 'react';
-import UnButton from './UnButton'
-import { FormControl, FormGroup, Form, Grid, Row, Col}  from 'react-bootstrap'
+//import UnButton from './UnButton'
+import { FormControl, FormGroup, Form, Button}  from 'react-bootstrap'
 //import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 //import Button from 'material-ui/Button';
 //import {Button, Grid }from 'material-ui';
@@ -53,34 +53,17 @@ class LoginForm extends React.Component{
 
   render(){
     return (
+      <Form inline>
+        <FormGroup style={{ marginRight: 10 }}>
+           <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
+        </FormGroup>
 
-        <Row className="show-grid">
-          <Form horizontal>
-            <Col xs={6} md={4}>
-              <FormGroup  style={{ marginRight: 5 }} controlId="formInlineEmail" >
-              {/* <ControlLabel>Email{' '}</ControlLabel>*/}
-              <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
-          </FormGroup>{' '}
-        </Col>
-          <Col xs={6} md={4}>
-            <FormGroup style={{ marginRight: 5 }} controlId="formInlineSenha">
-              {/* <ControlLabel>{' '}Senha{' '}</ControlLabel>*/}
+        <FormGroup style={{ marginRight: 10 }}>
           <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
-        </FormGroup>{' '}
-        </Col>
+        </FormGroup>
 
-          <UnButton
-            bsStyle="success"
-            text="Entrar"
-            className="sizeSmall"
-            variant="raised"
-            type="submit"
-            onClick={this.handleClick}/>
+        <Button bsStyle="primary" onClick={this.handleClick}>Entrar</Button>
       </Form>
-
-</Row>
-
-
     );
   }
 }
