@@ -20,17 +20,10 @@ class App extends React.Component {
       <div>
         <Navbar fluid>
           <Navbar.Header>
-            <Navbar.Brand>      
+            <Navbar.Brand>
               <Link to="/home">UNB Feelings</Link>
-              <Button
-                bsStyle="success"
-                className="btn-margin"
-                onClick={this.goTo.bind(this, 'test')}
-              >
-                Test
-              </Button>                            
             </Navbar.Brand>
-          </Navbar.Header>          
+          </Navbar.Header>
         </Navbar>
       </div>
     );

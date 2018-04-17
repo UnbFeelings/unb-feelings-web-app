@@ -53,11 +53,11 @@ class SignUpForm extends React.Component{
 
   render(){
     return (
+      
         <Form horizontal>
         <FormGroup controlId="formInlineCurso">
           <h2>Participe!</h2>
         </FormGroup>{' '}
-        
         <FormGroup controlId="formInlineCurso">
           {/* <ControlLabel>Curso{' '}</ControlLabel>*/}
            <FormControl type="text" placeholder="curso" onChange={this.handleChangeCourse} />
@@ -72,12 +72,12 @@ class SignUpForm extends React.Component{
         </FormGroup>{' '}
         <FormGroup>
           <Col sm={10}>
-            <Checkbox>Aceito todos os termos</Checkbox> 
+            <Checkbox>Aceito todos os termos</Checkbox>
           </Col>
         </FormGroup>
       <Button bsStyle="info"type="submit" onClick={this.handleClick}>Cadastrar</Button>
       </Form>
-      
+
     );
   }
 }

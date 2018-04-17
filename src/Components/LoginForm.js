@@ -1,6 +1,10 @@
 import React from 'react';
-// import Nsei from './Nsei'
-import { FormControl, FormGroup, Form, Button} from 'react-bootstrap'
+import UnButton from './UnButton'
+import { FormControl, FormGroup, Form, Grid, Row, Col}  from 'react-bootstrap'
+//import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+//import Button from 'material-ui/Button';
+//import {Button, Grid }from 'material-ui';
+
 
 class LoginForm extends React.Component{
   constructor(props){
@@ -49,26 +53,33 @@ class LoginForm extends React.Component{
 
   render(){
     return (
-      
-      <Form inline>    
-        <div>
-        <FormGroup controlId="formInlineEmail">
-          {/* <ControlLabel>Email</ControlLabel>*/}
-           <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
-        </FormGroup>{' '}
-        <FormGroup controlId="formInlineEmail">
-          {/* <ControlLabel>Senha</ControlLabel>*/}
+
+        <Row className="show-grid">
+          <Form horizontal>
+            <Col xs={6} md={4}>
+              <FormGroup  style={{ marginRight: 5 }} controlId="formInlineEmail" >
+              {/* <ControlLabel>Email{' '}</ControlLabel>*/}
+              <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
+          </FormGroup>{' '}
+        </Col>
+          <Col xs={6} md={4}>
+            <FormGroup style={{ marginRight: 5 }} controlId="formInlineSenha">
+              {/* <ControlLabel>{' '}Senha{' '}</ControlLabel>*/}
           <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
-        </FormGroup>{' '} 
-        
-        <FormGroup> 
-               
-            <Button bsStyle="primary" type="submit" onClick={this.handleClick}>Entrar</Button>
-            
-        
-      </FormGroup>
-      </div>
+        </FormGroup>{' '}
+        </Col>
+
+          <UnButton
+            bsStyle="success"
+            text="Entrar"
+            className="sizeSmall"
+            variant="raised"
+            type="submit"
+            onClick={this.handleClick}/>
       </Form>
+
+</Row>
+
 
     );
   }
