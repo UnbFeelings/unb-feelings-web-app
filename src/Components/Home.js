@@ -4,6 +4,7 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 // import CarouselForm from './CarouselForm'
 // import HeaderForm from './HeaderForm'
+import '../App.css'
 
 class Home extends React.Component {
   render(){
@@ -14,8 +15,12 @@ class Home extends React.Component {
 
           </Col>
           <Col sm={12} md={6}>
-            <LoginForm />
-            <SignUpForm />
+            <div className="App-loggin">
+              <LoginForm />
+            </div>
+            <div>
+              <SignUpForm />
+            </div>
           </Col>
         </Row>
       </Grid>

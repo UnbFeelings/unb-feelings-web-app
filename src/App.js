@@ -18,10 +18,10 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <Navbar fluid>
+        <Navbar fluid className="App-header">
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/home">UnB Feelings</Link>
+              <Link to="/home" className="App-title" style={{color: 'white'}}>UnB Feelings</Link>
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>

@@ -10,6 +10,7 @@ class ButtonCourses extends React.Component {
 
   handleChange(eventKey){
     this.props.onChange(eventKey)
+    console.log(eventKey)
   }
 
   render(){
