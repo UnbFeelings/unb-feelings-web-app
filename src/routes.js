@@ -13,7 +13,7 @@ export const makeMainRoutes = () => {
           <Route path="/" render={(props) => <App {...props} />} />
           <Route path="/home" render={() => <Home />} />
           <Route path="/test" render={() => <Test />} />
-          <Route path="/feelingsPage" render={() => <FeelingsPageForm />} />
+          <Route path="/feelingsPage" render={(props) => <FeelingsPageForm {...props}/>} />
         </div>
       </Router>
   );

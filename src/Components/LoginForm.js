@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Form, Button}  from 'react-bootstrap'
 //import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 //import Button from 'material-ui/Button';
 //import {Button, Grid }from 'material-ui';
+import { Route, Link } from 'react-router-dom'
 
 
 class LoginForm extends React.Component{
@@ -12,12 +13,17 @@ class LoginForm extends React.Component{
     this.state = {
       email: "",
       password: "",
-      token: ""
+      token: "",
+      id: ""
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
+
+  // componentWillUnmount() {
+  //   alert('Goodbye world');
+  // }
 
   handleChangeEmail(e){
     this.setState({
@@ -62,7 +68,9 @@ class LoginForm extends React.Component{
           <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
         </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleClick}>Entrar</Button>
+        <Link to={{pathname: "/feelingsPage", email: this.state.email}} >
+          <Button bsStyle="primary" onClick={this.handleClick}>Entrar</Button>
+        </Link>
       </Form>
     );
   }

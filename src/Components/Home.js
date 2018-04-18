@@ -18,7 +18,7 @@ class Home extends React.Component {
             <div className="App-loggin">
               <LoginForm />
             </div>
-            <div>
+            <div className="App-signup">
               <SignUpForm />
             </div>
           </Col>
