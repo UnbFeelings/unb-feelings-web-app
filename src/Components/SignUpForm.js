@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormControl, FormGroup, Form, Button, Checkbox, Grid } from 'react-bootstrap'
+import ButtonCourses from './ButtonCourses'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -7,11 +8,11 @@ class SignUpForm extends React.Component{
     this.state = {
       email: "",
       password: "",
-      course: ""
+      course: "1"
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handleChangeCourse = this.handleChangeCourse.bind(this)
+    this.changeCourse = this.changeCourse.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -27,13 +28,16 @@ class SignUpForm extends React.Component{
     });
   }
 
-  handleChangeCourse(e){
+  changeCourse(newCourse){
     this.setState({
-      course: e.target.value
-    });
+      course: newCourse
+    })
   }
 
   handleClick(e){
+    console.log(this.state.course)
+    console.log(this.state.email)
+
     fetch('http://localhost:8000/api/users/', {
       method: 'POST',
       headers: {
@@ -61,14 +65,6 @@ class SignUpForm extends React.Component{
           <h2>Participe!</h2>
         </FormGroup>
 
-        <FormGroup controlId="formInlineCurso">
-           <FormControl
-              type="text"
-              placeholder="curso"
-              onChange={this.handleChangeCourse}
-            />
-        </FormGroup>
-
         <FormGroup controlId="formInlineEmail">
            <FormControl
               type="email"
@@ -84,6 +80,8 @@ class SignUpForm extends React.Component{
             onChange={this.handleChangePassword}
         />
         </FormGroup>
+
+        <ButtonCourses onChange={this.changeCourse}/>
 
         <FormGroup>
           <Checkbox>Aceito todos os termos</Checkbox>
