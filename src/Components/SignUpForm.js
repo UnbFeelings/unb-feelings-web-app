@@ -1,6 +1,7 @@
 import React from 'react';
 import { FormControl, FormGroup, Form, Button, Checkbox, Grid } from 'react-bootstrap'
 import ButtonCourses from './ButtonCourses'
+import { Redirect } from 'react-router-dom'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -8,7 +9,9 @@ class SignUpForm extends React.Component{
     this.state = {
       email: "",
       password: "",
-      course: "1"
+      course: "1",
+      isLogged: false,
+      id: ""
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
@@ -34,11 +37,20 @@ class SignUpForm extends React.Component{
     })
   }
 
-  handleClick(e){
-    console.log(this.state.course)
-    console.log(this.state.email)
+  async handleClick(){
+    const responseJson = await this.fetchData()
 
-    fetch('http://localhost:8000/api/users/', {
+    if(responseJson.id !== undefined){
+      this.setState({
+        id: responseJson.id,
+        email: responseJson.email,
+        isLogged: !this.state.isLogged
+      });
+    }
+  }
+
+  async fetchData(){
+    const response = await fetch('http://localhost:8000/api/users/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -49,15 +61,14 @@ class SignUpForm extends React.Component{
         password: this.state.password,
         course: this.state.course
       })
-    }).then((response) => response.json())
-    .then((result) => {
-      console.log(result)
     })
+
+    const responseJson = await response.json()
+    return responseJson
   }
 
   render(){
-    return (
-
+    return this.state.isLogged === false? (
       <Grid>
         <Form horizontal>
 
@@ -89,8 +100,7 @@ class SignUpForm extends React.Component{
         </Form>
 
         <Button bsStyle="primary" onClick={this.handleClick}>Cadastrar</Button>
-      </Grid>
-    );
+      </Grid>):(<Redirect to={{pathname: "/feelingsPage", email: this.state.email, id: this.state.id}}/>)
   }
 }
 
