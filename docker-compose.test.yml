@@ -1,5 +1,1 @@
 version: '3'
-
-services:
-  react:
-    command: npm test
