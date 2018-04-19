@@ -23,10 +23,7 @@ class App extends React.Component {
             <Navbar.Brand>
               <Link to="/home" className="App-title" style={{color: 'white'}}>UnB Feelings</Link>
             </Navbar.Brand>
-            <Navbar.Brand>
-              <Link to="/feelingsPage">Compartilhar sentimentos</Link> 
-            </Navbar.Brand>
-          </Navbar.Header>          
+          </Navbar.Header>
         </Navbar>
         <footer className="App-footer navbar-fixed-bottom">
           <div className="container">
