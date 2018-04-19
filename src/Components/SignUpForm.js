@@ -1,5 +1,7 @@
 import React from 'react';
-import { FormControl, FormGroup, Form, Button, Checkbox, Col } from 'react-bootstrap'
+import { FormControl, FormGroup, Form, Button, Checkbox, Grid } from 'react-bootstrap'
+import ButtonCourses from './ButtonCourses'
+import { Redirect } from 'react-router-dom'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -7,11 +9,13 @@ class SignUpForm extends React.Component{
     this.state = {
       email: "",
       password: "",
-      course: ""
+      course: "1",
+      isLogged: false,
+      id: ""
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.handleChangeCourse = this.handleChangeCourse.bind(this)
+    this.changeCourse = this.changeCourse.bind(this)
     this.handleClick = this.handleClick.bind(this)
   }
 
@@ -27,14 +31,26 @@ class SignUpForm extends React.Component{
     });
   }
 
-  handleChangeCourse(e){
+  changeCourse(newCourse){
     this.setState({
-      course: e.target.value
-    });
+      course: newCourse
+    })
   }
 
-  handleClick(e){
-    fetch('http://localhost:8000/api/users/', {
+  async handleClick(){
+    const responseJson = await this.fetchData()
+
+    if(responseJson.id !== undefined){
+      this.setState({
+        id: responseJson.id,
+        email: responseJson.email,
+        isLogged: !this.state.isLogged
+      });
+    }
+  }
+
+  async fetchData(){
+    const response = await fetch('http://localhost:8000/api/users/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -45,40 +61,46 @@ class SignUpForm extends React.Component{
         password: this.state.password,
         course: this.state.course
       })
-    }).then((response) => response.json())
-    .then((result) => {
-      console.log(result)
     })
+
+    const responseJson = await response.json()
+    return responseJson
   }
 
   render(){
-    return (
+    return this.state.isLogged === false? (
+      <Grid>
         <Form horizontal>
+
         <FormGroup controlId="formInlineCurso">
           <h2>Participe!</h2>
-        </FormGroup>{' '}
-        
-        <FormGroup controlId="formInlineCurso">
-          {/* <ControlLabel>Curso{' '}</ControlLabel>*/}
-           <FormControl type="text" placeholder="curso" onChange={this.handleChangeCourse} />
-        </FormGroup>{' '}
-        <FormGroup controlId="formInlineEmail">
-          {/* <ControlLabel>Email{' '}</ControlLabel>*/}
-           <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
-        </FormGroup>{' '}
-        <FormGroup controlId="formInlineSenha">
-          {/* <ControlLabel>{' '}Senha{' '}</ControlLabel>*/}
-          <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
-        </FormGroup>{' '}
-        <FormGroup>
-          <Col sm={10}>
-            <Checkbox>Aceito todos os termos</Checkbox> 
-          </Col>
         </FormGroup>
-      <Button bsStyle="info"type="submit" onClick={this.handleClick}>Cadastrar</Button>
-      </Form>
-      
-    );
+
+        <FormGroup controlId="formInlineEmail">
+           <FormControl
+              type="email"
+              placeholder="email@email.com"
+              onChange={this.handleChangeEmail}
+            />
+        </FormGroup>
+
+        <FormGroup controlId="formInlineSenha">
+            <FormControl
+            type="password"
+            placeholder="senha"
+            onChange={this.handleChangePassword}
+        />
+        </FormGroup>
+
+        <ButtonCourses onChange={this.changeCourse}/>
+
+        <FormGroup>
+          <Checkbox>Aceito todos os termos</Checkbox>
+        </FormGroup>
+        </Form>
+
+        <Button bsStyle="primary" onClick={this.handleClick}>Cadastrar</Button>
+      </Grid>):(<Redirect to={{pathname: "/feelingsPage", email: this.state.email, id: this.state.id}}/>)
   }
 }
 

@@ -4,29 +4,28 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 // import CarouselForm from './CarouselForm'
 // import HeaderForm from './HeaderForm'
+import '../App.css'
 
 class Home extends React.Component {
-    render(){
-        return (
-        <Grid>
-        <Row className="show-grid">
-    		<Col xs={6}>
-      			
-    		</Col>
-    		<Col xs={6}>
-      			
-	    		<div>   
-	            	<LoginForm />
-          		</div>
-          		<div>
-      				<SignUpForm />
-      			</div>
-    		</Col>
-  		</Row>	
-        </Grid>  
-         
-        )
-    }
+  render(){
+    return (
+      <Grid>
+        <Row>
+          <Col sm={12} md={6}>
+
+          </Col>
+          <Col sm={12} md={6}>
+            <div className="App-loggin">
+              <LoginForm />
+            </div>
+            <div className="App-signup">
+              <SignUpForm />
+            </div>
+          </Col>
+        </Row>
+      </Grid>
+    );
+  }
 }
 
 export default Home;

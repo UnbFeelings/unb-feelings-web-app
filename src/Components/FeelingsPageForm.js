@@ -94,6 +94,7 @@ class FeelingsPageForm extends React.Component {
         </Grid> 
       )
     }
-};
+	
+}
 
 export default FeelingsPageForm
