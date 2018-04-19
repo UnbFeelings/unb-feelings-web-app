@@ -1,18 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './App.css'
+//import { Grid, Row, Col } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
+// import { FormGroup, FormControl } from 'react-bootstrap'
 
-class App extends Component {
-  render() {
+class App extends React.Component {
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
+
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Navbar fluid className="App-header">
+          <Navbar.Header>
+            <Navbar.Brand>
+              <Link to="/home" className="App-title" style={{color: 'white'}}>UnB Feelings</Link>
+            </Navbar.Brand>
+          </Navbar.Header>
+        </Navbar>
       </div>
     );
   }
