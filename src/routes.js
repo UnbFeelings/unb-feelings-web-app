@@ -5,6 +5,7 @@ import history from './history';
 import Test from './Components/Test'
 import Home from './Components/Home'
 import FeelingsPageForm from './Components/FeelingsPageForm'
+import Feelings from './Components/Feelings'
 
 export const makeMainRoutes = () => {
   return (
@@ -13,7 +14,7 @@ export const makeMainRoutes = () => {
           <Route path="/" render={(props) => <App {...props} />} />
           <Route path="/home" render={() => <Home />} />
           <Route path="/test" render={() => <Test />} />
-          <Route path="/feelingsPage" render={(props) => <FeelingsPageForm {...props}/>} />
+          <Route path="/feelings" render={(props) => <Feelings {...props} />} />
         </div>
       </Router>
   );

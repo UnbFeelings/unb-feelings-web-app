@@ -100,7 +100,7 @@ class SignUpForm extends React.Component{
         </Form>
 
         <Button bsStyle="primary" onClick={this.handleClick}>Cadastrar</Button>
-      </Grid>):(<Redirect to={{pathname: "/feelingsPage", email: this.state.email, id: this.state.id}}/>)
+      </Grid>):(<Redirect to={{pathname: "/feelings", email: this.state.email, id: this.state.id}}/>)
   }
 }
 

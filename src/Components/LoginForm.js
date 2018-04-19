@@ -77,7 +77,7 @@ class LoginForm extends React.Component{
         <Button bsStyle="primary" onClick={this.handleClick}>Entrar</Button>
 
       </Form>
-    ):(<Redirect to={{pathname: "/feelingsPage", email: this.state.email, id: this.state.id}}/>)
+    ):(<Redirect to={{pathname: "/feelings", email: this.state.email, id: this.state.id}}/>)
   }
 }
 
