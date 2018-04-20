@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import { WithContext as ReactTags } from 'react-tag-input';
-import { Button, ButtonToolbar, FormGroup, FormControl, HelpBlock, ControlLabel, 
+import { Button, ButtonToolbar, FormGroup, FormControl, HelpBlock, ControlLabel,
 														Row, Grid, Col} from 'react-bootstrap';
 
 
-class FeelingsPageForm extends React.Component {
+class FeelingsForm extends React.Component {
 
     constructor(props) {
       super(props);
@@ -56,45 +56,46 @@ class FeelingsPageForm extends React.Component {
     render() {
         const { tags } = this.state;
         return (
-        <Grid>
-        <Row className="show-grid">
-    		<Col xs={8}>
-      			
-    		</Col>
-    		<Col xs={8}>
+        	<Grid>
+        		<Row className="show-grid">
+    					<Col xs={8}>
+    					</Col>
 
-        <div>
-        	<h1>FeelingsPage</h1>
+    					<Col xs={8}>
+        				<div>
+        					<h1>FeelingsPage</h1>
 
-        	<form>
-    	        <FormGroup>
-    	          <ControlLabel>Descreva o que está sentindo a cerda de uma aula ou do seu dia:</ControlLabel>
-    	          <FormControl
-    	            type="text"
-    	            value={this.state.value}
-    	            placeholder="Estou me sentindo..."
-    	            onChange={this.handleChange}
-    	          />
-    	          <FormControl.Feedback />
-    	          <HelpBlock>Escolha uma tag de acordo com o que está sentindo</HelpBlock>
-    	        </FormGroup>
-        	</form>
-          <ReactTags tags={tags}
-          handleDelete={this.handleDelete}
-          handleAddition={this.handleAddition}
-          handleDrag={this.handleDrag} />
-          <br/>
-          <ButtonToolbar>
-          	<Button bsStyle="success" bsSize="medium" type="submit">Enviar</Button>
-          	<Button bsStyle="danger" href="home">Voltar</Button>
-          </ButtonToolbar>
-        </div>
-        </Col>
-        </Row>	
-        </Grid> 
+				        	<form>
+				    	      <FormGroup>
+				    	      	<ControlLabel>Descreva o que está sentindo a cerda de uma aula ou do seu dia:</ControlLabel>
+				    	        <FormControl
+				    	        	type="text"
+				    	          value={this.state.value}
+				    	          placeholder="Estou me sentindo..."
+				    	          onChange={this.handleChange}
+				    	        />
+				    	        <FormControl.Feedback />
+				    	        <HelpBlock>Escolha uma tag de acordo com o que está sentindo</HelpBlock>
+				    	    	</FormGroup>
+				        	</form>
+
+				          <ReactTags tags={tags}
+					          handleDelete={this.handleDelete}
+					          handleAddition={this.handleAddition}
+					          handleDrag={this.handleDrag}
+									/>
+
+				          <ButtonToolbar>
+				          	<Button bsStyle="primary" type="submit">Enviar</Button>
+				          </ButtonToolbar>
+        			</div>
+        		</Col>
+
+        	</Row>
+        </Grid>
       )
     }
-	
+
 }
 
-export default FeelingsPageForm
+export default FeelingsForm
