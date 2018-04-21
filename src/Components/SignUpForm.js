@@ -2,6 +2,7 @@ import React from 'react';
 import { FormControl, FormGroup, Form, Button, Checkbox, Grid } from 'react-bootstrap'
 import ButtonCourses from './ButtonCourses'
 import { Redirect } from 'react-router-dom'
+import SubjectsSelect from './SubjectsSelect'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -93,6 +94,7 @@ class SignUpForm extends React.Component{
         </FormGroup>
 
         <ButtonCourses onChange={this.changeCourse}/>
+        <SubjectsSelect />
 
         <FormGroup>
           <Checkbox>Aceito todos os termos</Checkbox>
