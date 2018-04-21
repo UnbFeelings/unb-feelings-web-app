@@ -12,7 +12,9 @@ class FeelingsForm extends React.Component {
 
       this.state = {
           tags: [],
-          value: ''
+          value: '',
+					isSended: false,
+					id: this.props.id
       };
       this.handleDelete = this.handleDelete.bind(this);
       this.handleAddition = this.handleAddition.bind(this);
@@ -48,9 +50,32 @@ class FeelingsForm extends React.Component {
       this.setState({value: event.target.value});
     }
 
-    handleSubmit(event) {
-      alert(': ' + this.state.value);
-      event.preventDefault();
+    async handleSubmit(event) {
+			const response = await fetch('http://localhost:8000/api/posts/', {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type':'application/json'
+	      },
+	      body: JSON.stringify({
+				  author: this.state.id,
+				  content: this.state.value,
+				  subject: "1",
+				  tag: [
+				    "1"
+				  ],
+				  emotion: [
+				    "1"
+				  ]
+	      })
+	    })
+
+			this.setState({
+				isSended: !this.state.isSended
+			})
+
+	    const responseJson = await response.json()
+	    console.log(responseJson)
     }
 
     render() {
@@ -69,8 +94,7 @@ class FeelingsForm extends React.Component {
 				    	      <FormGroup>
 				    	      	<ControlLabel>Descreva o que está sentindo a cerda de uma aula ou do seu dia:</ControlLabel>
 				    	        <FormControl
-				    	        	type="text"
-				    	          value={this.state.value}
+												componentClass="textarea"
 				    	          placeholder="Estou me sentindo..."
 				    	          onChange={this.handleChange}
 				    	        />
@@ -85,8 +109,10 @@ class FeelingsForm extends React.Component {
 					          handleDrag={this.handleDrag}
 									/>
 
+									<h1>{this.state.value}</h1>
+
 				          <ButtonToolbar>
-				          	<Button bsStyle="primary" type="submit">Enviar</Button>
+				          	<Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Enviar</Button>
 				          </ButtonToolbar>
         			</div>
         		</Col>
