@@ -1,4 +1,5 @@
 import React from 'react'
+import { Panel } from 'react-bootstrap'
 
 class SentimentPost extends React.Component {
   constructor(props){
@@ -7,14 +8,19 @@ class SentimentPost extends React.Component {
   }
 
   render(){
-    const list = this.props.posts.map((post) => <li>{post.content}</li>)
+    const list = this.state.posts.map((post) => {
+      return(
+        <Panel bsStyle="primary">
+          <Panel.Heading>
+            <Panel.Title>{post.subject}</Panel.Title>
+          </Panel.Heading>
+          <Panel.Body>{post.content}</Panel.Body>
+        </Panel>
+      )
+    })
 
     return(
-      <div>
-        <ul>
-          {list}
-        </ul>
-      </div>
+      <div>{list}</div>
     )
   }
 }

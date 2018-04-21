@@ -60,7 +60,7 @@ class FeelingsForm extends React.Component {
 	      body: JSON.stringify({
 				  author: this.state.id,
 				  content: this.state.value,
-				  subject: "1",
+				  subject: "2",
 				  tag: [
 				    "1"
 				  ],
@@ -108,9 +108,7 @@ class FeelingsForm extends React.Component {
 					          handleAddition={this.handleAddition}
 					          handleDrag={this.handleDrag}
 									/>
-
-									<h1>{this.state.value}</h1>
-
+									
 				          <ButtonToolbar>
 				          	<Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Enviar</Button>
 				          </ButtonToolbar>
