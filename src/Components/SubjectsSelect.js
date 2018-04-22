@@ -6,10 +6,11 @@ class SubjectsSelect extends React.Component {
     super(props)
     this.state = {
       subjectsList: [],
-      SubjectsSelect: [],
+      selectedSubjects: [],
       isLoad: false
     }
     this.fetchSubjects = this.fetchSubjects.bind(this)
+    this.handleCheck = this.handleCheck.bind(this)
   }
 
   async componentDidMount(){
@@ -34,10 +35,23 @@ class SubjectsSelect extends React.Component {
     return responseJson
   }
 
-  render(){
-    const list = this.state.subjectsList.map((subject) => <ListGroupItem><Checkbox>{subject.name}</Checkbox></ListGroupItem>)
+  handleCheck(subjectId){
+    alert(subjectId)
+    const selected = this.state.selectedSubjects
+    selected.push(subjectId)
+    console.log(selected)
 
-    return this.state.isLoad == true? (
+    this.setState({
+      selectedSubjects: [...selected]
+    })
+
+    console.log(this.state.selectedSubjects)
+  }
+
+  render(){
+    const list = this.state.subjectsList.map((subject) => <ListGroupItem onChange={() => this.handleCheck(subject.id)}><Checkbox>{subject.name}</Checkbox></ListGroupItem>)
+
+    return this.state.isLoad === true? (
       <ListGroup>{list}</ListGroup>
     ):(<h1>loading ... </h1>)
   }

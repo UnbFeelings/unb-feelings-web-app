@@ -42,7 +42,7 @@ class ButtonCourses extends React.Component {
   render(){
     const list = this.state.coursesList.map((course) => <MenuItem eventKey={course.id} onSelect={this.handleChange}>{course.name}</MenuItem>)
 
-    return this.state.isLoad == true? (
+    return this.state.isLoad === true? (
       <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>
     ):(<h1>loading ... </h1>)
   }
