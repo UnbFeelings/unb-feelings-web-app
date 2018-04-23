@@ -34,13 +34,13 @@ class ButtonCourses extends React.Component {
     return responseJson
   }
 
-  handleChange(eventKey){
-    this.props.onChange(eventKey)
-    console.log(eventKey)
+  handleChange(courseId){
+    this.props.onChange(courseId)
+    console.log("course: "+courseId)
   }
 
   render(){
-    const list = this.state.coursesList.map((course) => <MenuItem eventKey={course.id} onSelect={this.handleChange}>{course.name}</MenuItem>)
+    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.course === course.id ? true : false}>{course.name}</MenuItem>)
 
     return this.state.isLoad === true? (
       <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>

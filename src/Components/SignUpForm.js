@@ -45,8 +45,10 @@ class SignUpForm extends React.Component{
       this.setState({
         id: responseJson.id,
         email: responseJson.email,
-        isLogged: !this.state.isLogged
+        isLogged: true
       });
+    }else{
+      alert("não foi possível realizar o cadastro")
     }
   }
 
@@ -63,9 +65,10 @@ class SignUpForm extends React.Component{
         course: this.state.course
       })
     })
+    .then(response => response.json())
+    .catch(error => console.log(console.error()))
 
-    const responseJson = await response.json()
-    return responseJson
+    return response
   }
 
   render(){

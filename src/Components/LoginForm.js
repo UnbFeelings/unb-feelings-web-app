@@ -37,12 +37,15 @@ class LoginForm extends React.Component{
 
   async handleClick(){
     const responseJson = await this.fetchData()
-    if(responseJson.token !== undefined){
+
+    if(responseJson !== undefined){
       this.setState({
         token: responseJson.token,
         id: responseJson.user,
-        isLogged: !this.state.isLogged
+        isLogged: true
       });
+    }else{
+      alert("Não foi possível realizar o loggin")
     }
   }
 
@@ -58,9 +61,10 @@ class LoginForm extends React.Component{
         password: this.state.password
       })
     })
+    .then(response => response.json())
+    .catch(error => console.log(console.error()))
 
-    const responseJson = await response.json()
-    return responseJson
+    return response
   }
 
   render(){

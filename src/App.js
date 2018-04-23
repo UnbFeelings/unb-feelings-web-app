@@ -25,13 +25,6 @@ class App extends React.Component {
             </Navbar.Brand>
           </Navbar.Header>
         </Navbar>
-        <footer className="App-footer navbar-fixed-bottom">
-          <div className="container">
-            <div className="row">
-              <p>Sobre: <a href="home">UnB Feelings</a> </p>
-            </div>
-          </div>
-        </footer>
       </div>
     );
   }
