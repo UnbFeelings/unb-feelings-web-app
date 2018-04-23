@@ -4,28 +4,47 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 class ButtonCourses extends React.Component {
   constructor(props){
     super(props)
-    this.state = {course: "1"}
+    this.state = {
+      course: "",
+      coursesList: [],
+      isLoad: false
+    }
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleChange(eventKey){
-    this.props.onChange(eventKey)
-    console.log(eventKey)
+  async componentDidMount(){
+    const responseJson = await this.fetchSubjects()
+    const courses = responseJson.results
+    this.setState({
+      coursesList: [...courses],
+      isLoad: true
+    });
+  }
+
+  async fetchSubjects(){
+    const response = await fetch('http://localhost:8000/api/courses/', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
+      }
+    })
+
+    const responseJson = await response.json()
+    return responseJson
+  }
+
+  handleChange(courseId){
+    this.props.onChange(courseId)
+    console.log("course: "+courseId)
   }
 
   render(){
-    return (
-      <div>
-        <DropdownButton id="courses-button" title="curso">
-          <MenuItem eventKey="1" onSelect={this.handleChange}>Engenharia</MenuItem>
-          <MenuItem eventKey="2" onSelect={this.handleChange}>Engenharia de Software</MenuItem>
-          <MenuItem eventKey="3" onSelect={this.handleChange}>Engenharia Eletrônica</MenuItem>
-          <MenuItem eventKey="4" onSelect={this.handleChange}>Engenharia Aeroespacial</MenuItem>
-          <MenuItem eventKey="5" onSelect={this.handleChange}>Engenharia de Energia</MenuItem>
-          <MenuItem eventKey="6" onSelect={this.handleChange}>Engenharia Automotiva</MenuItem>
-        </DropdownButton>
-      </div>
-    )
+    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.course === course.id ? true : false}>{course.name}</MenuItem>)
+
+    return this.state.isLoad === true? (
+      <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>
+    ):(<h1>loading ... </h1>)
   }
 }
 

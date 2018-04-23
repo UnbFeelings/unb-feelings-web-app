@@ -4,7 +4,6 @@ import App from './App';
 import history from './history';
 import Test from './Components/Test'
 import Home from './Components/Home'
-import FeelingsPageForm from './Components/FeelingsPageForm'
 import Feelings from './Components/Feelings'
 
 export const makeMainRoutes = () => {

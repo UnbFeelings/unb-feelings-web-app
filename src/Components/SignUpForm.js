@@ -2,6 +2,7 @@ import React from 'react';
 import { FormControl, FormGroup, Form, Button, Checkbox, Grid } from 'react-bootstrap'
 import ButtonCourses from './ButtonCourses'
 import { Redirect } from 'react-router-dom'
+import SubjectsSelect from './SubjectsSelect'
 
 class SignUpForm extends React.Component{
   constructor(props){
@@ -9,7 +10,7 @@ class SignUpForm extends React.Component{
     this.state = {
       email: "",
       password: "",
-      course: "1",
+      course: "",
       isLogged: false,
       id: ""
     }
@@ -44,8 +45,10 @@ class SignUpForm extends React.Component{
       this.setState({
         id: responseJson.id,
         email: responseJson.email,
-        isLogged: !this.state.isLogged
+        isLogged: true
       });
+    }else{
+      alert("não foi possível realizar o cadastro")
     }
   }
 
@@ -62,9 +65,10 @@ class SignUpForm extends React.Component{
         course: this.state.course
       })
     })
+    .then(response => response.json())
+    .catch(error => console.log(console.error()))
 
-    const responseJson = await response.json()
-    return responseJson
+    return response
   }
 
   render(){
@@ -93,6 +97,7 @@ class SignUpForm extends React.Component{
         </FormGroup>
 
         <ButtonCourses onChange={this.changeCourse}/>
+        <SubjectsSelect />
 
         <FormGroup>
           <Checkbox>Aceito todos os termos</Checkbox>
