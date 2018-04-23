@@ -78,6 +78,21 @@ class FeelingsForm extends React.Component {
 	    console.log(responseJson)
     }
 
+    validate (tag) {
+      const matches = /^(\d+)-(\d+)$/.exec(tag)
+      if (!matches || matches.length !== 3) {
+        return false
+      }
+ 
+       const min = parseInt(matches[1], 10)
+       const max = parseInt(matches[2], 10)
+       if (min > max) {
+         return false
+       }
+ 
+      return true
+    }
+
     render() {
         const { tags } = this.state;
         return (
@@ -104,9 +119,11 @@ class FeelingsForm extends React.Component {
 				        	</form>
 
 				          <ReactTags tags={tags}
+                    value={this.state.tags} onChange={this.handleChange}
 					          handleDelete={this.handleDelete}
 					          handleAddition={this.handleAddition}
 					          handleDrag={this.handleDrag}
+                    validate={this.validate}
 									/>
 									
 				          <ButtonToolbar>
@@ -119,7 +136,7 @@ class FeelingsForm extends React.Component {
         </Grid>
       )
     }
-
 }
+
 
 export default FeelingsForm
