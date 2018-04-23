@@ -36,11 +36,14 @@ class ButtonCourses extends React.Component {
 
   handleChange(courseId){
     this.props.onChange(courseId)
+    this.setState({
+      course: courseId
+    })
     console.log("course: "+courseId)
   }
 
   render(){
-    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.course === course.id ? true : false}>{course.name}</MenuItem>)
+    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.state.course === course.id ? true : false}>{course.name}</MenuItem>)
 
     return this.state.isLoad === true? (
       <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>
