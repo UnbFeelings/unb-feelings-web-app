@@ -35,21 +35,33 @@ class SubjectsSelect extends React.Component {
     return responseJson
   }
 
-  handleCheck(subjectId){
-    alert(subjectId)
+  handleCheck(event, subjectId){
+    const isChecked = event.target.checked
     const selected = this.state.selectedSubjects
-    selected.push(subjectId)
-    console.log(selected)
+
+    if(isChecked){
+      selected.push(subjectId)
+    }else{
+      const indexOfSubject = selected.indexOf(subjectId)
+      selected.splice(indexOfSubject, 1)
+    }
 
     this.setState({
       selectedSubjects: [...selected]
     })
 
-    console.log(this.state.selectedSubjects)
+    console.log("selected subjects: "+this.state.selectedSubjects)
   }
 
   render(){
-    const list = this.state.subjectsList.map((subject) => <ListGroupItem onChange={() => this.handleCheck(subject.id)}><Checkbox>{subject.name}</Checkbox></ListGroupItem>)
+    const list = this.state.subjectsList.map((subject, i) => {
+      return(
+        <ListGroupItem key={subject.id}>
+          <Checkbox onClick={(event) => this.handleCheck(event, subject.id)}>
+            {subject.name}
+          </Checkbox>
+        </ListGroupItem>)
+      })
 
     return this.state.isLoad === true? (
       <ListGroup>{list}</ListGroup>
