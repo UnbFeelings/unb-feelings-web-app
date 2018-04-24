@@ -54,7 +54,7 @@ class SubjectsSelect extends React.Component {
   }
 
   render(){
-    const list = this.state.subjectsList.map((subject, i) => {
+    const list = this.state.subjectsList.map((subject) => {
       return(
         <ListGroupItem key={subject.id}>
           <Checkbox onClick={(event) => this.handleCheck(event, subject.id)}>

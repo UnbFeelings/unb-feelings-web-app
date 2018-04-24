@@ -1,7 +1,6 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import SentimentPost from './SentimentPost'
-import { Button } from 'react-bootstrap'
 
 class ClassFeelings extends React.Component {
   constructor(props){

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Router, Redirect } from 'react-router-dom';
 import App from './App';
 import history from './history';
 import Test from './Components/Test'
@@ -14,6 +14,8 @@ export const makeMainRoutes = () => {
           <Route path="/home" render={() => <Home />} />
           <Route path="/test" render={() => <Test />} />
           <Route path="/feelings" render={(props) => <Feelings {...props} />} />
+
+          <Redirect from="/" to="/home"/>
         </div>
       </Router>
   );
