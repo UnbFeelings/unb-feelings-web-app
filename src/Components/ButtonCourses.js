@@ -1,5 +1,5 @@
 import React from 'react'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
+import { DropdownButton, MenuItem, FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
 
 class ButtonCourses extends React.Component {
   constructor(props){
@@ -34,19 +34,29 @@ class ButtonCourses extends React.Component {
     return responseJson
   }
 
-  handleChange(courseId){
-    this.props.onChange(courseId)
+  handleChange(event){
+    const courseId = event.target.value
+
     this.setState({
       course: courseId
     })
+
+    this.props.onChange(courseId)
     console.log("course: "+courseId)
   }
 
   render(){
-    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.state.course === course.id ? true : false}>{course.name}</MenuItem>)
+    const list = this.state.coursesList.map((course, i) => <option key={course.id} value={course.id}>{course.name}</option>)
 
     return this.state.isLoad === true? (
-      <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>
+      <div>
+        <FormGroup controlId="formControlsSelect" onChange={this.handleChange}>
+          <ControlLabel>Selecione o curso</ControlLabel>
+          <FormControl componentClass="select" placeholder="select">
+            {list}
+          </FormControl>
+        </FormGroup>
+      </div>
     ):(<h1>loading ... </h1>)
   }
 }
