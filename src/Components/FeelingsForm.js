@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { Button, ButtonToolbar, FormGroup, FormControl, HelpBlock, ControlLabel,
 														Row, Grid, Col} from 'react-bootstrap';
@@ -83,13 +83,13 @@ class FeelingsForm extends React.Component {
       if (!matches || matches.length !== 3) {
         return false
       }
- 
+
        const min = parseInt(matches[1], 10)
        const max = parseInt(matches[2], 10)
        if (min > max) {
          return false
        }
- 
+
       return true
     }
 
@@ -125,7 +125,7 @@ class FeelingsForm extends React.Component {
 					          handleDrag={this.handleDrag}
                     validate={this.validate}
 									/>
-									
+
 				          <ButtonToolbar>
 				          	<Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Enviar</Button>
 				          </ButtonToolbar>
