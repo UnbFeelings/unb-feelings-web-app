@@ -34,6 +34,16 @@ class ButtonCourses extends React.Component {
     return responseJson
   }
 
+  getValidationField(value){
+    let status
+
+    if(value) status = 'success'
+    else if(value === "") status = null
+    else  status = 'error'
+
+    return status
+  }
+
   handleChange(event){
     const courseId = event.target.value
 
@@ -50,7 +60,7 @@ class ButtonCourses extends React.Component {
 
     return this.state.isLoad === true? (
       <div>
-        <FormGroup controlId="formControlsSelect" onChange={this.handleChange}>
+        <FormGroup controlId="formControlsSelect" onChange={this.handleChange} validationState={this.getValidationField(this.state.course)}>
           <ControlLabel>Selecione o curso</ControlLabel>
           <FormControl componentClass="select" placeholder="select">
             {list}
