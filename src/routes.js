@@ -12,7 +12,6 @@ export const makeMainRoutes = () => {
         <div>
           <Route path="/" render={(props) => <App {...props} />} />
           <Route path="/home" render={() => <Home />} />
-          <Route path="/test" render={() => <Test />} />
           <Route path="/feelings" render={(props) => <Feelings {...props} />} />
 
           <Redirect from="/" to="/home"/>
