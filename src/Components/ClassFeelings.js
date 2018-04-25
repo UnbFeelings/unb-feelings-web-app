@@ -9,7 +9,7 @@ class ClassFeelings extends React.Component {
       id: this.props.id,
       email: this.props.email,
       posts: [],
-      isLoad: false
+      wasLoaded: false
     }
     this.fetchData = this.fetchData.bind(this)
   }
@@ -19,7 +19,7 @@ class ClassFeelings extends React.Component {
 
     this.setState({
       posts: responseJson.results,
-      isLoad: true
+      wasLoaded: true
     });
   }
 
@@ -37,7 +37,7 @@ class ClassFeelings extends React.Component {
   }
 
   render(){
-    return this.state.isLoad === true? (
+    return this.state.wasLoaded === true? (
       <Grid>
         <Row>
           <h1>feelings about classes:</h1>

@@ -13,7 +13,7 @@ class FeelingsForm extends React.Component {
       this.state = {
           tags: [],
           value: '',
-					isSended: false,
+					wasSended: false,
 					id: this.props.id
       };
       this.handleDelete = this.handleDelete.bind(this);
@@ -71,7 +71,7 @@ class FeelingsForm extends React.Component {
 	    })
 
 			this.setState({
-				isSended: !this.state.isSended
+				wasSended: true
 			})
 
 	    const responseJson = await response.json()

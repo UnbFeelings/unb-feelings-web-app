@@ -7,7 +7,7 @@ class ButtonCourses extends React.Component {
     this.state = {
       course: "",
       coursesList: [],
-      isLoad: false
+      wasLoaded: false
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -17,7 +17,7 @@ class ButtonCourses extends React.Component {
     const courses = responseJson.results
     this.setState({
       coursesList: [...courses],
-      isLoad: true
+      wasLoaded: true
     });
   }
 
@@ -58,7 +58,7 @@ class ButtonCourses extends React.Component {
   render(){
     const list = this.state.coursesList.map((course, i) => <option key={course.id} value={course.id}>{course.name}</option>)
 
-    return this.state.isLoad === true? (
+    return this.state.wasLoaded === true? (
       <div>
         <FormGroup controlId="formControlsSelect" onChange={this.handleChange} validationState={this.getValidationField(this.state.course)}>
           <ControlLabel>Selecione o curso</ControlLabel>

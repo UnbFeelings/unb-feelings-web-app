@@ -15,7 +15,7 @@ class LoginForm extends React.Component{
       password: "",
       id: "",
       token: undefined,
-      isLogged: false
+      wasLogged: false
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
@@ -42,7 +42,7 @@ class LoginForm extends React.Component{
       this.setState({
         token: responseJson.token,
         id: responseJson.user,
-        isLogged: true
+        wasLogged: true
       });
     }else{
       alert("Não foi possível realizar o loggin")
@@ -68,7 +68,7 @@ class LoginForm extends React.Component{
   }
 
   render(){
-    return this.state.isLogged === false? (
+    return this.state.wasLogged === false? (
       <Form inline>
         <FormGroup style={{ marginRight: 10 }}>
            <FormControl type="email" placeholder="email@email.com" onChange={this.handleChangeEmail} />
