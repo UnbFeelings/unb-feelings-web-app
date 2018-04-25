@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Router, Redirect } from 'react-router-dom';
 import App from './App';
 import history from './history';
-import Test from './Components/Test'
+// import Test from './Components/Test'
 import Home from './Components/Home'
 import Feelings from './Components/Feelings'
 
