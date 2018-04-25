@@ -9,6 +9,7 @@ class ClassFeelings extends React.Component {
       id: this.props.id,
       email: this.props.email,
       posts: [],
+      selectedSubject: '',
       wasLoaded: false
     }
     this.fetchData = this.fetchData.bind(this)
@@ -16,9 +17,14 @@ class ClassFeelings extends React.Component {
 
   async componentDidMount(){
     const responseJson = await this.fetchData()
-
+    const listClassFeelings = [];
+    const responseJsonClassFeelings = responseJson.results.map((result, id) => {
+      if(result.subject != null){
+          listClassFeelings.push(result);
+      }
+    })
     this.setState({
-      posts: responseJson.results,
+      posts: listClassFeelings,
       wasLoaded: true
     });
   }
