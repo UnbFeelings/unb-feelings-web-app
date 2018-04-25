@@ -4,6 +4,7 @@ import { WithContext as ReactTags } from 'react-tag-input';
 import { Button, ButtonToolbar, FormGroup, FormControl, HelpBlock, ControlLabel,
 														Row, Grid, Col} from 'react-bootstrap';
 
+import SubjectsSelectInput from './SubjectsSelectInput'
 
 class FeelingsForm extends React.Component {
 
@@ -14,14 +15,23 @@ class FeelingsForm extends React.Component {
           tags: [],
           value: '',
 					wasSended: false,
-					id: this.props.id
+					id: this.props.id,
+					selectedSubject: ''
       };
       this.handleDelete = this.handleDelete.bind(this);
       this.handleAddition = this.handleAddition.bind(this);
       this.handleDrag = this.handleDrag.bind(this);
       this.handleChange = this.handleChange.bind(this);
   		this.handleSubmit = this.handleSubmit.bind(this);
-    }
+			this.updateSubject = this.updateSubject.bind(this);
+		}
+
+		updateSubject(newSubject) {
+			this.setState({
+				selectedSubject: newSubject,
+			})
+			console.log("newSubject "+newSubject)
+		}
 
     handleDelete(i) {
       const { tags } = this.state;
@@ -60,7 +70,7 @@ class FeelingsForm extends React.Component {
 	      body: JSON.stringify({
 				  author: this.state.id,
 				  content: this.state.value,
-				  subject: "2",
+				  subject: this.state.selectedSubject,
 				  tag: [
 				    "1"
 				  ],
@@ -104,7 +114,7 @@ class FeelingsForm extends React.Component {
     					<Col xs={8}>
         				<div>
         					<h1>FeelingsPage</h1>
-
+									<	SubjectsSelectInput onChange={this.updateSubject}/>
 				        	<form>
 				    	      <FormGroup>
 				    	      	<ControlLabel>Descreva o que está sentindo a cerda de uma aula ou do seu dia:</ControlLabel>
