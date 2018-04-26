@@ -7,7 +7,7 @@ class SubjectsSelect extends React.Component {
     this.state = {
       subjectsList: [],
       selectedSubjects: [],
-      isLoad: false
+      wasLoaded: false
     }
     this.fetchSubjects = this.fetchSubjects.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
@@ -18,7 +18,7 @@ class SubjectsSelect extends React.Component {
     const subjects = responseJson.results
     this.setState({
       subjectsList: [...subjects],
-      isLoad: true
+      wasLoaded: true
     });
   }
 
@@ -54,7 +54,7 @@ class SubjectsSelect extends React.Component {
   }
 
   render(){
-    const list = this.state.subjectsList.map((subject, i) => {
+    const list = this.state.subjectsList.map((subject) => {
       return(
         <ListGroupItem key={subject.id}>
           <Checkbox onClick={(event) => this.handleCheck(event, subject.id)}>
@@ -63,7 +63,7 @@ class SubjectsSelect extends React.Component {
         </ListGroupItem>)
       })
 
-    return this.state.isLoad === true? (
+    return this.state.wasLoaded === true? (
       <ListGroup>{list}</ListGroup>
     ):(<h1>loading ... </h1>)
   }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { DropdownButton, MenuItem } from 'react-bootstrap'
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 class ButtonCourses extends React.Component {
   constructor(props){
@@ -7,9 +8,9 @@ class ButtonCourses extends React.Component {
     this.state = {
       course: "",
       coursesList: [],
-      isLoad: false
+      wasLoaded: false
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.updateCourse = this.updateCourse.bind(this)
   }
 
   async componentDidMount(){
@@ -17,7 +18,7 @@ class ButtonCourses extends React.Component {
     const courses = responseJson.results
     this.setState({
       coursesList: [...courses],
-      isLoad: true
+      wasLoaded: true
     });
   }
 
@@ -34,19 +35,37 @@ class ButtonCourses extends React.Component {
     return responseJson
   }
 
-  handleChange(courseId){
-    this.props.onChange(courseId)
-    this.setState({
-      course: courseId
-    })
-    console.log("course: "+courseId)
-  }
+  updateCourse(newCourse) {
+		this.setState({
+			selectValue: newCourse,
+		});
+    this.props.onChange(newCourse);
+    console.log("course: "+newCourse)
+	}
 
   render(){
-    const list = this.state.coursesList.map((course, i) => <MenuItem key={course.id} onSelect={() => this.handleChange(course.id)}  active={this.state.course === course.id ? true : false}>{course.name}</MenuItem>)
+    const listOptions = []
+    const list = this.state.coursesList.map((course, i) => {
+      return listOptions.push({value: course.id, label: course.name})
+    })
 
-    return this.state.isLoad === true? (
-      <div><DropdownButton id="courses-button" title="curso">{list}</DropdownButton></div>
+    return this.state.wasLoaded === true? (
+      <Select
+        id="course-select"
+        name="selected-course"
+        placeholder="Selecione um curso"
+        simpleValue
+        autoFocus
+        onBlurResetsInput={false}
+        onSelectResetsInput={false}
+        options={listOptions}
+        disabled={false}
+        clearable={true}
+        value={this.state.selectValue}
+        onChange={this.updateCourse}
+        rtl={false}
+        searchable={true}
+      />
     ):(<h1>loading ... </h1>)
   }
 }

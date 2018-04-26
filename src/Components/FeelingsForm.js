@@ -1,9 +1,10 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import { WithContext as ReactTags } from 'react-tag-input';
 import { Button, ButtonToolbar, FormGroup, FormControl, HelpBlock, ControlLabel,
 														Row, Grid, Col} from 'react-bootstrap';
 
+import SubjectsSelectInput from './SubjectsSelectInput'
 
 class FeelingsForm extends React.Component {
 
@@ -13,15 +14,23 @@ class FeelingsForm extends React.Component {
       this.state = {
           tags: [],
           value: '',
-					isSended: false,
-					id: this.props.id
+					wasSended: false,
+					selectedSubject: ''
       };
       this.handleDelete = this.handleDelete.bind(this);
       this.handleAddition = this.handleAddition.bind(this);
       this.handleDrag = this.handleDrag.bind(this);
       this.handleChange = this.handleChange.bind(this);
   		this.handleSubmit = this.handleSubmit.bind(this);
-    }
+			this.updateSubject = this.updateSubject.bind(this);
+		}
+
+		updateSubject(newSubject) {
+			this.setState({
+				selectedSubject: newSubject,
+			})
+			console.log("newSubject "+newSubject)
+		}
 
     handleDelete(i) {
       const { tags } = this.state;
@@ -58,9 +67,9 @@ class FeelingsForm extends React.Component {
 	        'Content-Type':'application/json'
 	      },
 	      body: JSON.stringify({
-				  author: this.state.id,
+				  author: localStorage.getItem('userId'),
 				  content: this.state.value,
-				  subject: "2",
+				  subject: this.state.selectedSubject,
 				  tag: [
 				    "1"
 				  ],
@@ -71,7 +80,7 @@ class FeelingsForm extends React.Component {
 	    })
 
 			this.setState({
-				isSended: !this.state.isSended
+				wasSended: true
 			})
 
 	    const responseJson = await response.json()
@@ -83,13 +92,13 @@ class FeelingsForm extends React.Component {
       if (!matches || matches.length !== 3) {
         return false
       }
- 
+
        const min = parseInt(matches[1], 10)
        const max = parseInt(matches[2], 10)
        if (min > max) {
          return false
        }
- 
+
       return true
     }
 
@@ -103,8 +112,8 @@ class FeelingsForm extends React.Component {
 
     					<Col xs={8}>
         				<div>
-        					<h1>FeelingsPage</h1>
-
+        					<h1>Feelings form</h1>
+									<	SubjectsSelectInput onChange={this.updateSubject}/>
 				        	<form>
 				    	      <FormGroup>
 				    	      	<ControlLabel>Descreva o que está sentindo a cerda de uma aula ou do seu dia:</ControlLabel>
@@ -125,7 +134,7 @@ class FeelingsForm extends React.Component {
 					          handleDrag={this.handleDrag}
                     validate={this.validate}
 									/>
-									
+
 				          <ButtonToolbar>
 				          	<Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Enviar</Button>
 				          </ButtonToolbar>

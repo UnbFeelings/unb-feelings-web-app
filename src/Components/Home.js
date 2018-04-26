@@ -16,10 +16,10 @@ class Home extends React.Component {
           </Col>
           <Col sm={12} md={6}>
             <div className="App-loggin">
-              <LoginForm />
+              <LoginForm auth={this.props.auth}/>
             </div>
             <div className="App-signup">
-              <SignUpForm />
+              <SignUpForm auth={this.props.auth}/>
             </div>
           </Col>
         </Row>

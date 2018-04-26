@@ -11,7 +11,8 @@ class SignUpForm extends React.Component{
       email: "",
       password: "",
       course: "",
-      isLogged: false,
+      wasLogged: false,
+      wasAcceptedTerms: false,
       id: ""
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
@@ -32,24 +33,17 @@ class SignUpForm extends React.Component{
     });
   }
 
+  handleAcceptTerms(event){
+    const isChecked = event.target.checked
+    this.setState({
+      wasAcceptedTerms: isChecked
+    })
+  }
+
   changeCourse(newCourse){
     this.setState({
       course: newCourse
     })
-  }
-
-  async handleClick(){
-    const responseJson = await this.fetchData()
-
-    if(responseJson.id !== undefined){
-      this.setState({
-        id: responseJson.id,
-        email: responseJson.email,
-        isLogged: true
-      });
-    }else{
-      alert("não foi possível realizar o cadastro")
-    }
   }
 
   async fetchData(){
@@ -71,8 +65,54 @@ class SignUpForm extends React.Component{
     return response
   }
 
+  async handleClick(){
+    const responseJson = await this.fetchData()
+
+    if(responseJson.id !== undefined){
+      this.setState({
+        id: responseJson.id,
+        email: responseJson.email,
+        wasLogged: true
+      });
+
+      this.login()
+    }else{
+      alert("não foi possível realizar o cadastro")
+    }
+  }
+
+  getValidationAcceptTerms(value){
+    if(value) return 'success'
+    else return null
+  }
+
+  getEmailValidation(email){
+    let status
+
+    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const isValid = emailRegex.test(String(email).toLowerCase())
+
+    if(isValid) status = 'success'
+    else if(email === "") status = null
+    else  status = 'error'
+
+    return status
+  }
+
+  getValidationPassword(password) {
+    const length = password.length;
+    if (length > 8) return 'success';
+    else if (length > 6) return 'warning';
+    else if (length > 0) return 'error';
+    return null;
+  }
+
+  login(){
+    this.props.auth.login(this.state.email, this.state.password)
+  }
+
   render(){
-    return this.state.isLogged === false? (
+    return this.state.wasLogged === false? (
       <Grid>
         <Form horizontal>
 
@@ -80,7 +120,7 @@ class SignUpForm extends React.Component{
           <h2>Participe!</h2>
         </FormGroup>
 
-        <FormGroup controlId="formInlineEmail">
+        <FormGroup controlId="formInlineEmail" validationState={this.getEmailValidation(this.state.email)}>
            <FormControl
               type="email"
               placeholder="email@email.com"
@@ -88,19 +128,18 @@ class SignUpForm extends React.Component{
             />
         </FormGroup>
 
-        <FormGroup controlId="formInlineSenha">
+        <FormGroup controlId="formInlineSenha" validationState={this.getValidationPassword(this.state.password)}>
             <FormControl
             type="password"
             placeholder="senha"
             onChange={this.handleChangePassword}
-        />
+            />
         </FormGroup>
 
         <ButtonCourses onChange={this.changeCourse}/>
-        <SubjectsSelect />
 
-        <FormGroup>
-          <Checkbox>Aceito todos os termos</Checkbox>
+        <FormGroup validationState={this.getValidationAcceptTerms(this.state.wasAcceptedTerms)}>
+          <Checkbox onClick={(event) => this.handleAcceptTerms(event)}>Aceito todos os termos</Checkbox>
         </FormGroup>
         </Form>
 

@@ -1,26 +1,30 @@
 import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import SentimentPost from './SentimentPost'
-import { Button } from 'react-bootstrap'
+
 
 class ClassFeelings extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      id: this.props.id,
-      email: this.props.email,
       posts: [],
-      isLoad: false
+      selectedSubject: '',
+      wasLoaded: false
     }
     this.fetchData = this.fetchData.bind(this)
   }
 
   async componentDidMount(){
     const responseJson = await this.fetchData()
-
+    const listClassFeelings = [];
+    const responseJsonClassFeelings = responseJson.results.map((result, id) => {
+      if(result.subject != null){
+          listClassFeelings.push(result);
+      }
+    })
     this.setState({
-      posts: responseJson.results,
-      isLoad: true
+      posts: listClassFeelings,
+      wasLoaded: true
     });
   }
 
@@ -38,7 +42,7 @@ class ClassFeelings extends React.Component {
   }
 
   render(){
-    return this.state.isLoad === true? (
+    return this.state.wasLoaded === true? (
       <Grid>
         <Row>
           <h1>feelings about classes:</h1>

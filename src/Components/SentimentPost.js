@@ -10,7 +10,7 @@ class SentimentPost extends React.Component {
   render(){
     const list = this.state.posts.map((post) => {
       return(
-        <Panel bsStyle="primary">
+        <Panel key={post.id} bsStyle="primary">
           <Panel.Heading>
             <Panel.Title>{post.subject}</Panel.Title>
           </Panel.Heading>
