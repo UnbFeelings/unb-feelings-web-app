@@ -4,7 +4,6 @@ class Auth {
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
-
     this.isAuthenticated = this.isAuthenticated.bind(this);
     this.fetchData = this.fetchData.bind(this)
   }
@@ -44,10 +43,9 @@ class Auth {
 
   setSession(authResult, userId) {
     // Set the time that the access token will expire at
-    const result = {expiresIn: 10, accessToken: authResult}
+    const result = {expiresIn: 60, accessToken: authResult}
 
-    console.log("result: "+result)
-
+    //time in milisenconds: 60 * 1000 = 1 min to expire
     let expiresAt = JSON.stringify((result.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', result.accessToken);
     localStorage.setItem('userId', userId);
@@ -70,6 +68,8 @@ class Auth {
     // access token's expiry time
 
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    console.log("now: "+new Date().getTime())
+    console.log("expiresAt: "+expiresAt)
     return new Date().getTime() < expiresAt;
   }
 }

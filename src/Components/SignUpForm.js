@@ -46,31 +46,38 @@ class SignUpForm extends React.Component{
     })
   }
 
-  validadeFilds(){
-    let isValid = false
-    if(this.state.wasAcceptedTerms === true){
-      isValid = true
-    }else{
-      isValid = false
-    }
-    return isValid
+  async fetchData(){
+    const response = await fetch('http://localhost:8000/api/users/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        course: this.state.course
+      })
+    })
+    .then(response => response.json())
+    .catch(error => console.log(console.error()))
+
+    return response
   }
 
   async handleClick(){
-    if(this.validadeFilds()){
-      const responseJson = await this.fetchData()
+    const responseJson = await this.fetchData()
 
-      if(responseJson.id !== undefined){
-        this.setState({
-          id: responseJson.id,
-          email: responseJson.email,
-          wasLogged: true
-        });
-      }else{
-        alert("não foi possível realizar o cadastro")
-      }
+    if(responseJson.id !== undefined){
+      this.setState({
+        id: responseJson.id,
+        email: responseJson.email,
+        wasLogged: true
+      });
+
+      this.login()
     }else{
-      alert("preencha corretamente os campos")
+      alert("não foi possível realizar o cadastro")
     }
   }
 
@@ -100,23 +107,8 @@ class SignUpForm extends React.Component{
     return null;
   }
 
-  async fetchData(){
-    const response = await fetch('http://localhost:8000/api/users/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-        course: this.state.course
-      })
-    })
-    .then(response => response.json())
-    .catch(error => console.log(console.error()))
-
-    return response
+  login(){
+    this.props.auth.login(this.state.email, this.state.password)
   }
 
   render(){
