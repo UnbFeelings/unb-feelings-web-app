@@ -5,13 +5,14 @@ import history from './history';
 import Test from './Components/Test'
 import Home from './Components/Home'
 import FeelingsPageForm from './Components/FeelingsPageForm'
+import Header from './Components/Header'
 
 export const makeMainRoutes = () => {
   return (
       <Router history={history}>
         <div>
-          <Route path="/" render={(props) => <App {...props} />} />
-          <Route path="/home" render={() => <Home />} />
+          <Header/>
+          <Route path="/" render={() => <Home />} />
           <Route path="/test" render={() => <Test />} />
           <Route path="/feelingsPage" render={(props) => <FeelingsPageForm {...props}/>} />
         </div>

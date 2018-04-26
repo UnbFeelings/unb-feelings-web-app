@@ -1,11 +1,14 @@
 import React from 'react';
-import './App.css'
+import './assets/css/styles.css'
 //import { Grid, Row, Col } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 // import { FormGroup, FormControl } from 'react-bootstrap'
 
+
+
 class App extends React.Component {
+
   constructor(props){
     super(props)
     this.state = {}
@@ -18,13 +21,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <Navbar fluid className="App-header">
-          <Navbar.Header>
-            <Navbar.Brand>
-              <Link to="/home" className="App-title" style={{color: 'white'}}>UnB Feelings</Link>
-            </Navbar.Brand>
-          </Navbar.Header>
-        </Navbar>
+
       </div>
     );
   }
