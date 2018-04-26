@@ -4,8 +4,7 @@ import './assets/css/styles.css'
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 // import { FormGroup, FormControl } from 'react-bootstrap'
-
-
+import Header from './Components/Header'
 
 class App extends React.Component {
 
@@ -21,7 +20,9 @@ class App extends React.Component {
   render(){
     return (
       <div>
-
+        <Header/>
+          <div class="wrapper">
+        </div>
       </div>
     );
   }
