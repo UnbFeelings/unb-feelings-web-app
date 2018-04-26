@@ -22,13 +22,13 @@ class Feelings extends React.Component {
           <Grid>
             <Row>
               <Col>
-                <FeelingsForm id={this.props.location.id} email={this.props.location.email} />
+                <FeelingsForm />
               </Col>
               <Col>
-                <ClassFeelings id={this.props.location.id} email={this.props.location.email}/>
+                <ClassFeelings />
               </Col>
               <Col>
-                <DayFeelings id={this.props.location.id} email={this.props.location.email}/>
+                <DayFeelings />
               </Col>
             </Row>
           </Grid>

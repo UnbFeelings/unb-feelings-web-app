@@ -15,7 +15,6 @@ class FeelingsForm extends React.Component {
           tags: [],
           value: '',
 					wasSended: false,
-					id: this.props.id,
 					selectedSubject: ''
       };
       this.handleDelete = this.handleDelete.bind(this);
@@ -113,7 +112,7 @@ class FeelingsForm extends React.Component {
 
     					<Col xs={8}>
         				<div>
-        					<h1>FeelingsPage</h1>
+        					<h1>Feelings form</h1>
 									<	SubjectsSelectInput onChange={this.updateSubject}/>
 				        	<form>
 				    	      <FormGroup>

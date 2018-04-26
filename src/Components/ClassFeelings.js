@@ -2,12 +2,11 @@ import React from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
 import SentimentPost from './SentimentPost'
 
+
 class ClassFeelings extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      id: this.props.id,
-      email: this.props.email,
       posts: [],
       selectedSubject: '',
       wasLoaded: false

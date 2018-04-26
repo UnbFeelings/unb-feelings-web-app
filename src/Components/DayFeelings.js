@@ -6,8 +6,6 @@ class DayFeelings extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      id: this.props.id,
-      email: this.props.email,
       posts: [],
       wasLoaded: false
     }
