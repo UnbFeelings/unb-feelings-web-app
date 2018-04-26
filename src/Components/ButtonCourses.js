@@ -1,5 +1,6 @@
 import React from 'react'
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap'
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 class ButtonCourses extends React.Component {
   constructor(props){
@@ -9,7 +10,7 @@ class ButtonCourses extends React.Component {
       coursesList: [],
       wasLoaded: false
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.updateCourse = this.updateCourse.bind(this)
   }
 
   async componentDidMount(){
@@ -34,39 +35,37 @@ class ButtonCourses extends React.Component {
     return responseJson
   }
 
-  getValidationField(value){
-    let status
-
-    if(value) status = 'success'
-    else if(value === "") status = null
-    else  status = 'error'
-
-    return status
-  }
-
-  handleChange(event){
-    const courseId = event.target.value
-
-    this.setState({
-      course: courseId
-    })
-
-    this.props.onChange(courseId)
-    console.log("course: "+courseId)
-  }
+  updateCourse(newCourse) {
+		this.setState({
+			selectValue: newCourse,
+		});
+    this.props.onChange(newCourse);
+    console.log("course: "+newCourse)
+	}
 
   render(){
-    const list = this.state.coursesList.map((course, i) => <option key={course.id} value={course.id}>{course.name}</option>)
+    const listOptions = []
+    const list = this.state.coursesList.map((course, i) => {
+      return listOptions.push({value: course.id, label: course.name})
+    })
 
     return this.state.wasLoaded === true? (
-      <div>
-        <FormGroup controlId="formControlsSelect" onChange={this.handleChange} validationState={this.getValidationField(this.state.course)}>
-          <ControlLabel>Selecione o curso</ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
-            {list}
-          </FormControl>
-        </FormGroup>
-      </div>
+      <Select
+        id="course-select"
+        name="selected-course"
+        placeholder="Selecione um curso"
+        simpleValue
+        autoFocus
+        onBlurResetsInput={false}
+        onSelectResetsInput={false}
+        options={listOptions}
+        disabled={false}
+        clearable={true}
+        value={this.state.selectValue}
+        onChange={this.updateCourse}
+        rtl={false}
+        searchable={true}
+      />
     ):(<h1>loading ... </h1>)
   }
 }

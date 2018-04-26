@@ -48,7 +48,7 @@ class SignUpForm extends React.Component{
 
   validadeFilds(){
     let isValid = false
-    if(this.state.wasAcceptedTerms == true){
+    if(this.state.wasAcceptedTerms === true){
       isValid = true
     }else{
       isValid = false

@@ -7,12 +7,9 @@ class SubjectsSelectInput extends React.Component {
     super(props)
     this.state = {
       subjectsList: [],
-      selectedSubject: " ",
+      selectedSubject: "",
       isLoad: false
       }
-    this.fetchSubjects = this.fetchSubjects.bind(this)
-    // this.handleSelect = this.handleSelect.bind(this)
-    this.switchSubject = this.switchSubject.bind(this)
     this.updateValue = this.updateValue.bind(this)
   }
 
@@ -22,7 +19,6 @@ class SubjectsSelectInput extends React.Component {
     this.setState({
       subjectsList: [...subjects],
       isLoad: true
-
     });
   }
 
@@ -39,15 +35,7 @@ class SubjectsSelectInput extends React.Component {
     return responseJson
   }
 
-  switchSubject (e) {
-  		var newSubject = e.target.value;
-  		this.setState({
-  			selectedSubject: newSubject,
-  			selectValue: null,
-  		});
-  	}
-
-    updateValue (newValue) {
+  updateValue (newValue) {
 		this.setState({
 			selectValue: newValue,
 		});
@@ -56,21 +44,19 @@ class SubjectsSelectInput extends React.Component {
 
 
 render(){
-    var listOptions = [];
+    const listOptions = [];
     const list =  this.state.subjectsList.map((subject, i) => {
-            // console.log("list value: "+ subject.id +" label: " + subject.name)
-            return listOptions.push({value: subject.id, label: subject.name})
-          })
-    // console.log("listOptions: "+listOptions);
+      return listOptions.push({value: subject.id, label: subject.name})
+    })
+
     console.log("id: "+this.state.selectValue)
       return(
         <Select
-					id="state-select"
-          name="selected-state"
+					id="subject-select"
+          name="selected-subject"
           placeholder="Selecione uma disciplina"
           simpleValue
           autoFocus
-          // ref={(ref) => { this.selectedSubject = ref; }}
 					onBlurResetsInput={false}
 					onSelectResetsInput={false}
 					options={listOptions}
