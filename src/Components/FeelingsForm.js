@@ -68,7 +68,7 @@ class FeelingsForm extends React.Component {
 	        'Content-Type':'application/json'
 	      },
 	      body: JSON.stringify({
-				  author: this.state.id,
+				  author: localStorage.getItem('userId'),
 				  content: this.state.value,
 				  subject: this.state.selectedSubject,
 				  tag: [

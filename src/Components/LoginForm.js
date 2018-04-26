@@ -19,8 +19,6 @@ class LoginForm extends React.Component{
     }
     this.handleChangeEmail = this.handleChangeEmail.bind(this)
     this.handleChangePassword = this.handleChangePassword.bind(this)
-    this.fetchData = this.fetchData.bind(this)
-    this.handleClick = this.handleClick.bind(this)
   }
 
   handleChangeEmail(e){
@@ -35,36 +33,8 @@ class LoginForm extends React.Component{
     });
   }
 
-  async handleClick(){
-    const responseJson = await this.fetchData()
-
-    if(responseJson !== undefined){
-      this.setState({
-        token: responseJson.token,
-        id: responseJson.user,
-        wasLogged: true
-      });
-    }else{
-      alert("Não foi possível realizar o loggin")
-    }
-  }
-
-  async fetchData(){
-    const response = await fetch('http://localhost:8000/api/token-auth/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password
-      })
-    })
-    .then(response => response.json())
-    .catch(error => console.log(console.error()))
-
-    return response
+  login() {
+    this.props.auth.login(this.state.email, this.state.password);
   }
 
   render(){
@@ -78,7 +48,7 @@ class LoginForm extends React.Component{
           <FormControl type="password" placeholder="senha" onChange={this.handleChangePassword}/>
         </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleClick}>Entrar</Button>
+        <Button bsStyle="primary" onClick={this.login.bind(this)}>Entrar</Button>
 
       </Form>
     ):(<Redirect to={{pathname: "/feelings", email: this.state.email, id: this.state.id}}/>)
