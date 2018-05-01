@@ -4,7 +4,7 @@ import LoginForm from './LoginForm'
 import SignUpForm from './SignUpForm'
 // import CarouselForm from './CarouselForm'
 // import HeaderForm from './HeaderForm'
-import '../assets/css/styles.css'
+//import '../assets/css/styles.css'
 
 class Home extends React.Component {
 

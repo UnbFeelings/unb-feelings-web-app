@@ -95,8 +95,7 @@ class Header extends React.Component {
                               <img src={require("../assets/img/freeze/Slides/freeze-slide2.png")} alt=""/>
                           </div>
 
-
-                          <div className="tp-caption large_white_light sft" data-x="center" data-y="250" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
+                          <div className="tp-caption large_white_light sft" data-x="center" data-y="200" data-hoffset="0" data-voffset="0" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
                               Conte como se sente! <i className="fa fa-heart"></i>
                           </div>
 

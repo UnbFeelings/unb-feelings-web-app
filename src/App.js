@@ -1,10 +1,13 @@
 import React from 'react';
-import './assets/css/styles.css'
-//import { Grid, Row, Col } from 'react-bootstrap';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-// import { FormGroup, FormControl } from 'react-bootstrap'
 import Header from './Components/Header'
+import About from './Components/About'
+import Reviews from './Components/Reviews'
+import Features from './Components/Features'
+import GetApp from './Components/GetApp'
+import Support from './Components/Support'
+
 
 class App extends React.Component {
 
@@ -19,9 +22,15 @@ class App extends React.Component {
 
   render(){
     return (
+
       <div>
         <Header/>
-          <div class="wrapper">
+          <div className="wrapper">
+          <About/>
+          <Reviews/>
+          <Features/>
+          <GetApp/>
+          <Support/>
         </div>
       </div>
     );
