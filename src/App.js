@@ -1,18 +1,39 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
+import Header from './Components/Header'
+import About from './Components/About'
+import Reviews from './Components/Reviews'
+import Features from './Components/Features'
+import GetApp from './Components/GetApp'
+import Support from './Components/Support'
+import Footer from './Components/Footer'
 
-class App extends Component {
-  render() {
+
+class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state = {}
+  }
+
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
+
+  render(){
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+      <div>
+        <Header/>
+          <div className="wrapper">
+          <About/>
+          <Reviews/>
+          <Features/>
+          <GetApp/>
+          <Support/>
+          <Footer/>
+        </div>
       </div>
     );
   }
