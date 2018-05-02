@@ -7,6 +7,7 @@ import Reviews from './Components/Reviews'
 import Features from './Components/Features'
 import GetApp from './Components/GetApp'
 import Support from './Components/Support'
+import Footer from './Components/Footer'
 
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
           <Features/>
           <GetApp/>
           <Support/>
+          <Footer/>
         </div>
       </div>
     );
