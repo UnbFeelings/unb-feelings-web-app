@@ -169,7 +169,7 @@ const NewHome = () => (
           <div className="row">
             <div className="col-md-4 col-sm-4 scrollpoint sp-effect1">
               <div className="media text-right feature">
-                <a className="pull-right" href="#">
+                <a className="pull-right">
                   <i className="fa fa-cogs fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -178,7 +178,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media text-right feature">
-                <a className="pull-right" href="#">
+                <a className="pull-right">
                   <i className="fa fa-envelope fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -187,7 +187,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media text-right feature">
-                <a className="pull-right" href="#">
+                <a className="pull-right">
                   <i className="fa fa-users fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -196,7 +196,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media text-right feature">
-                <a className="pull-right" href="#">
+                <a className="pull-right">
                   <i className="fa fa-comments fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -205,7 +205,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media text-right feature">
-                <a className="pull-right" href="#">
+                <a className="pull-right">
                   <i className="fa fa-calendar fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -221,7 +221,7 @@ const NewHome = () => (
 
             <div className="col-md-4 col-sm-4 scrollpoint sp-effect2">
               <div className="media feature">
-                <a className="pull-left" href="#">
+                <a className="pull-left">
                   <i className="fa fa-map-marker fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -231,7 +231,7 @@ const NewHome = () => (
               </div>
 
               <div className="media feature">
-                <a className="pull-left" href="#">
+                <a className="pull-left">
                   <i className="fa fa-film fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -240,7 +240,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media feature">
-                <a className="pull-left" href="#">
+                <a className="pull-left">
                   <i className="fa fa-compass fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -249,7 +249,7 @@ const NewHome = () => (
                   </div>
               </div>
               <div className="media feature">
-                <a className="pull-left" href="#">
+                <a className="pull-left">
                   <i className="fa fa-picture-o fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -258,7 +258,7 @@ const NewHome = () => (
                 </div>
               </div>
               <div className="media active feature">
-                <a className="pull-left" href="#">
+                <a className="pull-left">
                   <i className="fa fa-plus fa-2x"></i>
                 </a>
                 <div className="media-body">
@@ -390,17 +390,19 @@ const NewHome = () => (
 
       <footer>
         <div className="container">
-          <a href="#" className="scrollpoint sp-effect3">
+          <a href="/" className="scrollpoint sp-effect3">
             <img src="/assets/img/freeze/logo.png" alt="" className="logo" />
           </a>
+
           <div className="social">
-            <a href="#" className="scrollpoint sp-effect3"><i className="fa fa-twitter fa-lg"></i></a>
-            <a href="#" className="scrollpoint sp-effect3"><i className="fa fa-google-plus fa-lg"></i></a>
-            <a href="#" className="scrollpoint sp-effect3"><i className="fa fa-facebook fa-lg"></i></a>
+            <a className="scrollpoint sp-effect3"><i className="fa fa-twitter fa-lg"></i></a>
+            <a className="scrollpoint sp-effect3"><i className="fa fa-google-plus fa-lg"></i></a>
+            <a className="scrollpoint sp-effect3"><i className="fa fa-facebook fa-lg"></i></a>
           </div>
+
           <div className="rights">
             <p>Copyright &copy; 2014</p>
-            <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
+            <p>Template by <a href="http://www.scoopthemes.com" target="_blank" rel="noopener noreferrer">ScoopThemes</a></p>
           </div>
         </div>
       </footer>
