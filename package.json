@@ -6,11 +6,7 @@
     "react-scripts": "1.1.1"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "cypress": "^2.1.0",
-    "material-ui": "^1.0.0-beta.41",
     "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2"
   },

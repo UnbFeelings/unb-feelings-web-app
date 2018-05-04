@@ -1,11 +1,11 @@
 import React from 'react';
 
-import NewHome from './Components/NewHome';
+import AppRouter from './AppRouter';
 
 class App extends React.Component {
   render() {
     return (
-      <NewHome />
+      <AppRouter />
     );
   }
 }

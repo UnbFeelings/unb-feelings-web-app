@@ -36,17 +36,23 @@ const NewHome = () => (
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
             <ul className="nav navbar-nav navbar-right">
-              <li><a href="#about">Sobre</a>
+              <li>
+                <a href="#about">Sobre</a>
               </li>
-              <li><a href="#features">Expresse</a>
+              <li>
+                <a href="#features">Expresse</a>
               </li>
-              <li><a href="#reviews">funcionalidades</a>
+              <li>
+                <a href="#reviews">Funcionalidades</a>
               </li>
-              <li><a href="#screens">praticidade</a>
+              <li>
+                <a href="#demo">Participe</a>
               </li>
-              <li><a href="#demo">participe</a>
+              <li>
+                <a href="#screens">Cadastro</a>
               </li>
-              <li><a className="getApp" href="#getApp">entrar</a>
+              <li>
+                <a className="getApp" href="#getApp">Entrar</a>
               </li>
             </ul>
           </div>
