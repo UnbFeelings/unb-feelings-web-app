@@ -1,0 +1,42 @@
+.Home {
+  width: 100%;
+
+  background: linear-gradient(141deg, #336799 0%, #009ab4 51%, #00c4c8 75%);
+  opacity: 0.95;
+  color: #fff;
+}
+
+.Home_left_side {
+  height: 100vh;
+}
+
+.Home_logo {
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home_options {
+  height: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home_options button:last-child {
+  margin-top: 20px;
+}
+
+.Home_right_side {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home_right_side .media {
+  margin-top: 30px;
+}
+
+.Home_right_side .media i {
+  margin-right: 10px;
+}
