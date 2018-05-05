@@ -5,7 +5,9 @@ import AppRouter from './AppRouter';
 class App extends React.Component {
   render() {
     return (
-      <AppRouter />
+      <div className="App">
+        <AppRouter />
+      </div>
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 
 import './Home.css';
 
@@ -10,7 +11,7 @@ const Home = () => (
       <div className="row">
         <div className="col-md-6 col-sm-12 text-center Home_left_side">
           <div className="col-md-12 col-sm-12 Home_logo">
-            <img src="/assets/img/freeze/logo.png" alt="UnB feelings logo" />
+            <UnbFeelingsLogo />
           </div>
 
           <div className="col-md-12 col-sm-12 Home_options">
