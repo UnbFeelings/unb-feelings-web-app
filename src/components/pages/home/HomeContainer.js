@@ -1,0 +1,46 @@
+import { connect } from 'react-redux';
+import Home from './Home';
+
+import { SET_USER } from '../../../redux/types';
+import { WebDataStates } from '../../../redux/initial-state';
+import axios from '../../../configs/axios';
+
+const mapStateToProps = ({ user }) => {
+  return {
+    user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  async loginUser({ email, password }) {
+    try {
+      const auth = await axios.post("/token-auth/", { email, password });
+
+      const user = await axios.get(`/users/${auth.data.user}/`, {
+        headers: {
+          Authorization: `JWT ${auth.data.token}`
+        }
+      });
+
+      if (user.status === 200) {
+        dispatch({
+          type: SET_USER,
+          user: {
+            state: WebDataStates.SUCCESS,
+            data: { ...user.data, token: auth.data.token }
+          }
+        });
+      }
+    } catch (err) {
+      console.log("ERR");
+      console.log(err.response.data);
+    }
+  }
+});
+
+const HomeContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
+
+export default HomeContainer;

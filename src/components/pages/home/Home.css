@@ -3,14 +3,14 @@
 }
 
 .Home_logo {
-  height: 50%;
+  height: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .Home_options {
-  height: 50%;
+  height: 70%;
   justify-content: center;
   align-items: center;
 }

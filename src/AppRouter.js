@@ -3,7 +3,7 @@ import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { WebDataStates } from './redux/initial-state';
-import Home from './components/pages/home/Home';
+import HomeContainer from './components/pages/home/HomeContainer';
 import SignUpContainer from './components/pages/sign-up/SignUpContainer';
 import Feelings from './components/pages/feelings/Feelings';
 
@@ -35,7 +35,7 @@ const AppRouter = ({ user }) => {
   return (
     <BrowserRouter>
       <div>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomeContainer} />
         <Route path="/sign-up" component={SignUpContainer} />
         <PrivateRoute
           path="/feelings"
