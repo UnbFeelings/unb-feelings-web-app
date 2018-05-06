@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 
 import './Home.css';
@@ -15,7 +17,7 @@ const Home = () => (
           </div>
 
           <div className="col-md-12 col-sm-12 Home_options">
-            <button className="btn btn-outline-light btn-block">REGISTRAR</button>
+            <Link to="sign-up" className="btn btn-outline-light btn-block">REGISTRAR</Link>
             <button className="btn btn-light btn-block">LOG IN</button>
           </div>
         </div>
@@ -50,9 +52,9 @@ const Home = () => (
             <div className="media-body">
               <h5 className="mt-0">Anonimato</h5>
 
-              em medo de retaliações? Não se preocupe,
+              Tem medo de retaliações? Não se preocupe,
               suas postagens serão feitas de modo
-              anônimo e nenhum dado seu será mantido ou compartilhado.
+              anônimo e nenhum dado seu será compartilhado.
             </div>
           </div>
 
