@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { WebDataStates } from './redux/initial-state';
 import HomeContainer from './components/pages/home/HomeContainer';
 import SignUpContainer from './components/pages/sign-up/SignUpContainer';
-import Feelings from './components/pages/feelings/Feelings';
+import FeelingsContainer from './components/pages/feelings/FeelingsContainer';
 
 
 // Hight order component for Route. HOC -> Decorator of components
@@ -39,7 +39,7 @@ const AppRouter = ({ user }) => {
         <Route path="/sign-up" component={SignUpContainer} />
         <PrivateRoute
           path="/feelings"
-          component={Feelings}
+          component={FeelingsContainer}
           user={user}
         />
       </div>

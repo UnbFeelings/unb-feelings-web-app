@@ -3,7 +3,7 @@ import Home from './Home';
 
 import { SET_USER } from '../../../redux/types';
 import { WebDataStates } from '../../../redux/initial-state';
-import axios from '../../../configs/axios';
+import axios, { setAuthToken } from '../../../configs/axios';
 
 const mapStateToProps = ({ user }) => {
   return {
@@ -16,11 +16,9 @@ const mapDispatchToProps = (dispatch) => ({
     try {
       const auth = await axios.post("/token-auth/", { email, password });
 
-      const user = await axios.get(`/users/${auth.data.user}/`, {
-        headers: {
-          Authorization: `JWT ${auth.data.token}`
-        }
-      });
+      setAuthToken(auth.data.token);
+
+      const user = await axios.get(`/users/${auth.data.user}/`);
 
       if (user.status === 200) {
         dispatch({

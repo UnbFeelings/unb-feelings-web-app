@@ -23,7 +23,7 @@ export const WebDataStates = {
  *  course: Course
  *
  * state = {
- *  user: WebData<User[]>,
+ *  user: WebData<User>,
  *  courses: WebData<Course[]>
  * }
  */

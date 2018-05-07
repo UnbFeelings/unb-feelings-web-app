@@ -9,4 +9,8 @@ const instance = axios.create({
   }
 });
 
+export const setAuthToken = (token) => {
+  instance.defaults.headers.common['Authorization'] = `JWT ${token}`;
+}
+
 export default instance;
