@@ -5,12 +5,15 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     'Accept': 'application/json',
-    'Content-Type':'application/json'
+    'Content-Type': 'application/json'
   }
 });
 
-export const setAuthToken = (token) => {
-  instance.defaults.headers.common['Authorization'] = `JWT ${token}`;
+export const setAuthToken = (token = "") => {
+  if (token.length !== 0)
+    instance.defaults.headers.common['Authorization'] = `JWT ${token}`;
+  else
+    delete instance.defaults.headers.common['Authorization'];
 }
 
 export default instance;
