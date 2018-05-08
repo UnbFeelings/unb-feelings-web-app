@@ -4,6 +4,7 @@ import Home from './Home';
 import { SET_USER } from '../../../redux/types';
 import { WebDataStates } from '../../../redux/initial-state';
 import axios, { setAuthToken } from '../../../configs/axios';
+import { setUserStore } from '../../../configs/local-storage';
 
 const mapStateToProps = ({ user }) => {
   return {
@@ -21,11 +22,15 @@ const mapDispatchToProps = (dispatch) => ({
       const user = await axios.get(`/users/${auth.data.user}/`);
 
       if (user.status === 200) {
+        const userData = { ...user.data, token: auth.data.token };
+
+        setUserStore(userData);
+
         dispatch({
           type: SET_USER,
           user: {
             state: WebDataStates.SUCCESS,
-            data: { ...user.data, token: auth.data.token }
+            data: userData
           }
         });
       }

@@ -30,7 +30,12 @@ export const WebDataStates = {
 const initialState = {
   user: {
     state: WebDataStates.NOT_REQUESTED,
-    data: {}
+    data: {
+      id: 0,
+      email: "",
+      token: "",
+      course: {}
+    }
   },
 
   courses: {
