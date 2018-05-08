@@ -91,22 +91,19 @@ const mapDispatchToProps = (dispatch) => ({
     });
   },
 
-  // TODO: Hame same code like HomeContainer login. Refac later
+  // TODO: Has same code like HomeContainer login. Refac later
   setStoredUser(userData) {
-    // Need to set a state diferent from NOT_REQUESTED to stop AppRouter
-    // componentWillMount from keep calling setStoredUser
-    const userState = !!userData.token.length ?
-      WebDataStates.SUCCESS :
-      WebDataStates.ERROR;
-
-    if (userData.token.length !== 0) {
-      setAuthToken(userData.token);
+    if (userData.token.length === 0) {
+      console.log("No user data found to auto log-in");
+      return;
     }
+
+    setAuthToken(userData.token);
 
     dispatch({
       type: SET_USER,
       user: {
-        state: userState,
+        state: WebDataStates.SUCCESS,
         data: userData
       }
     });
