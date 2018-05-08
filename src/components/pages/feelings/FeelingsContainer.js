@@ -1,23 +1,39 @@
 import { connect } from 'react-redux';
 import Feelings from './Feelings';
 
-import { setAuthToken } from '../../../configs/axios';
-import { setUserStore } from '../../../configs/local-storage';
-import { SET_USER } from '../../../redux/types';
-import initialstate from '../../../redux/initial-state';
+import axios from '../../../configs/axios';
+import { SET_COURSES } from '../../../redux/types';
 import { WebDataStates } from '../../../redux/initial-state';
 
-const mapStateToProps = (state) => {
-  return {}
+const mapStateToProps = ({ user, courses }) => {
+  return {
+    user, courses
+  }
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  logOff() {
-    setAuthToken("");
-    setUserStore(); // no arg = user.data from initialstate
+  async requestCourses() {
+    const { data, status } = await axios.get("/courses/");
+
+    if (status !== 200) {
+      console.error("Could not fetch courses");
+      console.log(data);
+
+      dispatch({
+        type: SET_COURSES,
+        courses: {
+          state: WebDataStates.ERROR,
+          data: data
+        }
+      });
+    }
+
     dispatch({
-      type: SET_USER,
-      user: initialstate.user
+      type: SET_COURSES,
+      courses: {
+        state: WebDataStates.SUCCESS,
+        data: data.results
+      }
     });
   }
 });

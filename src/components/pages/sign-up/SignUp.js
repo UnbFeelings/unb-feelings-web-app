@@ -72,7 +72,7 @@ class SignUp extends React.Component {
 
                   <DisplayError
                     check={user.state === ERROR && user.data.email}
-                    message={() => user.data.email.join("")}
+                    message={() => "" /*user.data.email.join("")*/}
                   />
 
                   <small id="emailHelp" className="form-text text-muted">

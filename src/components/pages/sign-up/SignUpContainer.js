@@ -48,6 +48,8 @@ const mapDispatchToProps = (dispatch) => ({
         });
       }
     } catch (err) {
+      console.log("AaaAAAAAAaaaaaaAAAAaaaaAAAaaaAAAaaaAAAaa");
+
       dispatch({
         type: SET_USER,
         user: {

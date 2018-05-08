@@ -2,10 +2,12 @@ import React from 'react';
 import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { WebDataStates } from './redux/initial-state';
+import initialstate, { WebDataStates } from './redux/initial-state';
 import { SET_USER } from './redux/types';
-import { getStoredUser } from './configs/local-storage';
+import { getStoredUser, setUserStore } from './configs/local-storage';
 import { setAuthToken } from './configs/axios';
+
+import TopMenu from './components/shared/TopMenu';
 
 // pages components
 import HomeContainer from './components/pages/home/HomeContainer';
@@ -48,11 +50,17 @@ class AppRouter extends React.Component {
   }
 
   render() {
-    const { user } = this.props;
+    const { user, logUserOff } = this.props;
 
     return (
       <BrowserRouter>
         <div>
+          {user.state === WebDataStates.SUCCESS ?
+            <TopMenu logUserOff={logUserOff} />
+            :
+            null
+          }
+
           <Route exact path="/" component={HomeContainer} />
           <Route path="/sign-up" component={SignUpContainer} />
           <PrivateRoute
@@ -73,6 +81,16 @@ const mapStateToProps = ({ user }) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
+  logUserOff() {
+    setAuthToken("");
+    setUserStore(); // no arg = user.data from initialstate
+
+    dispatch({
+      type: SET_USER,
+      user: initialstate.user
+    });
+  },
+
   // TODO: Hame same code like HomeContainer login. Refac later
   setStoredUser(userData) {
     // Need to set a state diferent from NOT_REQUESTED to stop AppRouter
