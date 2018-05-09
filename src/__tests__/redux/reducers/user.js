@@ -4,8 +4,6 @@ import initialState, { WebDataStates } from '../../../redux/initial-state';
 import { SET_USER } from '../../../redux/types';
 
 describe("userReducer", () => {
-  const userInitialState =
-
   it("return the user initial state if an invalid type is given", () => {
     const newUser = userReducer(initialState.user, {
       type: "invalid",

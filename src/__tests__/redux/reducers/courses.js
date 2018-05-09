@@ -4,12 +4,10 @@ import initialState, { WebDataStates } from '../../../redux/initial-state';
 import { SET_COURSES } from '../../../redux/types';
 
 describe("coursesReducer", () => {
-  const userInitialState =
-
   it("return the courses initial state if an invalid type is given", () => {
     const newCourses = coursesReducer(initialState.courses, {
       type: "invalid",
-      user: {
+      courses: {
         state: WebDataStates.ERROR,
         data: {}
       }
