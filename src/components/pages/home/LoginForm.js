@@ -1,14 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class LoginForm extends React.Component {
+  static propTypes = {
+    loginUser: PropTypes.func.isRequired,
+  }
+
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   }
 
   handleInput = (e) => {
-    const value = e.target.value;
-    const field = e.target.name;
+    const { value, field } = e.target;
 
     this.setState({ [field]: value });
   }
@@ -51,7 +55,9 @@ class LoginForm extends React.Component {
         </div>
 
         <div className="form-group">
-          <button className="btn btn-light btn-block" onClick={this.handleLoginClick}>LOG IN</button>
+          <button className="btn btn-light btn-block" onClick={this.handleLoginClick}>
+            LOG IN
+          </button>
         </div>
       </div>
     );

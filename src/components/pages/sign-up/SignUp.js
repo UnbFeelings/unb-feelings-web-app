@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 
 import { WebDataStates } from '../../../redux/initial-state';
+import { UserPropType, CourseListPropType } from '../../../redux/state-prop-types';
 
 import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 import DisplayOn from '../../shared/DisplayOn';
@@ -10,10 +12,17 @@ import DisplayError from '../../shared/DisplayError';
 import './SignUp.css';
 
 class SignUp extends React.Component {
+  static propTypes = {
+    user: UserPropType.isRequired,
+    courses: CourseListPropType.isRequired,
+    requestCourses: PropTypes.func.isRequired,
+    registerUser: PropTypes.func.isRequired,
+  }
+
   state = {
-    email: "",
-    password: "",
-    course: "",
+    email: '',
+    password: '',
+    course: '',
   }
 
   componentDidMount() {
@@ -26,8 +35,7 @@ class SignUp extends React.Component {
   }
 
   handleInput = (e) => {
-    const value = e.target.value;
-    const field = e.target.name;
+    const { value, field } = e.target;
 
     this.setState({ [field]: value });
   }
@@ -72,7 +80,7 @@ class SignUp extends React.Component {
 
                   <DisplayError
                     check={user.state === ERROR && user.data.email}
-                    message={() => user.data.email.join("")}
+                    message={() => user.data.email.join('')}
                   />
 
                   <small id="emailHelp" className="form-text text-muted">
@@ -94,7 +102,7 @@ class SignUp extends React.Component {
 
                   <DisplayError
                     check={user.state === ERROR && user.data.password}
-                    message={() => user.data.password.join("")}
+                    message={() => user.data.password.join('')}
                   />
                 </div>
 
@@ -110,13 +118,12 @@ class SignUp extends React.Component {
                     <option value="-1" key={-1}>Selecione seu curso</option>
 
                     {courses.data.map(course =>
-                      <option key={course.id} value={course.id}>{course.name}</option>
-                    )}
+                      <option key={course.id} value={course.id}>{course.name}</option>)}
                   </select>
 
                   <DisplayError
                     check={user.state === ERROR && user.data.course}
-                    message={() => user.data.course.join("")}
+                    message={() => user.data.course.join('')}
                   />
                 </div>
               </form>

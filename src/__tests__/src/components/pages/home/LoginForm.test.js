@@ -2,7 +2,6 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 
-import initialState, { WebDataStates } from '../../../../../redux/initial-state';
 import LoginForm from '../../../../../components/pages/home/LoginForm';
 
 describe('<LoginForm />', () => {
@@ -41,7 +40,9 @@ describe('<LoginForm />', () => {
   it('login user on log button click', () => {
     let userIsLogged = false;
     const wrapper = shallow(<LoginForm
-      loginUser={() => userIsLogged = true}
+      loginUser={() => {
+        userIsLogged = true;
+      }}
     />);
 
     const logButton = wrapper.find('button.btn.btn-light.btn-block');

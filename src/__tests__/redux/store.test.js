@@ -1,6 +1,6 @@
 import store from '../../redux/store';
 
-import initialState, { WebDataStates } from '../../redux/initial-state';
+import initialState from '../../redux/initial-state';
 
 describe('store', () => {
   it('Set all the initialState to redux', () => {

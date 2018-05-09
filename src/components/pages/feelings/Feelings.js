@@ -1,13 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { WebDataStates } from '../../../redux/initial-state';
+import { SubjectListPropType, UserPropType } from '../../../redux/state-prop-types';
 
 class Feelings extends React.Component {
+  static propTypes = {
+    subjects: SubjectListPropType.isRequired,
+    user: UserPropType.isRequired,
+    requestSubjects: PropTypes.func.isRequired,
+    sendUserFeelings: PropTypes.func.isRequired,
+  }
+
   state = {
-    subject: "",
-    content: "",
-    tag: "1",
-    emotion: "1"
+    subject: '',
+    content: '',
+    tag: '1',
+    emotion: '1',
   }
 
   componentDidMount() {
@@ -20,15 +29,14 @@ class Feelings extends React.Component {
   }
 
   handleInput = (e) => {
-    const value = e.target.value;
-    const field = e.target.name;
+    const { value, field } = e.target;
 
     this.setState({ [field]: value });
   }
 
-  handleSubmitFeeling = (e) => {
+  handleSubmitFeeling = () => {
     const author = this.props.user.data.id;
-    this.props.sendUserFeelings({...this.state, author});
+    this.props.sendUserFeelings({ ...this.state, author });
   }
 
   filterSubjectsByCourse(courseId) {
@@ -55,8 +63,7 @@ class Feelings extends React.Component {
             <option value="-1" key="-1">Selecione uma disciplina</option>
 
             {userSubjects.map(sub =>
-              <option key={sub.id} value={sub.id}>{sub.name}</option>
-            )}
+              <option key={sub.id} value={sub.id}>{sub.name}</option>)}
           </select>
         </div>
 
@@ -71,7 +78,7 @@ class Feelings extends React.Component {
             className="form-control"
             placeholder="Estou me sentindo..."
             onChange={this.handleInput}
-          ></textarea>
+          />
         </div>
 
         <div className="form-group">
@@ -86,7 +93,7 @@ class Feelings extends React.Component {
             name="tag"
             className="form-control"
             value="1"
-            onChange={() => "Why API WHY ?!?!"}
+            onChange={() => 'Why API WHY ?!?!'}
           />
         </div>
 
@@ -100,7 +107,7 @@ class Feelings extends React.Component {
             name="emotion"
             className="form-control"
             value="1"
-            onChange={() => "Why API WHY ?!?!"}
+            onChange={() => 'Why API WHY ?!?!'}
           />
         </div>
 

@@ -3,9 +3,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { createMockStore } from 'redux-test-utils';
 
-import initialState, { WebDataStates } from '../../../../../redux/initial-state';
+import initialState from '../../../../../redux/initial-state';
 import HomeContainer from '../../../../../components/pages/home/HomeContainer';
-import Home from '../../../../../components/pages/home/Home';
 
 const shallowWithStore = (component, store) => {
   const context = {
