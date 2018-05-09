@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 
 import { WebDataStates } from '../../../redux/initial-state';
-import { UserPropType } from '../../../redux/state-prop-types';
 
 import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 import LoginForm from './LoginForm';
@@ -11,11 +9,6 @@ import LoginForm from './LoginForm';
 import './Home.css';
 
 class Home extends React.Component {
-  static propTypes = {
-    user: UserPropType.isRequired,
-    loginUser: PropTypes.func.isRequired,
-  }
-
   render() {
     const { user, loginUser } = this.props;
 

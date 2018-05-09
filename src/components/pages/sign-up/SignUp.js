@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 
 import { WebDataStates } from '../../../redux/initial-state';
-import { UserPropType, CourseListPropType } from '../../../redux/state-prop-types';
 
 import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 import DisplayOn from '../../shared/DisplayOn';
@@ -12,13 +10,6 @@ import DisplayError from '../../shared/DisplayError';
 import './SignUp.css';
 
 class SignUp extends React.Component {
-  static propTypes = {
-    user: UserPropType.isRequired,
-    courses: CourseListPropType.isRequired,
-    requestCourses: PropTypes.func.isRequired,
-    registerUser: PropTypes.func.isRequired,
-  }
-
   state = {
     email: '',
     password: '',

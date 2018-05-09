@@ -1,17 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { WebDataStates } from '../../../redux/initial-state';
-import { SubjectListPropType, UserPropType } from '../../../redux/state-prop-types';
 
 class Feelings extends React.Component {
-  static propTypes = {
-    subjects: SubjectListPropType.isRequired,
-    user: UserPropType.isRequired,
-    requestSubjects: PropTypes.func.isRequired,
-    sendUserFeelings: PropTypes.func.isRequired,
-  }
-
   state = {
     subject: '',
     content: '',
@@ -29,9 +20,9 @@ class Feelings extends React.Component {
   }
 
   handleInput = (e) => {
-    const { value, field } = e.target;
+    const { value, name } = e.target;
 
-    this.setState({ [field]: value });
+    this.setState({ [name]: value });
   }
 
   handleSubmitFeeling = () => {

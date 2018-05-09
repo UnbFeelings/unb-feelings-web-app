@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Collapse,
@@ -11,6 +12,10 @@ import {
 } from 'reactstrap';
 
 class TopMenu extends React.Component {
+  static propTypes = {
+    logUserOff: PropTypes.func.isRequired,
+  }
+
   state = {
     isOpen: false,
   }
