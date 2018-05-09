@@ -6,8 +6,6 @@ import initialState, { WebDataStates } from '../../../../../redux/initial-state'
 import LoginForm from '../../../../../components/pages/home/LoginForm';
 
 describe('<LoginForm />', () => {
-  const initialUser = initialState.user;
-
   it("encapsulates email and password", () => {
     const wrapper = shallow(
       <LoginForm
