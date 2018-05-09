@@ -22,9 +22,15 @@ export const WebDataStates = {
  *  token: string
  *  course: Course
  *
+ * Subject:
+ *  id: number
+ *  name: string
+ *  course: number
+ *
  * state = {
  *  user: WebData<User>,
  *  courses: WebData<Course[]>
+ *  subjects: WebData<Subject[]>
  * }
  */
 const initialState = {
@@ -39,6 +45,11 @@ const initialState = {
   },
 
   courses: {
+    state: WebDataStates.NOT_REQUESTED,
+    data: []
+  },
+
+  subjects: {
     state: WebDataStates.NOT_REQUESTED,
     data: []
   }
