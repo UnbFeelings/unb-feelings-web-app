@@ -1,42 +1,20 @@
 import React from 'react';
-import { Route, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import initialstate, { WebDataStates } from './redux/initial-state';
-import { SET_USER } from './redux/types';
-import { getStoredUser, setUserStore } from './configs/local-storage';
-import { setAuthToken } from './configs/axios';
+import initialstate, { WebDataStates } from '../../redux/initial-state';
+import { SET_USER } from '../../redux/types';
+import { getStoredUser, setUserStore } from '../../configs/local-storage';
+import { setAuthToken } from '../../configs/axios';
 
-import TopMenu from './components/shared/TopMenu';
+import TopMenu from '../shared/TopMenu';
+import PrivateRoute from '../shared/PrivateRoute';
 
 // pages components
-import HomeContainer from './components/pages/home/HomeContainer';
-import SignUpContainer from './components/pages/sign-up/SignUpContainer';
-import FeelingsContainer from './components/pages/feelings/FeelingsContainer';
+import HomeContainer from '../pages/home/HomeContainer';
+import SignUpContainer from '../pages/sign-up/SignUpContainer';
+import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 
-
-// TODO: Should be imported from another file
-// Hight order component for Route. HOC -> Decorator of components
-const PrivateRoute = ({ component: Component, user, ...rest }) => {
-
-  // If user is logged, let him pass
-  if (user.state === WebDataStates.SUCCESS && user.data.token) {
-    return (
-      <Route
-        {...rest}
-        render={(props) => <Component {...props} />}
-      />
-    );
-  }
-
-  // If user if not logged. Send him to homepage
-  return (
-    <Route
-      {...rest}
-      render={(props) => <Redirect to='/' />}
-    />
-  );
-}
 
 
 class AppRouter extends React.Component {
