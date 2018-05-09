@@ -32,7 +32,7 @@ class Home extends React.Component {
               </div>
 
               <div className="col-md-12 col-sm-12 Home_options">
-                <Link to="sign-up" className="btn btn-outline-light btn-block">REGISTRAR</Link>
+                <Link to="/sign-up" className="btn btn-outline-light btn-block">REGISTRAR</Link>
               </div>
             </div>
 
