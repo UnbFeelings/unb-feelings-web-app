@@ -4,11 +4,11 @@
  *  data: T
  */
 export const WebDataStates = {
-  NOT_REQUESTED: "NOT_REQUESTED",
-  LOADING: "LOADING",
-  SUCCESS: "SUCCESS",
-  ERROR: "ERROR"
-}
+  NOT_REQUESTED: 'NOT_REQUESTED',
+  LOADING: 'LOADING',
+  SUCCESS: 'SUCCESS',
+  ERROR: 'ERROR',
+};
 
 /**
  * Course:
@@ -38,21 +38,21 @@ const initialState = {
     state: WebDataStates.NOT_REQUESTED,
     data: {
       id: 0,
-      email: "",
-      token: "",
-      course: {}
-    }
+      email: '',
+      token: '',
+      course: {},
+    },
   },
 
   courses: {
     state: WebDataStates.NOT_REQUESTED,
-    data: []
+    data: [],
   },
 
   subjects: {
     state: WebDataStates.NOT_REQUESTED,
-    data: []
-  }
-}
+    data: [],
+  },
+};
 
 export default initialState;

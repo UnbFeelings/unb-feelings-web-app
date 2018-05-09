@@ -8,6 +8,6 @@ describe('<UnbFeelingsLogo />', () => {
   it('renders an image', () => {
     const wrapper = shallow(<UnbFeelingsLogo />);
 
-    expect(wrapper.find("img").length).toBe(1);
+    expect(wrapper.find('img').length).toBe(1);
   });
 });

@@ -9,7 +9,7 @@ import subjectsReducer from './reducers/subjects';
 const reducers = combineReducers({
   user: userReducer,
   courses: coursesReducer,
-  subjects: subjectsReducer
+  subjects: subjectsReducer,
 });
 
 const store = createStore(reducers, initialState);

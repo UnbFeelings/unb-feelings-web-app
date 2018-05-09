@@ -1,14 +1,14 @@
 import initialState from '../initial-state';
 import { SET_USER } from '../types';
 
-const userReducer = (userState=initialState.user, action) => {
-  switch(action.type) {
+const userReducer = (userState = initialState.user, action) => {
+  switch (action.type) {
     case SET_USER:
-      return {...action.user};
+      return { ...action.user };
 
     default:
-      return {...userState};
+      return { ...userState };
   }
-}
+};
 
 export default userReducer;

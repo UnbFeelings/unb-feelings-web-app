@@ -8,7 +8,7 @@ import MediaQuery from 'react-responsive';
  *  <DisplayOn device="PC">Display on PC</DisplayOn>
  */
 const DisplayOn = ({ device, children }) => {
-  if (device === "mobile") {
+  if (device === 'mobile') {
     return (
       <MediaQuery query="(max-device-width: 767px)">
         {children}
@@ -16,7 +16,7 @@ const DisplayOn = ({ device, children }) => {
     );
   }
 
-  if (device === "PC") {
+  if (device === 'PC') {
     return (
       <MediaQuery query="(min-device-width: 768px)">
         {children}
@@ -24,7 +24,7 @@ const DisplayOn = ({ device, children }) => {
     );
   }
 
-  throw new Error("Only mobile or PC devices are allowed");
-}
+  throw new Error('Only mobile or PC devices are allowed');
+};
 
 export default DisplayOn;

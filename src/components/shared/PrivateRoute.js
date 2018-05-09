@@ -4,13 +4,12 @@ import { Redirect, Route } from 'react-router-dom';
 import { WebDataStates } from '../../redux/initial-state';
 
 const PrivateRoute = ({ component: Component, user, ...rest }) => {
-
   // If user is logged, let him pass
   if (user.state === WebDataStates.SUCCESS && user.data.token) {
     return (
       <Route
         {...rest}
-        render={(props) => <Component {...props} />}
+        render={props => <Component {...props} />}
       />
     );
   }
@@ -19,9 +18,9 @@ const PrivateRoute = ({ component: Component, user, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => <Redirect to='/' />}
+      render={props => <Redirect to="/" />}
     />
   );
-}
+};
 
 export default PrivateRoute;

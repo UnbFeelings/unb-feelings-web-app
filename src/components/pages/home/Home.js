@@ -39,7 +39,7 @@ class Home extends React.Component {
             <div className="col-md-6 col-sm-12 Home_right_side">
 
               <div className="media">
-                <i className="fa fa-download fa-2x"></i>
+                <i className="fa fa-download fa-2x" />
 
                 <div className="media-body">
                   <h5 className="mt-0">Fácil de usar</h5>
@@ -50,7 +50,7 @@ class Home extends React.Component {
               </div>
 
               <div className="media">
-                <i className="fa fa-mobile fa-2x"></i>
+                <i className="fa fa-mobile fa-2x" />
 
                 <div className="media-body">
                   <h5 className="mt-0">Acesso móvel</h5>
@@ -61,7 +61,7 @@ class Home extends React.Component {
               </div>
 
               <div className="media">
-                <i className="fa fa-users fa-2x"></i>
+                <i className="fa fa-users fa-2x" />
 
                 <div className="media-body">
                   <h5 className="mt-0">Anonimato</h5>

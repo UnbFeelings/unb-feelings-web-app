@@ -16,7 +16,6 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 
 
-
 class AppRouter extends React.Component {
   componentWillMount() {
     // If user just entered the app. see if he has saved data on the device/browser
@@ -52,27 +51,25 @@ class AppRouter extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => {
-  return {
-    user
-  }
-}
+const mapStateToProps = ({ user }) => ({
+  user,
+});
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   logUserOff() {
-    setAuthToken("");
+    setAuthToken('');
     setUserStore(); // no arg = user.data from initialstate
 
     dispatch({
       type: SET_USER,
-      user: initialstate.user
+      user: initialstate.user,
     });
   },
 
   // TODO: Has same code like HomeContainer login. Refac later
   setStoredUser(userData) {
     if (userData.token.length === 0) {
-      console.log("No user data found to auto log-in");
+      console.log('No user data found to auto log-in');
       return;
     }
 
@@ -82,14 +79,12 @@ const mapDispatchToProps = (dispatch) => ({
       type: SET_USER,
       user: {
         state: WebDataStates.SUCCESS,
-        data: userData
-      }
+        data: userData,
+      },
     });
-  }
+  },
 });
 
-const AppRouterContainer = connect(
-  mapStateToProps, mapDispatchToProps
-)(AppRouter);
+const AppRouterContainer = connect(mapStateToProps, mapDispatchToProps)(AppRouter);
 
 export default AppRouterContainer;

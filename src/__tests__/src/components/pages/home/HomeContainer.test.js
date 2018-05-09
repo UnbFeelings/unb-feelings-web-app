@@ -16,9 +16,9 @@ const shallowWithStore = (component, store) => {
 };
 
 describe('<HomeContainer />', () => {
-  it("contained Home component", () => {
+  it('contained Home component', () => {
     const testState = {
-      user: { ...initialState.user }
+      user: { ...initialState.user },
     };
 
     const store = createMockStore(testState);
@@ -27,6 +27,6 @@ describe('<HomeContainer />', () => {
 
     const home = container.dive();
 
-    expect(home.prop("className")).toBe("Home");
+    expect(home.prop('className')).toBe('Home');
   });
 });
