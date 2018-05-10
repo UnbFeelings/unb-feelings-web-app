@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import initialstate, { WebDataStates } from '../../redux/initial-state';
@@ -8,13 +8,7 @@ import { getStoredUser, setUserStore } from '../../configs/local-storage';
 import { setAuthToken } from '../../configs/axios';
 
 import TopMenu from '../shared/TopMenu';
-import PrivateRoute from '../shared/PrivateRoute';
-
-// pages components
-import HomeContainer from '../pages/home/HomeContainer';
-import SignUpContainer from '../pages/sign-up/SignUpContainer';
-import FeelingsContainer from '../pages/feelings/FeelingsContainer';
-
+import Routes from './Routes';
 
 class AppRouter extends React.Component {
   componentWillMount() {
@@ -38,13 +32,7 @@ class AppRouter extends React.Component {
             null
           }
 
-          <Route exact path="/" component={HomeContainer} />
-          <Route path="/sign-up" component={SignUpContainer} />
-          <PrivateRoute
-            path="/feelings"
-            component={FeelingsContainer}
-            user={user}
-          />
+          <Routes user={user} />
         </div>
       </BrowserRouter>
     );
