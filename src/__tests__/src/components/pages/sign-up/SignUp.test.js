@@ -2,7 +2,7 @@ import React from 'react';
 
 import { shallow } from 'enzyme';
 
-import initialState, { WebDataStates } from '../../../../../redux/initial-state';
+import initialState from '../../../../../redux/initial-state';
 import SignUp from '../../../../../components/pages/sign-up/SignUp';
 
 describe('SignUp />', () => {
