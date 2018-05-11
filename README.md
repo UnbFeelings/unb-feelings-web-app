@@ -3,6 +3,7 @@
 [![license](https://img.shields.io/badge/license-MIT-lightgrey.svg?longCache=true&style=flat-square)](https://github.com/UnbFeelings/unb-feelings-web-app/blob/master/LICENSE)
 [![node](https://img.shields.io/badge/node-v9.8.0-ff69b4.svg?longCache=true&style=flat-square)](https://nodejs.org/)
 [![Build Status](https://img.shields.io/travis/UnbFeelings/unb-feelings-web-app.svg?style=flat-square)](https://travis-ci.org/UnbFeelings/unb-feelings-web-app)
+[![Coverage Status](https://coveralls.io/repos/github/UnbFeelings/unb-feelings-web-app/badge.svg?branch=master)](https://coveralls.io/github/UnbFeelings/unb-feelings-web-app?branch=master)
 
 [![Stars](https://img.shields.io/github/stars/UnbFeelings/unb-feelings-web-app.svg?style=social&label=Stars)](https://github.com/UnbFeelings/unb-feelings-web-app/stargazers)
 [![Watchers](https://img.shields.io/github/watchers/UnbFeelings/unb-feelings-web-app.svg?style=social&label=Watch)](https://github.com/UnbFeelings/unb-feelings-web-app/watchers)

@@ -3,21 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "1.1.1"
+    "coveralls": "^3.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.3",
+    "jest-enzyme": "^6.0.0",
+    "react-scripts": "1.1.1",
+    "redux-test-utils": "^0.2.2"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "cypress": "^2.1.0",
-    "material-ui": "^1.0.0-beta.41",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "prop-types": "^15.6.1",
     "react": "^16.2.0",
-    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-redux": "^5.0.7",
+    "react-responsive": "^4.1.0",
+    "react-router-dom": "^4.2.2",
+    "reactstrap": "^6.0.1",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test",
+    "test-with-coverage": "CI=true react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
+    "eject": "react-scripts eject",
+    "lint": "eslint ."
   }
 }
