@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  unbfeelings:
+    command: yarn lint && yarn test-with-coverage
+    build:
+      context: ../../
+      dockerfile: ./compose/test/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=test
+      - REACT_APP_API_HOST_URL=http://127.0.0.1:8000
