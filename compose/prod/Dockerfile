@@ -17,6 +17,11 @@ RUN yarn build
 
 ## Then setup nginx with the compiled JS deps
 FROM nginx:1.14-alpine
+
+# Change default nginx because of react router
+RUN rm -rf /etc/nginx/conf.d
+COPY ./compose/prod/conf /etc/nginx
+
 COPY --from=build-deps /unb-feelings-web-app/build /usr/share/nginx/html
 
 CMD ["nginx", "-g", "daemon off;"]
