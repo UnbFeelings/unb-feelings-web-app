@@ -2,17 +2,24 @@ dist: xenial
 
 language: node_js
 
+sudo: required
+
+services:
+  - docker
+
 node_js:
   - '9'
 
-cache:
-  yarn: true
-  directories:
-    - node_modules
+env:
+  DOCKER_COMPOSE_VERSION: 1.17.1
 
-before_script:
-  - yarn install
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
-  - yarn lint
-  - yarn test-with-coverage
+  - docker-compose -f compose/test/docker-compose.test.yml build
+  - docker-compose -f compose/test/docker-compose.test.yml run unbfeelings yarn lint
+  - docker-compose -f compose/test/docker-compose.test.yml run unbfeelings yarn test-with-coverage
