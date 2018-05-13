@@ -13,7 +13,6 @@ class SignUp extends React.Component {
   state = {
     email: '',
     password: '',
-    course: '',
   }
 
   componentDidMount() {

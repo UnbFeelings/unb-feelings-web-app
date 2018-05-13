@@ -22,9 +22,6 @@ const mapDispatchToProps = dispatch => ({
         },
       });
     } else {
-      console.error('Could not fetch subjects');
-      console.log(data);
-
       dispatch({
         type: SET_SUBJECTS,
         subjects: {
@@ -39,20 +36,15 @@ const mapDispatchToProps = dispatch => ({
     subject, content, tag, emotion, author,
   }) {
     try {
-      const { status, data } = await axios.post('/posts/', {
+      await axios.post('/posts/', {
         subject,
         content,
         tag: [tag],
         emotion: [emotion],
         author,
       });
-
-      console.log('OK OK OK');
-      console.log(status);
-      console.log(data);
-    } catch (err) {
-      console.log('ERROR');
-      console.log(err.response.data);
+    } catch (error) {
+      throw error;
     }
   },
 });
