@@ -26,9 +26,9 @@ class SignUp extends React.Component {
   }
 
   handleInput = (e) => {
-    const { value, field } = e.target;
+    const { value, name } = e.target;
 
-    this.setState({ [field]: value });
+    this.setState({ [name]: value });
   }
 
   handleUserRegister = () => {

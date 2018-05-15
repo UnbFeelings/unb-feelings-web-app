@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import initialstate, { WebDataStates } from '../../redux/initial-state';
@@ -16,6 +16,7 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 import UniversityPost from '../pages/university_post/universityPost';
 
+import Routes from './Routes';
 
 class AppRouter extends React.Component {
   componentWillMount() {
@@ -47,6 +48,7 @@ class AppRouter extends React.Component {
             component={FeelingsContainer}
             user={user}
             />
+          <Routes user={user} />
         </div>
       </BrowserRouter>
     );
