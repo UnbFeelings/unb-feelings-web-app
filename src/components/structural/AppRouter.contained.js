@@ -14,6 +14,7 @@ import PrivateRoute from '../shared/PrivateRoute';
 import HomeContainer from '../pages/home/HomeContainer';
 import SignUpContainer from '../pages/sign-up/SignUpContainer';
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import UniversityPost from '../pages/university_post/universityPost';
 
 
 class AppRouter extends React.Component {
@@ -40,11 +41,12 @@ class AppRouter extends React.Component {
 
           <Route exact path="/" component={HomeContainer} />
           <Route path="/sign-up" component={SignUpContainer} />
+          <Route path="/UniversityPosts" component={UniversityPost} />
           <PrivateRoute
             path="/feelings"
             component={FeelingsContainer}
             user={user}
-          />
+            />
         </div>
       </BrowserRouter>
     );
