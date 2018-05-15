@@ -32,8 +32,9 @@ const mapDispatchToProps = dispatch => ({
           },
         });
       }
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      console.log('ERR');
+      console.log(err.response.data);
     }
   },
 });
