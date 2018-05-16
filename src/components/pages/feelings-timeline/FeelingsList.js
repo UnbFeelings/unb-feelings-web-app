@@ -9,6 +9,7 @@ import Collapse from '@material-ui/core/Collapse';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import Avatar from '@material-ui/core/Avatar';
 
 const styles = theme => ({
   root: {
@@ -34,7 +35,7 @@ const styles = theme => ({
 });
 
 class NestedList extends React.Component {
-  state = { open: true };
+  state = { open: false };
 
   handleClick = () => {
     this.setState({ open: !this.state.open });
@@ -42,6 +43,45 @@ class NestedList extends React.Component {
 
   render() {
     const { classes } = this.props;
+
+    let feelings = null;
+
+    switch(this.props.type) {
+      case "personal": {
+        feelings = (
+          <div className={classes.nested}>
+            <label className={classes.label}>Texto:</label>
+            <p className={classes.paragraph}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum justo a turpis dapibus lacinia.
+              Praesent ante elit, dapibus eu semper sed, malesuada eu nisi. Phasellus et elit hendrerit metus.
+            </p>
+            <label className={classes.label}>Sentimento:</label>
+            <p className={classes.paragraph}>Confuso</p>
+            <a href="#" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
+          </div>
+        );
+        break;
+      }
+      case "general": {
+        feelings = (
+          <div className={classes.nested}>
+            <ListItem>
+              <Avatar src="http://br.kogstatic.com/gen_images/b4/ab/b4abd72f6c8a4f20b755c475ddccd85a.png" />
+              <ListItemText primary="Jacaré não come alpiste" />
+            </ListItem>
+            <div style={{ paddingLeft: 80 }}>
+              <label className={classes.label}>Sentimento:</label>
+              <p className={classes.paragraph}>Confuso</p>
+              <a href="#" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
+            </div>
+          </div>
+        );
+        break;
+      }
+      default: {
+        console.log("Error");
+      }
+    }
 
     return (
       <div className={classes.root}>
@@ -54,16 +94,7 @@ class NestedList extends React.Component {
             {this.state.open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
-            <div className={classes.nested}>
-              <label className={classes.label}>Texto:</label>
-              <p className={classes.paragraph}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum justo a turpis dapibus lacinia.
-                Praesent ante elit, dapibus eu semper sed, malesuada eu nisi. Phasellus et elit hendrerit metus.
-              </p>
-              <label className={classes.label}>Sentimento:</label>
-              <p className={classes.paragraph}>Confuso</p>
-              <a href="#" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
-            </div>
+            {feelings}
           </Collapse>
         </List>
       </div>

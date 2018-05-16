@@ -47,8 +47,8 @@ class SimpleTabs extends React.Component {
             <Tab label="Sentimentos alheios" />
           </Tabs>
         </AppBar>
-        {value === 0 && <TabContainer><FeelingsList /></TabContainer>}
-        {value === 1 && <TabContainer>Teste</TabContainer>}
+        {value === 0 && <TabContainer><FeelingsList type="personal" /></TabContainer>}
+        {value === 1 && <TabContainer><FeelingsList type="general" /></TabContainer>}
       </div>
     );
   }
