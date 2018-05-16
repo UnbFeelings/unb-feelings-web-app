@@ -17,6 +17,8 @@
     "redux-test-utils": "^0.2.2"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0-rc.1",
+    "@material-ui/icons": "^1.0.0-rc.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "prop-types": "^15.6.1",
