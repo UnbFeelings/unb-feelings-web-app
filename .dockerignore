@@ -1,0 +1,7 @@
+node_modules/
+coverage/
+build/
+.git/
+.gitignore
+.gitlab-ci.yml
+.travis.yml
