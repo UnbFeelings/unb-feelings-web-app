@@ -10,6 +10,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
+import axios from '../../../configs/axios';
 
 const styles = theme => ({
   root: {
@@ -43,6 +44,25 @@ class NestedList extends React.Component {
   handleClick = () => {
     this.setState({ open: !this.state.open });
   };
+
+  componentDidMount(){
+    this.fetchPosts()
+
+  }
+
+  fetchPosts(){
+    try{
+      axios.get('http://localhost:8000/api/posts/subject/1/').then((response) => {
+        const posts = response.data;
+        // for some reason this setState isn't working yet
+        this.setState({ posts: posts.results });
+          console.log(posts.results);
+      });
+    }catch(e){
+      console.log(e);
+    }
+    console.log(this.state.posts);
+  }
 
   render() {
     const { classes } = this.props;
@@ -96,7 +116,6 @@ class NestedList extends React.Component {
         );
         break;
       }
-      
       */
       
       default: {
