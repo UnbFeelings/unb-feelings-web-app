@@ -45,10 +45,14 @@ class SimpleTabs extends React.Component {
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="Meus sentimentos" />
             <Tab label="Sentimentos alheios" />
+            <Tab label="Sentimentos na universidade" />
+            <Tab label="Sentimentos em uma disciplina" />
           </Tabs>
         </AppBar>
         {value === 0 && <TabContainer><FeelingsList type="personal" /></TabContainer>}
         {value === 1 && <TabContainer><FeelingsList type="general" /></TabContainer>}
+        {value === 3 && <TabContainer><FeelingsList type="university" /></TabContainer>}
+        {value === 4 && <TabContainer><FeelingsList type="subject" /></TabContainer>}
       </div>
     );
   }

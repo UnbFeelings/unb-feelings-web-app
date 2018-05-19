@@ -35,7 +35,10 @@ const styles = theme => ({
 });
 
 class NestedList extends React.Component {
-  state = { open: false };
+  state = { 
+    open: false,
+    posts: [],
+  };
 
   handleClick = () => {
     this.setState({ open: !this.state.open });
@@ -57,7 +60,7 @@ class NestedList extends React.Component {
             </p>
             <label className={classes.label}>Sentimento:</label>
             <p className={classes.paragraph}>Confuso</p>
-            <a href="#" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
+            <a href="/" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
           </div>
         );
         break;
@@ -72,15 +75,34 @@ class NestedList extends React.Component {
             <div style={{ paddingLeft: 80 }}>
               <label className={classes.label}>Sentimento:</label>
               <p className={classes.paragraph}>Confuso</p>
-              <a href="#" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
+              <a href="/" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
             </div>
           </div>
         );
         break;
       }
+      /*
+      case "subject": {
+        feelings = (
+          <div>
+            {this.state.posts.map(post => (
+              <div key={post.id}>
+                <h1>{post.content}</h1>
+                <span>{post.emotion}</span>
+                <span>{post.tag}</span>
+              </div>
+            ))}
+          </div>
+        );
+        break;
+      }
+      
+      */
+      
       default: {
         console.log("Error");
       }
+
     }
 
     return (
