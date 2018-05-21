@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  unbfeelings:
+    build:
+      context: ../../
+      dockerfile: ./compose/prod/Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_API_HOST_URL=http://127.0.0.1:8000

@@ -1,8 +1,23 @@
 import React from 'react';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import FlatButton from '@material-ui/core/Button';
+
 import axios from '../../../configs/axios';
+
+const displayBlock = {
+  display: 'block',
+  marginLeft: 15,
+};
+
+const marginBottom = {
+  marginBottom: 10,
+};
 
 class PostCell extends React.Component {
   constructor() {
@@ -17,11 +32,6 @@ class PostCell extends React.Component {
   componentDidMount() {
     this.fetchTags();
     this.fetchEmotions();
-  }
-
-  getTags() {
-    const aux = this.state.tags.map(value => value);
-    return aux;
   }
 
   fetchTags() {
@@ -41,7 +51,7 @@ class PostCell extends React.Component {
   fetchEmotions() {
     const aux = [];
     for (let cont = 0; cont < this.props.post.emotion.length; cont += 1) {
-      axios.get(`http://0.0.0.0:8000/api/emotions/${this.props.post.subject}/`).then((response) => {
+      axios.get(`http://0.0.0.0:8000/api/emotions/${this.props.post.emotion[cont]}/`).then((response) => {
         this.setState({
           emotions: [...this.state.emotions, response.data],
         });
@@ -52,32 +62,38 @@ class PostCell extends React.Component {
   }
 
   render() {
+    const classes = PropTypes.object.isRequired;
     return (
-      <MuiThemeProvider>
-        <Card>
-          <CardHeader
-            title={this.props.post.content}
-            subtitle="Usuario Anonimo"
-            actAsExpander
-            showExpandableButton
-          />
-          <CardActions>
-            <FlatButton label="Ir para usuario" />
-          </CardActions>
-          <CardText expandable>
-            Emoções:
-            <ul>{this.state.emotions.map(value =>
-              <li key={value.id}>{value.name}</li>)}
-            </ul>
-            Tags:
-            <ul>{this.state.tags.map(value =>
-              <li key={value.id}>{value.description}</li>)}
-            </ul>
-          </CardText>
-        </Card>
-      </MuiThemeProvider>
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography className={classes.heading}>Sentimento</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Typography>
+            <div style={marginBottom}>
+            Emoções: {this.state.emotions.map(value =>
+              <span style={displayBlock} key={value.id}>{value.name}</span>)}
+            </div>
+            <div>
+            Tags: {this.state.tags.map(value =>
+              <span style={displayBlock} key={value.id}>{value.description}</span>)}
+            </div>
+          </Typography>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     );
   }
 }
 
-export default PostCell;
+const styles = theme => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
+});
+
+
+export default withStyles(styles)(PostCell);

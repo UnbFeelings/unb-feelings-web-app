@@ -14,10 +14,10 @@ class UniversityPost extends React.Component {
 
   fetchData() {
     axios.get('http://0.0.0.0:8000/api/posts/').then((response) => {
+      console.log(response);
       this.setState({ universityPosts: response.data.results });
     });
   }
-
 
   render() {
     return (
