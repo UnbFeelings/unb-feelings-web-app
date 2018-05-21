@@ -14,7 +14,6 @@ import PrivateRoute from '../shared/PrivateRoute';
 import HomeContainer from '../pages/home/HomeContainer';
 import SignUpContainer from '../pages/sign-up/SignUpContainer';
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
-import UniversityPost from '../pages/university_post/UniversityPost';
 
 import Routes from './Routes';
 
