@@ -6,7 +6,6 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import FlatButton from '@material-ui/core/Button';
 
 import axios from '../../../configs/axios';
 
@@ -66,7 +65,9 @@ class PostCell extends React.Component {
     return (
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography className={classes.heading}>Sentimento</Typography>
+          <Typography className={classes.heading}>
+            <a href="https://google.com.br" rel="noopener noreferrer" target="_blank">Aqui vai ser o nome aleatório</a>
+          </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Typography>

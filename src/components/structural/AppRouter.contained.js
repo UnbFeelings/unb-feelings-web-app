@@ -42,7 +42,7 @@ class AppRouter extends React.Component {
 
           <Route exact path="/" component={HomeContainer} />
           <Route path="/sign-up" component={SignUpContainer} />
-          <Route path="/UniversityPosts" component={UniversityPost} />
+
           <PrivateRoute
             path="/feelings"
             component={FeelingsContainer}

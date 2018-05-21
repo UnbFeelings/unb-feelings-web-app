@@ -1,16 +1,14 @@
 import React from 'react';
-import PostCell from './PostCell';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import PostCell from './PostCell';
 
 const margin = {
-  marginTop: 25
-}
+  marginTop: 25,
+};
 
 class TimeLine extends React.Component {
-
   render() {
     const classes = PropTypes.object.isRequired;
     return (
