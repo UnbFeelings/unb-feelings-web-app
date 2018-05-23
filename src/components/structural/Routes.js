@@ -9,12 +9,17 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 
 // Private routes
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import UniversityPost from '../pages/university_post/UniversityPost';
 
 const Routes = ({ user }) => (
   <React.Fragment>
     <Route exact path="/" component={HomeContainer} />
     <Route path="/sign-up" component={SignUpContainer} />
-
+    <Route
+      path="/UniversityPosts"
+      component={UniversityPost}
+      user={user}
+    />
     <PrivateRoute
       path="/feelings"
       component={FeelingsContainer}
