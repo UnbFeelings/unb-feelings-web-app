@@ -20,8 +20,15 @@ const styles = theme => ({
 
     },
 
-    hashtag: {
+    hashtags: {
+        fontSize: 11,
         color: '#336799',
+        display: 'flex',
+        justifyContent: 'right',
+    },
+
+    hashtag: {
+        marginRight: '1%',
     },
     
     formControl: {
@@ -34,6 +41,10 @@ const styles = theme => ({
         minWidth: 120,
         backgroundColor: 'white',
     },
+
+    emotionIcon:{
+        paddingRight: '5%'
+    }
 });
 
 class SubjectTimeline extends React.Component{
@@ -134,10 +145,22 @@ class SubjectTimeline extends React.Component{
                     <div key={post.id}>
                         <List component="nav" >
                         <ListItem>
-                            <Avatar src="http://br.kogstatic.com/gen_images/b4/ab/b4abd72f6c8a4f20b755c475ddccd85a.png" />
-                            <ListItemText inset primary="Nome aleatório" secondary="dd de maio de YYYY" />
-                            <ListItemText primary={post.content}/>
-                            <p className={classes.hashtag}> #triste </p>
+                        <Avatar src="http://br.kogstatic.com/gen_images/b4/ab/b4abd72f6c8a4f20b755c475ddccd85a.png" />
+                        <div>
+                            <ListItemText inset primary="Nome aleatório" secondary={post.created_at} />
+                        </div>
+                        <div className={classes.emotionIcon}>
+                            {post.emotion==='b' ? <Avatar src='https://www.materialui.co/materialIcons/social/sentiment_satisfied_black_192x192.png'/> :
+                                                  <Avatar src='https://www.materialui.co/materialIcons/social/sentiment_dissatisfied_black_192x192.png'/>}                        
+                        
+                        </div>
+                        <div className={classes.hashtags}>
+                            { post.tag.map((the_tag => (
+                                <div key={post.tag.id} className={classes.hashtag}>
+                                    <p> #{the_tag.description} </p>
+                                </div>
+                            )))}
+                        </div>
                         </ListItem>
                         </List>
                         <Divider />
@@ -150,6 +173,7 @@ class SubjectTimeline extends React.Component{
     render(){
         // o código abaixo funciona como 2 ifs para chamar renderizar
         //apenas quando os dados da API já estiverem carregados
+        console.log(this.state.subj_posts.results)
         return (
           <div>
             {this.state.subject_list.results !== undefined &&
