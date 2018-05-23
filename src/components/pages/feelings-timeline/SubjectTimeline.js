@@ -20,6 +20,14 @@ const styles = theme => ({
         color: '#336799',
     },
 
+    dropdown: {
+        maxWidth: '800px',
+        width: '100%',
+        marginLeft: '20%',
+        marginRight: '20%',
+        marginTop: '10px',
+        marginBottom: '10px',
+    }
 });
 
 class SubjectTimeline extends React.Component{
@@ -44,8 +52,37 @@ class SubjectTimeline extends React.Component{
             console.log(e);
         }
 
-        
+        //fetching subjects for selection
+        try {
+            const response = await fetch(`http://localhost:8000/api/subjects/`);
+            const subject_list = await response.json();
+            this.setState({
+                subject_list
+            });
+            //console.log(this.state.subject_list)
+        } catch (e) {
+            console.log(e);
+        }
 
+    }
+
+    renderSubjectSelecter(){
+        const { classes } = this.props;
+        return(
+            <div className={classes.dropdown}>
+                <select
+                    id="postSubject"
+                    name="subject"
+                    className="form-control"
+                    onChange={this.handleInput}
+                >
+                    <option value="-1" key="-1">Selecione uma disciplina</option>
+
+                    {this.state.subject_list.results.map(sub =>
+                    <option key={sub.id} value={sub.id}>{sub.name}</option>)}
+                </select>
+            </div>
+        )
     }
 
     renderPosts(){
@@ -75,10 +112,12 @@ class SubjectTimeline extends React.Component{
     render(){
         // o código abaixo funciona como um if para chamar o renderPosts
         //apenas quando os dados da API já estiverem carregados
-
+        console.log(this.state.subject_list.results)
         return (
           <div>
-            
+            {this.state.subject_list.results !== undefined &&
+                    this.renderSubjectSelecter()}
+
             { this.state.subj_posts.results !== undefined &&
                 this.renderPosts()}
           </div>
