@@ -41,6 +41,9 @@ class TopMenu extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
+                <NavLink><a href="/UniversityPosts">Universidade</a></NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink>AaaaaaAAAaaaaAAaaaAAaaaa</NavLink>
               </NavItem>
 
