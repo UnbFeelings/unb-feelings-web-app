@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { LineChart } from 'react-chartkick';
 import Chart from 'chart.js';
+import axios from '../../../configs/axios';
 
 class Charts extends Component {
   state = {
@@ -8,17 +9,25 @@ class Charts extends Component {
       {
         name: 'Sentimentos bons',
         data: {
-          '2017-01-01': 1, '2017-01-02': 4, '2017-01-03': 2, '2017-01-04': 0, '2017-01-05': 1, '2017-01-06': 6, '2017-01-07': 4,
+          'Segunda': 1, 'Terça': 0, 'Quarta': 2, 'Terça': 4, 'Quinta': 1, 'Sexta': 6, 'Sexta': 4, 'Sábado': 5
         },
       },
       {
         name: 'Sentimentos ruins',
         data: {
-          '2017-01-01': 0.5, '2017-01-02': 3, '2017-01-03': 1, '2017-01-04': 2, '2017-01-05': 2, '2017-01-06': 2, '2017-01-07': 0,
+          'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2, 
         },
       },
     ],
   }
+
+componentWillMount() {
+  axios.get('endpoint').then(Response => { 
+    this.setState({ feelingsArray: Response.data });
+   }).catch(Error => {
+     throw Error;
+   })
+}
 
   render() {
     return (
