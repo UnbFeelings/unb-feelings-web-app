@@ -10,7 +10,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Avatar from '@material-ui/core/Avatar';
-import axios from '../../../configs/axios';
 
 const styles = theme => ({
   root: {
@@ -36,47 +35,29 @@ const styles = theme => ({
 });
 
 class NestedList extends React.Component {
-  state = { 
+  state = {
     open: false,
-    posts: [],
   };
 
   handleClick = () => {
     this.setState({ open: !this.state.open });
   };
 
-  componentDidMount(){
-    this.fetchPosts()
-
-  }
-
-  fetchPosts(){
-    try{
-      axios.get('http://localhost:8000/api/posts/subject/1/').then((response) => {
-        const posts = response.data;
-        // for some reason this setState isn't working yet
-        this.setState({ posts: posts.results });
-          console.log(posts.results);
-      });
-    }catch(e){
-      console.log(e);
-    }
-    console.log(this.state.posts);
-  }
-
   render() {
     const { classes } = this.props;
 
     let feelings = null;
 
-    switch(this.props.type) {
-      case "personal": {
+    switch (this.props.type) {
+      case 'personal': {
         feelings = (
           <div className={classes.nested}>
             <label className={classes.label}>Texto:</label>
             <p className={classes.paragraph}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dictum justo a turpis dapibus lacinia.
-              Praesent ante elit, dapibus eu semper sed, malesuada eu nisi. Phasellus et elit hendrerit metus.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              In dictum justo a turpis dapibus lacinia.
+              Praesent ante elit, dapibus eu semper sed, malesuada eu nisi.
+              Phasellus et elit hendrerit metus.
             </p>
             <label className={classes.label}>Sentimento:</label>
             <p className={classes.paragraph}>Confuso</p>
@@ -85,7 +66,7 @@ class NestedList extends React.Component {
         );
         break;
       }
-      case "general": {
+      case 'general': {
         feelings = (
           <div className={classes.nested}>
             <ListItem>
@@ -101,27 +82,9 @@ class NestedList extends React.Component {
         );
         break;
       }
-      /*
-      case "subject": {
-        feelings = (
-          <div>
-            {this.state.posts.map(post => (
-              <div key={post.id}>
-                <h1>{post.content}</h1>
-                <span>{post.emotion}</span>
-                <span>{post.tag}</span>
-              </div>
-            ))}
-          </div>
-        );
-        break;
-      }
-      */
-      
       default: {
-        console.log("Error");
+      // console.log('Error');
       }
-
     }
 
     return (
