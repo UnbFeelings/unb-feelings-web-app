@@ -1,7 +1,30 @@
 import React, { Component } from 'react';
 import { LineChart } from 'react-chartkick';
 import Chart from 'chart.js';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import axios from '../../../configs/axios';
+import { Divider } from '@material-ui/core';
+
+const styles = {
+  root: {
+    backgroundColor: '#ffffff',
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 5,
+  },
+  title: {
+    backgroundColor: '#336799',
+    marginLeft: 20,
+    width: '20vw', 
+    marginTop: 10,
+    marginBottom: 5,
+    border: '1.5px solid white',
+    borderRadius: 5,
+    color: 'white',
+    padding: 1.5,
+  },
+};
 
 class Charts extends Component {
   state = {
@@ -30,12 +53,21 @@ componentWillMount() {
 }
 
   render() {
+    const { classes } = this.props;
     return (
-      <div style={{ backgroundColor: '#ffffff', margin: 10 }}>
-        <LineChart data={this.state.feelingsArray} />
+      <div>
+        <div className={classes.title}>
+          <Typography variant="headline" align="center" component="h3" color='inherit'> 
+            Gráfico de Sentimentos
+          </Typography>
+        </div>
+        <div className={classes.root}>
+          <Divider/>
+          <LineChart data={this.state.feelingsArray} />
+        </div>
       </div>
     );
   }
 }
 
-export default Charts;
+export default withStyles(styles)(Charts);
