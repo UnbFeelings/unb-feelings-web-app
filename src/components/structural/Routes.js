@@ -16,7 +16,7 @@ const Routes = ({ user }) => (
   <React.Fragment>
     <Route exact path="/" component={HomeContainer} />
     <Route path="/sign-up" component={SignUpContainer} />
-   
+
     <Route
       path="/UniversityPosts"
       component={UniversityPost}
