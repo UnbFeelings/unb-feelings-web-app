@@ -61,6 +61,12 @@ class PersonalBarChart extends React.Component {
 
   render() {
     const optionsStyle = {
+      title: {
+        display: true,
+        text: 'Grafico Pessoal',
+        fontColor: 'white',
+        fontSize: 20,
+      },
       scales: {
         yAxes: [{
           gridLines: {
