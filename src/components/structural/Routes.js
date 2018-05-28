@@ -12,14 +12,21 @@ import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPost from '../pages/university_post/UniversityPost';
+import MySubjectChart from '../pages/mySubjectChart/MySubjectChart';
 
 const Routes = ({ user }) => (
   <React.Fragment>
     <Route exact path="/" component={HomeContainer} />
     <Route path="/sign-up" component={SignUpContainer} />
+
     <Route
       path="/UniversityPosts"
       component={UniversityPost}
+      user={user}
+    />
+    <Route
+      path="/MySubjectChart"
+      component={MySubjectChart}
       user={user}
     />
     <PrivateRoute
