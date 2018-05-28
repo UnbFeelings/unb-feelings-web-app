@@ -1,13 +1,16 @@
 import React from 'react';
 
+import Button from '@material-ui/core/Button';
+
 import { WebDataStates } from '../../../redux/initial-state';
+
+import Emotion from './Emotion';
 
 class Feelings extends React.Component {
   state = {
     subject: '',
     content: '',
-    tag: '1',
-    emotion: '1',
+    emotion: 'g',
   }
 
   componentDidMount() {
@@ -72,43 +75,13 @@ class Feelings extends React.Component {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="postTag">
-            Escolha uma tag de acordo com o que está sentindo
-            (por algum motivo, esta como uma lista...)
-          </label>
-
-          <input
-            type="text"
-            id="postTag"
-            name="tag"
-            className="form-control"
-            value="1"
-            onChange={() => 'Why API WHY ?!?!'}
-          />
+        <div>
+          <Emotion onChange={this.handleInput} />
         </div>
 
-        <div className="form-group">
-          Você está se sentindo:
-          (por algum motivo esta como uma lista)
-
-          <input
-            type="text"
-            id="postEmotion"
-            name="emotion"
-            className="form-control"
-            value="1"
-            onChange={() => 'Why API WHY ?!?!'}
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={this.handleSubmitFeeling}
-        >
+        <Button color="secondary" onClick={this.handleSubmitFeeling}>
           Enviar
-        </button>
+        </Button>
       </div>
     );
   }
