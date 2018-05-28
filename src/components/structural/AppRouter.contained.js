@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import initialstate, { WebDataStates } from '../../redux/initial-state';
@@ -7,13 +7,7 @@ import { SET_USER } from '../../redux/types';
 import { getStoredUser, setUserStore } from '../../configs/local-storage';
 import { setAuthToken } from '../../configs/axios';
 
-import TopMenu from '../shared/TopMenu';
-import PrivateRoute from '../shared/PrivateRoute';
-
-// pages components
-import HomeContainer from '../pages/home/HomeContainer';
-import SignUpContainer from '../pages/sign-up/SignUpContainer';
-import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import TopAppBarWithDrawer from './TopAppBarWithDrawer';
 
 import Routes from './Routes';
 
@@ -32,23 +26,15 @@ class AppRouter extends React.Component {
 
     return (
       <BrowserRouter>
-        <div>
-          {user.state === WebDataStates.SUCCESS ?
-            <TopMenu logUserOff={logUserOff} />
-            :
-            null
-          }
-
-          <Route exact path="/" component={HomeContainer} />
-          <Route path="/sign-up" component={SignUpContainer} />
-
-          <PrivateRoute
-            path="/feelings"
-            component={FeelingsContainer}
-            user={user}
-          />
-          <Routes user={user} />
-        </div>
+        {user.state === WebDataStates.SUCCESS ?
+          <TopAppBarWithDrawer logUserOff={logUserOff}>
+            <Routes user={user} />
+          </TopAppBarWithDrawer>
+        :
+          <div>
+            <Routes user={user} />
+          </div>
+        }
       </BrowserRouter>
     );
   }
