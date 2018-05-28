@@ -20,12 +20,12 @@ const Routes = ({ user }) => (
     <Route path="/sign-up" component={SignUpContainer} />
 
     <Route
-      path="/UniversityPosts"
+      path="/university-posts"
       component={UniversityPost}
       user={user}
     />
     <Route
-      path="/MySubjectChart"
+      path="/my-subject-chart"
       component={MySubjectChart}
       user={user}
     />
