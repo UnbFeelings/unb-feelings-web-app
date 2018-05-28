@@ -36,14 +36,14 @@ const mapDispatchToProps = dispatch => ({
   },
 
   async sendUserFeelings({
-    subject, content, tag, emotion, author,
+    subject, content, emotion, author,
   }) {
     try {
       await axios.post('/posts/', {
         subject,
         content,
-        tag: [tag],
-        emotion: [emotion],
+        tag: [],
+        emotion,
         author,
       });
     } catch (err) {

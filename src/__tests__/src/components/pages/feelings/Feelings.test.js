@@ -31,8 +31,7 @@ describe('<Feelings />', () => {
 
     expect(wrapper.state('subject')).toBe('');
     expect(wrapper.state('content')).toBe('');
-    expect(wrapper.state('tag')).toBe('1');
-    expect(wrapper.state('emotion')).toBe('1');
+    expect(wrapper.state('emotion')).toBe('g');
 
     const postSubject = wrapper.find('#postSubject');
     const postContent = wrapper.find('#postContent');

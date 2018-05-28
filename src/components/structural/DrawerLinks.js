@@ -29,7 +29,7 @@ const DrawerLinks = ({ classes }) => (
   <div className={classes.toolbar}>
     <List component="nav">
       {links.map(link => (
-        <ListItem button>
+        <ListItem key={link.url} button>
           <ListItemIcon>
             <link.icon />
           </ListItemIcon>

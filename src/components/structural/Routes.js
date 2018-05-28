@@ -11,8 +11,8 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
-import UniversityPost from '../pages/university_post/UniversityPost';
-import MySubjectChart from '../pages/mySubjectChart/MySubjectChart';
+import UniversityPosts from '../pages/university-posts/UniversityPosts';
+import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
 
 const Routes = ({ user }) => (
   <React.Fragment>
@@ -21,7 +21,7 @@ const Routes = ({ user }) => (
 
     <Route
       path="/university-posts"
-      component={UniversityPost}
+      component={UniversityPosts}
       user={user}
     />
     <Route
