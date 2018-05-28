@@ -12,7 +12,7 @@ import FeelingsContainer from '../pages/feelings/FeelingsContainer';
 import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
-import MySubjectChart from '../pages/mySubjectChart/MySubjectChart';
+import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
 
 const Routes = ({ user }) => (
   <React.Fragment>

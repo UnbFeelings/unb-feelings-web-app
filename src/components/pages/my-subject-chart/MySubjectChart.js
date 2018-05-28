@@ -17,7 +17,7 @@ class MySubjectChart extends React.Component {
   }
 
   fetchSubjects(id) {
-    axios.get(`http://0.0.0.0:8000/api/subjects/${id}/`).then((response) => {
+    axios.get(`subjects/${id}/`).then((response) => {
       if (!this.state.subjects.includes(response.data.name)) {
         this.setState({
           subjects: [...this.state.subjects, response.data],
@@ -31,10 +31,12 @@ class MySubjectChart extends React.Component {
   }
 
   fetchPosts(id) {
-    axios.get(`http://0.0.0.0:8000/api/posts/user/${id}/`).then((response) => {
+    axios.get(`/posts/user/${id}/`).then((response) => {
       this.setState({ posts: response.data.results });
       for (let cont = 0; cont < this.state.posts.length; cont += 1) {
-        this.fetchSubjects(this.state.posts[cont].subject);
+        if (this.state.posts[cont].subject) {
+          this.fetchSubjects(this.state.posts[cont].subject);
+        }
       }
     });
   }

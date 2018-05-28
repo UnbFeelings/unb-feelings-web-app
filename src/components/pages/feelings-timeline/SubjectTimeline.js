@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -9,6 +10,8 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+
+import axios from '../../../configs/axios';
 
 const styles = theme => ({
   root: {
@@ -81,8 +84,8 @@ class SubjectTimeline extends React.Component {
     // console.log("Fetching posts")
     // console.log(this.state.selected_subject)
     try {
-      const response = await fetch(`http://localhost:8000/api/posts/subject/${this.state.selected_subject}/`);
-      const subjPosts = await response.json();
+      const response = await axios.get(`posts/subject/${this.state.selected_subject}/`);
+      const subjPosts = response.data;
       this.setState({
         subjPosts,
       });
@@ -95,8 +98,8 @@ class SubjectTimeline extends React.Component {
   async fetchSubjects() {
     // fetching subjects for selection
     try {
-      const response = await fetch('http://localhost:8000/api/subjects/');
-      const subjectList = await response.json();
+      const response = await axios.get('/subjects/');
+      const subjectList = response.data;
       this.setState({
         subjectList,
       });
@@ -121,13 +124,13 @@ class SubjectTimeline extends React.Component {
             value={this.state.selected_subject}
             onChange={this.handleChange}
             inputProps={{
-          name: 'selected_subject',
-          id: 'selected_subject',
-          }}
+              name: 'selected_subject',
+              id: 'selected_subject',
+            }}
           >
             {this.state.subjectList.results.map(sub =>
               <MenuItem key={sub.id} value={sub.id}>{sub.name}</MenuItem>)
-          }
+            }
           </Select>
         </FormControl>
       </form>
@@ -156,21 +159,21 @@ class SubjectTimeline extends React.Component {
                     <div key={post.tag.id} className={classes.hashtag}>
                       <p> #{theTag.description} </p>
                     </div>
-                )))}
+                  )))}
                 </div>
               </ListItem>
             </List>
             <Divider />
           </div>
-          )))}
+        )))}
       </div>
     );
   }
 
   render() {
-  // console.log(this.state.subjPosts.results)
-  // o código abaixo funciona como 2 ifs para chamar renderizar
-  // apenas quando os dados da API já estiverem carregados
+    // console.log(this.state.subjPosts.results)
+    // o código abaixo funciona como 2 ifs para chamar renderizar
+    // apenas quando os dados da API já estiverem carregados
     return (
       <div>
         {this.state.subjectList.results !== undefined && this.renderSubjectSelecter()}
