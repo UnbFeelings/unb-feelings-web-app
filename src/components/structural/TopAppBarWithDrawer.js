@@ -125,7 +125,7 @@ class TopAppBarWithDrawer extends React.Component {
         <main className={classes.content}>
           <div className={classes.toolbar} />
 
-          <div style={{ color: '#000' }}>
+          <div>
             {this.props.children}
           </div>
         </main>
