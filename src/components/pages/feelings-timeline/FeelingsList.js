@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -52,14 +51,16 @@ class NestedList extends React.Component {
       case 'personal': {
         feelings = (
           <div className={classes.nested}>
-            <label className={classes.label}>Texto:</label>
+            <span htmlFor="#" className={classes.label}>Texto:</span>
+
             <p className={classes.paragraph}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               In dictum justo a turpis dapibus lacinia.
               Praesent ante elit, dapibus eu semper sed, malesuada eu nisi.
               Phasellus et elit hendrerit metus.
             </p>
-            <label className={classes.label}>Sentimento:</label>
+
+            <span className={classes.label}>Sentimento:</span>
             <p className={classes.paragraph}>Confuso</p>
             <a href="/" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
           </div>
@@ -74,7 +75,7 @@ class NestedList extends React.Component {
               <ListItemText primary="Jacaré não come alpiste" />
             </ListItem>
             <div style={{ paddingLeft: 80 }}>
-              <label className={classes.label}>Sentimento:</label>
+              <span className={classes.label}>Sentimento:</span>
               <p className={classes.paragraph}>Confuso</p>
               <a href="/" className={classes.hashtag}>#triste #desenhoehumlixo #abaixoaprofessoradedesenho</a>
             </div>
@@ -105,9 +106,5 @@ class NestedList extends React.Component {
     );
   }
 }
-
-NestedList.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(NestedList);

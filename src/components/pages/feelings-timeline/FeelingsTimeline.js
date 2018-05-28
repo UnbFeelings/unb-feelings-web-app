@@ -54,8 +54,4 @@ class SimpleTabs extends React.Component {
   }
 }
 
-SimpleTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
 export default withStyles(styles)(SimpleTabs);

@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
     subject, content, tag, emotion, author,
   }) {
     try {
-      const { status, data } = await axios.post('/posts/', {
+      await axios.post('/posts/', {
         subject,
         content,
         tag: [tag],
