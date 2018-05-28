@@ -72,6 +72,7 @@ const mapDispatchToProps = dispatch => ({
   // TODO: Has same code like HomeContainer login. Refac later
   setStoredUser(userData) {
     if (userData.token.length === 0) {
+      console.log('No user data found to auto log-in');
       return;
     }
 

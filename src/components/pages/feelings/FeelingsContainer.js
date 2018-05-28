@@ -22,6 +22,9 @@ const mapDispatchToProps = dispatch => ({
         },
       });
     } else {
+      // console.error('Could not fetch subjects');
+      // console.log(data);
+
       dispatch({
         type: SET_SUBJECTS,
         subjects: {
@@ -43,8 +46,9 @@ const mapDispatchToProps = dispatch => ({
         emotion: [emotion],
         author,
       });
-    } catch (error) {
-      throw error;
+    } catch (err) {
+      // console.log('ERROR');
+      // console.log(err.response.data);
     }
   },
 });

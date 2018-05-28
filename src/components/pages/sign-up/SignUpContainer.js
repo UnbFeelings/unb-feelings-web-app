@@ -16,6 +16,8 @@ const mapDispatchToProps = dispatch => ({
     const { data, status } = await axios.get('/courses/');
 
     if (status !== 200) {
+      console.error('Could not fetch courses');
+      console.log(data);
       return;
     }
 

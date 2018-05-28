@@ -9,6 +9,8 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 
 // Private routes
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
+import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPost from '../pages/university_post/UniversityPost';
 import MySubjectChart from '../pages/mySubjectChart/MySubjectChart';
 
@@ -30,6 +32,16 @@ const Routes = ({ user }) => (
     <PrivateRoute
       path="/feelings"
       component={FeelingsContainer}
+      user={user}
+    />
+    <Route
+      path="/feelings-timeline"
+      component={FeelingsTimeline}
+      user={user}
+    />
+    <Route
+      path="/subject-timeline"
+      component={SubjectTimeline}
       user={user}
     />
   </React.Fragment>
