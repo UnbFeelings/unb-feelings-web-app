@@ -17,7 +17,7 @@ describe('<Feelings />', () => {
       subjects={initialState.subjects}
       user={initialState.user}
       requestSubjects={requestSubjects}
-    />);
+    />).dive();
 
     expect(requestSubjectsCalled).toBe(true);
   });
@@ -27,7 +27,7 @@ describe('<Feelings />', () => {
       subjects={initialState.subjects}
       user={initialState.user}
       requestSubjects={() => false}
-    />);
+    />).dive();
 
     expect(wrapper.state('subject')).toBe('');
     expect(wrapper.state('content')).toBe('');
