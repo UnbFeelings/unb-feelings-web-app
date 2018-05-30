@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import PrivateRoute from '../shared/PrivateRoute';
-
 // Public routes
 import HomeContainer from '../pages/home/HomeContainer';
 import SignUpContainer from '../pages/sign-up/SignUpContainer';
 
 // Private routes
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import CreateFeelingContainer from '../pages/create-feeling/CreateFeelingContainer';
 import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
@@ -29,9 +28,13 @@ const Routes = ({ user }) => (
       component={MySubjectChart}
       user={user}
     />
-    <PrivateRoute
+    <Route
       path="/feelings"
       component={FeelingsContainer}
+    />
+    <Route
+      path="/create-feelings"
+      component={CreateFeelingContainer}
       user={user}
     />
     <Route

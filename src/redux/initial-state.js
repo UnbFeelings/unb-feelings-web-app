@@ -27,10 +27,27 @@ export const WebDataStates = {
  *  name: string
  *  course: number
  *
+ * Post:
+ *  id: number
+ *  author_id: number
+ *  subject_id: number
+ *  emotion: string
+ *  created_at: string
+ *
+ * Diagnosis:
+ *  monday: Post[]
+ *  tuesday: Post[]
+ *  wednesday: Post[]
+ *  thursday: Post[]
+ *  friday: Post[]
+ *  saturday: Post[]
+ *  sunday: Post[]
+ *
  * state = {
  *  user: WebData<User>,
  *  courses: WebData<Course[]>
  *  subjects: WebData<Subject[]>
+ *  diagnosis: WebData<Diagnosis>
  * }
  */
 const initialState = {
@@ -52,6 +69,19 @@ const initialState = {
   subjects: {
     state: WebDataStates.NOT_REQUESTED,
     data: [],
+  },
+
+  diagnosis: {
+    state: WebDataStates.NOT_REQUESTED,
+    data: {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: [],
+    },
   },
 };
 
