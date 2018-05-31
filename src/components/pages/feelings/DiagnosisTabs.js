@@ -85,12 +85,36 @@ class DiagnosisTabs extends React.Component {
     this.setState({ value });
   };
 
+  handleDayPagination = (direction) => () => {
+    /**
+     * Given an direction(next|prev) it paginates back and forth on the
+     * weekly days.
+     */
+    const currDay = this.state.value;
+    const days = Object.keys(this.state.days);
+    const currIndex = days.findIndex(day => day === currDay);
+
+    let gotoDay = currIndex;
+
+    gotoDay += direction === 'next' ? 1 : -1;
+    gotoDay %= days.length;
+
+    if (gotoDay < 0) {
+      gotoDay = (days.length - 1);
+    }
+
+    this.setState({
+      value: days[gotoDay],
+    });
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
 
     return (
       <div className={classes.root}>
+
         <Paper>
           <Tabs value={value} onChange={this.handleChange}>
             <Tab value="monday" label="Segunda" />
@@ -103,8 +127,15 @@ class DiagnosisTabs extends React.Component {
           </Tabs>
         </Paper>
 
+        <Paper>
+          <Tabs>
+            <Tab value="<<" label="<<" onClick={this.handleDayPagination('prev')} />
+            <Tab value=">>" label=">>" onClick={this.handleDayPagination('next')} />
+          </Tabs>
+        </Paper>
+
         {this.state.days[value]}
-      </div>
+      </div >
     );
   }
 }
