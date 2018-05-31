@@ -13,17 +13,21 @@ const mapDispatchToProps = dispatch => ({
     fetchSubjects(dispatch);
   },
 
-  async sendUserFeelings({
+  async createUserFeeling({
     subject, content, emotion, author,
-  }) {
+  }, successCallback) {
     try {
-      await axios.post('/posts/', {
+      const { status, data } = await axios.post('/posts/', {
         subject,
         content,
         tag: [],
         emotion,
         author,
       });
+
+      if (status === 201) { // created
+        successCallback(data);
+      }
     } catch (err) {
       // console.log('ERROR');
       // console.log(err.response.data);
