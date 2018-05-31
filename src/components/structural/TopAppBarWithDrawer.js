@@ -52,6 +52,7 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    'overflow-y': 'scroll',
   },
 });
 

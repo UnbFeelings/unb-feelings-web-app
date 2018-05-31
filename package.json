@@ -29,7 +29,6 @@
     "react-redux": "^5.0.7",
     "react-responsive": "^4.1.0",
     "react-router-dom": "^4.2.2",
-    "reactstrap": "^6.0.1",
     "redux": "^4.0.0"
   },
   "scripts": {

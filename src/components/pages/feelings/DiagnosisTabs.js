@@ -3,16 +3,11 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
-import PostListItem from './PostListItem';
+import { WebDataStates } from '../../../redux/initial-state';
 
-const TabContainer = props => (
-  <Typography component="div" style={{ padding: 8 * 3 }}>
-    {props.children}
-  </Typography>
-);
+import PostListItem from '../../shared/PostListItem';
 
 const styles = theme => ({
   root: {
@@ -22,8 +17,68 @@ const styles = theme => ({
 });
 
 class DiagnosisTabs extends React.Component {
+  static mapSubjects(subjects) {
+    /**
+     * Given a list of subjects(with id and name), it returns a map of subjects
+     * where a given id return the subject name
+     */
+    const subjectsMap = new Map();
+
+    subjects.forEach(sub => {
+      subjectsMap.set(sub.id, sub.name);
+    });
+
+    return subjectsMap;
+  }
+
+  static getDaysFromDiagnosis(diagnosis, subjects) {
+    /**
+     * Given a weekly diagnosis it retuns an object with each day and
+     * each day has a List of PostListItem
+     */
+    const subjectsMap = DiagnosisTabs.mapSubjects(subjects);
+    const weeklyDays = Object.keys(diagnosis.data);
+
+    subjects.forEach(sub => subjectsMap.set(sub.id, sub.name));
+
+    return weeklyDays.reduce((acc, curr) => { // curr -> a day of the week
+      const dayPosts = diagnosis.data[curr];
+
+      const postsJSX = dayPosts.map(post => {
+        const subjectName = subjectsMap.get(post.subject_id);
+
+        return (<PostListItem key={post.id} subject={subjectName} emotion={post.emotion} />);
+      });
+
+      // For each weekly day add a List of PostListItem
+      acc[curr] = postsJSX;
+
+      return acc;
+    }, {});
+  }
+
+  static getDerivedStateFromProps(props) {
+    const { diagnosis, subjects } = props;
+
+    if (diagnosis.state === WebDataStates.SUCCESS) {
+      const days = DiagnosisTabs.getDaysFromDiagnosis(diagnosis, subjects);
+      return { days };
+    }
+
+    return null;
+  }
+
   state = {
     value: 'monday',
+    days: {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: [],
+    },
   };
 
   handleChange = (event, value) => {
@@ -31,39 +86,24 @@ class DiagnosisTabs extends React.Component {
   };
 
   render() {
-    const { classes, diagnosis, subjects } = this.props;
+    const { classes } = this.props;
     const { value } = this.state;
-
-    const days = Object.keys(diagnosis.data).reduce((acc, curr) => {
-      const dayDiagnosis = diagnosis.data[curr];
-      const posts = dayDiagnosis.map(day => {
-        const subject = subjects.find(sub => sub.id === day.subject_id);
-
-        return (<PostListItem key={day.id} subject={subject.name} emotion={day.emotion} />);
-      });
-
-      acc[curr] = posts;
-
-      return acc;
-    }, {});
 
     return (
       <div className={classes.root}>
         <Paper>
           <Tabs value={value} onChange={this.handleChange}>
-            <Tab value="monday" label="Segunda-feira" />
-            <Tab value="tuesday" label="Terça-feira" />
-            <Tab value="wednesday" label="Quarta-feira" />
-            <Tab value="thursday" label="Quinta-feira" />
-            <Tab value="friday" label="Sexta-feira" />
+            <Tab value="monday" label="Segunda" />
+            <Tab value="tuesday" label="Terça" />
+            <Tab value="wednesday" label="Quarta" />
+            <Tab value="thursday" label="Quinta" />
+            <Tab value="friday" label="Sexta" />
             <Tab value="saturday" label="Sábado" />
             <Tab value="sunday" label="Domingo" />
           </Tabs>
         </Paper>
 
-        <TabContainer>
-          {days[value]}
-        </TabContainer>
+        {this.state.days[value]}
       </div>
     );
   }

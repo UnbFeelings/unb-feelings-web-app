@@ -9,6 +9,10 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 import { WebDataStates } from '../../../redux/initial-state';
 
@@ -32,6 +36,10 @@ const styles = theme => ({
     minWidth: 120,
     width: '100%',
   },
+  close: {
+    width: theme.spacing.unit * 4,
+    height: theme.spacing.unit * 4,
+  },
 });
 
 class CreateFeeling extends React.Component {
@@ -39,6 +47,7 @@ class CreateFeeling extends React.Component {
     subject: '',
     content: '',
     emotion: 'g',
+    displayFeelingCreatedMessage: false,
   }
 
   componentDidMount() {
@@ -58,10 +67,28 @@ class CreateFeeling extends React.Component {
 
   handleSubmitFeeling = () => {
     const author = this.props.user.data.id;
-    this.props.sendUserFeelings({ ...this.state, author });
+    const { subject, content, emotion } = this.state;
+
+    const successCallback = () => {
+      // After a successful post creation, display a message to the user
+      this.setState({
+        displayFeelingCreatedMessage: true,
+      });
+    };
+
+    this.props.createUserFeeling({
+      subject, content, emotion, author,
+    }, successCallback);
+  }
+
+  handleCloseSnackbar = () => {
+    // Hide the successful post creation message
+    this.setState({ displayFeelingCreatedMessage: false });
   }
 
   filterSubjectsByCourse(courseId) {
+    // Given the user couse id, it take all subjects and returns only the
+    // ones that user course belongs to
     const { subjects } = this.props;
 
     return subjects.data.filter(subject => subject.course === courseId);
@@ -132,6 +159,31 @@ class CreateFeeling extends React.Component {
             </Button>
           </Link>
         </Grid>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.displayFeelingCreatedMessage}
+          autoHideDuration={6000}
+          onClose={this.handleCloseSnackbar}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Feeling criado com sucesso</span>}
+          action={[
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleCloseSnackbar}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }
