@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 
 import { WebDataStates } from '../../../redux/initial-state';
 
-import PostListItem from './PostListItem';
+import PostListItem from '../../shared/PostListItem';
 
 const styles = theme => ({
   root: {

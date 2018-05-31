@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from '../../../configs/axios';
 
-import TimeLineItem from './TimeLineItem';
+import PostListItem from '../../shared/PostListItem';
 
 class UniversityPosts extends React.Component {
   state = {
@@ -30,10 +30,10 @@ class UniversityPosts extends React.Component {
     const subject = this.state.subjects.find(sub => sub.id === post.subject);
 
     return (
-      <TimeLineItem
+      <PostListItem
         subject={subject ? subject.name : '?????'}
         emotion={post.emotion}
-        tag={post.tag}
+        tags={post.tag}
         key={post.id}
       />
     );

@@ -15,8 +15,8 @@ const styles = theme => ({
 
 const links = [
   { text: 'Feelings', url: '/feelings', icon: InboxIcon },
-  { text: 'University Posts', url: '/university-posts', icon: InboxIcon },
-  { text: 'Mu Subjects', url: '/my-subject-chart', icon: InboxIcon },
+  { text: 'UnB Feelings', url: '/university-posts', icon: InboxIcon },
+  { text: 'Feelings Charts', url: '/my-subject-chart', icon: InboxIcon },
   { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
   { text: 'Subject Timeline', url: '/subject-timeline', icon: InboxIcon },
 ];
