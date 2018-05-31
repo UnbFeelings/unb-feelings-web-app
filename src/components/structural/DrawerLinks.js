@@ -34,7 +34,7 @@ const DrawerLinks = ({ classes }) => (
             <link.icon />
           </ListItemIcon>
 
-          <Link to={link.url}>
+          <Link to={link.url} style={{ textDecoration: 'none' }}>
             <ListItemText primary={link.text} />
           </Link>
         </ListItem>
