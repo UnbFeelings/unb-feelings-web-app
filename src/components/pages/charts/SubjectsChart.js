@@ -11,11 +11,11 @@ class SubjectsChart extends React.Component {
     this.state = { subjectPostCount: [] };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.fetchSubjectPostCount();
   }
 
-  async fetchSubjectPostCount() {
+  fetchSubjectPostCount() {
     // fetching post count for each subject
     axios.get('http://0.0.0.0:8000/api/posts/subjects_posts_count/').then((response) => {
       this.setState({ subjectPostCount: response.data });
@@ -23,11 +23,10 @@ class SubjectsChart extends React.Component {
   }
 
   render() {
-    console.log(this.state.subjectPostCount)
     const { classes } = this.props;
     return (
       <div >
-        <SubjectBarChart/>
+        <SubjectBarChart counter = {this.state.subjectPostCount}/>
       </div>
     );
   }
