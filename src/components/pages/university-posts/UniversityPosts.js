@@ -6,7 +6,6 @@ import PostListItem from '../../shared/PostListItem';
 class UniversityPosts extends React.Component {
   state = {
     posts: [],
-    subjects: [],
   }
 
   componentDidMount() {
@@ -14,24 +13,15 @@ class UniversityPosts extends React.Component {
   }
 
   fetchData() {
-    // eslint-disable-next-line arrow-parens
     axios.get('/posts/').then(resp => {
       this.setState({ posts: resp.data.results });
     });
-
-    // eslint-disable-next-line arrow-parens
-    axios.get('/subjects/').then(resp => {
-      this.setState({ subjects: resp.data.results });
-    });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   postTimeLine(post) {
-    const subject = this.state.subjects.find(sub => sub.id === post.subject);
-
     return (
       <PostListItem
-        subject={subject ? subject.name : '?????'}
+        subject={post.subject.name}
         emotion={post.emotion}
         tags={post.tag}
         key={post.id}
@@ -40,11 +30,11 @@ class UniversityPosts extends React.Component {
   }
 
   render() {
-    const postsTimeLisne = this.state.posts.map(post => this.postTimeLine(post));
+    const timeLine = this.state.posts.map(post => this.postTimeLine(post));
 
     return (
       <div className="UniversityPosts">
-        {postsTimeLisne}
+        {timeLine}
       </div>
     );
   }

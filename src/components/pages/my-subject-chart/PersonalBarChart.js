@@ -20,7 +20,8 @@ class PersonalBarChart extends React.Component {
     }
 
     for (let cont = 0; cont < nextProps.posts.length; cont += 1) {
-      const aux = map.get(nextProps.posts[cont].subject);
+      const aux = map.get(nextProps.posts[cont].subject.id);
+
       if (aux !== undefined) {
         if (nextProps.posts[cont].emotion === 'g') {
           aux.g += 1;

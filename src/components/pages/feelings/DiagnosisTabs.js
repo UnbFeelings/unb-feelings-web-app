@@ -17,38 +17,24 @@ const styles = theme => ({
 });
 
 class DiagnosisTabs extends React.Component {
-  static mapSubjects(subjects) {
-    /**
-     * Given a list of subjects(with id and name), it returns a map of subjects
-     * where a given id return the subject name
-     */
-    const subjectsMap = new Map();
-
-    subjects.forEach(sub => {
-      subjectsMap.set(sub.id, sub.name);
-    });
-
-    return subjectsMap;
-  }
-
-  static getDaysFromDiagnosis(diagnosis, subjects) {
+  static getDaysFromDiagnosis(diagnosis) {
     /**
      * Given a weekly diagnosis it retuns an object with each day and
      * each day has a List of PostListItem
      */
-    const subjectsMap = DiagnosisTabs.mapSubjects(subjects);
     const weeklyDays = Object.keys(diagnosis.data);
-
-    subjects.forEach(sub => subjectsMap.set(sub.id, sub.name));
 
     return weeklyDays.reduce((acc, curr) => { // curr -> a day of the week
       const dayPosts = diagnosis.data[curr];
 
-      const postsJSX = dayPosts.map(post => {
-        const subjectName = subjectsMap.get(post.subject_id);
-
-        return (<PostListItem key={post.id} subject={subjectName} emotion={post.emotion} />);
-      });
+      const postsJSX = dayPosts.map(post => (
+        <PostListItem
+          key={post.id}
+          subject={post.subject.name}
+          emotion={post.emotion}
+          tags={post.tag}
+        />
+      ));
 
       // For each weekly day add a List of PostListItem
       acc[curr] = postsJSX;
@@ -58,10 +44,10 @@ class DiagnosisTabs extends React.Component {
   }
 
   static getDerivedStateFromProps(props) {
-    const { diagnosis, subjects } = props;
+    const { diagnosis } = props;
 
     if (diagnosis.state === WebDataStates.SUCCESS) {
-      const days = DiagnosisTabs.getDaysFromDiagnosis(diagnosis, subjects);
+      const days = DiagnosisTabs.getDaysFromDiagnosis(diagnosis);
       return { days };
     }
 
@@ -128,10 +114,8 @@ class DiagnosisTabs extends React.Component {
         </Paper>
 
         <Paper>
-          <Tabs>
-            <Tab value="<<" label="<<" onClick={this.handleDayPagination('prev')} />
-            <Tab value=">>" label=">>" onClick={this.handleDayPagination('next')} />
-          </Tabs>
+          <Tab value="<<" label="<<" onClick={this.handleDayPagination('prev')} />
+          <Tab value=">>" label=">>" onClick={this.handleDayPagination('next')} />
         </Paper>
 
         {this.state.days[value]}
