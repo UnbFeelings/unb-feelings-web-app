@@ -42,7 +42,7 @@ const PostListItem = ({
 }) => (
   <Paper className={classes.root} elevation={4}>
     <Typography variant="headline" component="h3">
-      {emotion === 'b' ?
+      {emotion === 'g' ?
         <IconThumbUp className={classes.goodEmotion} />
         :
         <IconThumbDown className={classes.badEmotion} />

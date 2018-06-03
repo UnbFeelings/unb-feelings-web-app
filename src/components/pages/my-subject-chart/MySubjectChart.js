@@ -4,12 +4,9 @@ import axios from '../../../configs/axios';
 import PersonalBarChart from './PersonalBarChart';
 
 class MySubjectChart extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: [],
-      subjects: [],
-    };
+  state = {
+    posts: [],
+    subjects: [],
   }
 
   componentDidMount() {
@@ -33,9 +30,10 @@ class MySubjectChart extends React.Component {
   fetchPosts(id) {
     axios.get(`/posts/user/${id}/`).then((response) => {
       this.setState({ posts: response.data.results });
+
       for (let cont = 0; cont < this.state.posts.length; cont += 1) {
         if (this.state.posts[cont].subject) {
-          this.fetchSubjects(this.state.posts[cont].subject);
+          this.fetchSubjects(this.state.posts[cont].subject.id);
         }
       }
     });

@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import axios from '../../../configs/axios';
 import { SET_DIAGNOSIS } from '../../../redux/types';
 import { WebDataStates } from '../../../redux/initial-state';
-import { fetchSubjects } from '../../../redux/fetchers';
 
 import Feelings from './Feelings';
 
-const mapStateToProps = ({ user, diagnosis, subjects }) => ({
-  user, diagnosis, subjects,
+const mapStateToProps = ({ user, diagnosis }) => ({
+  user, diagnosis,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -24,10 +23,6 @@ const mapDispatchToProps = dispatch => ({
         },
       });
     }
-  },
-
-  requestSubjects() {
-    fetchSubjects(dispatch);
   },
 });
 

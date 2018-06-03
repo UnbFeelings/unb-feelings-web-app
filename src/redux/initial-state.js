@@ -27,10 +27,16 @@ export const WebDataStates = {
  *  name: string
  *  course: number
  *
+ * Tag:
+ *  id: number
+ *  name: string
+ *  course: number
+ *
  * Post:
  *  id: number
  *  author_id: number
- *  subject_id: number
+ *  subject: Subject
+ *  tag: Tag[]
  *  emotion: string
  *  created_at: string
  *

@@ -27,19 +27,9 @@ const styles = theme => ({
 });
 
 class Feelings extends React.Component {
-  state = {
-  }
-
   componentDidMount() {
     const { user } = this.props;
     this.props.fetchDiagnosis(user.data.id);
-    this.props.requestSubjects();
-  }
-
-  filterSubjectsByCourse(courseId) {
-    const { subjects } = this.props;
-
-    return subjects.data.filter(subject => subject.course === courseId);
   }
 
   render() {
@@ -49,13 +39,11 @@ class Feelings extends React.Component {
       return (<Redirect to="/" />);
     }
 
-    const userSubjects = this.filterSubjectsByCourse(user.data.course.id);
-
     return (
       <div className={classes.root}>
         <Grid container spacing={8} alignItems="center" className={classes.container}>
           <Grid item xs={12}>
-            <DiagnosisTabs diagnosis={diagnosis} subjects={userSubjects} />
+            <DiagnosisTabs diagnosis={diagnosis} />
           </Grid>
 
           <Link to="/create-feelings" style={{ textDecoration: 'none' }}>
