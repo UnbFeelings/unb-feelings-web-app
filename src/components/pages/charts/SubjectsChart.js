@@ -1,8 +1,6 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import {Bar} from 'react-chartjs-2';
-import SubjectBarChart from './SubjectBarChart.js'
 import axios from '../../../configs/axios';
+import SubjectDoughnutChart from './SubjectDoughnutChart.js'
 
 class SubjectsChart extends React.Component {
 
@@ -23,10 +21,9 @@ class SubjectsChart extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <div >
-        <SubjectBarChart counter = {this.state.subjectPostCount}/>
+        <SubjectDoughnutChart counter = {this.state.subjectPostCount}/>
       </div>
     );
   }
