@@ -36,13 +36,13 @@ class PersonalBarChart extends React.Component {
       labels: [],
       datasets: [{
         label: 'Bom',
-        backgroundColor: '#003459',
+        backgroundColor: '#FFCE56',
         borderColor: 'white',
         borderWidth: 0,
         data: [],
       }, {
         label: 'Ruim',
-        backgroundColor: '#00171f',
+        backgroundColor: '#FF6384',
         borderColor: 'white',
         borderWidth: 0,
         data: [],
@@ -65,7 +65,7 @@ class PersonalBarChart extends React.Component {
       title: {
         display: true,
         text: 'Grafico Pessoal',
-        fontColor: 'white',
+        fontColor: 'black',
         fontSize: 20,
       },
       scales: {
@@ -74,7 +74,7 @@ class PersonalBarChart extends React.Component {
             color: 'black',
           },
           ticks: {
-            fontColor: 'white',
+            fontColor: 'black',
             fontSize: 18,
             stepSize: 1,
             beginAtZero: true,
@@ -94,7 +94,7 @@ class PersonalBarChart extends React.Component {
       },
       legend: {
         labels: {
-          fontColor: 'white',
+          fontColor: 'black',
         },
       },
     };

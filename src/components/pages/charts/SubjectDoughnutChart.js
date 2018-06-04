@@ -30,12 +30,11 @@ const styles = theme => ({
 
 
 class SubjectDoughnutChart extends React.Component {
-  displayName: 'DoughnutExample'
-
   renderChart(subject) {
     const { classes } = this.props;
+
     return (
-      <div>
+      <div key={subject.subject_name}>
         <h2 className={classes.subjectName}>{subject.subject_name}</h2>
         <Doughnut
           data={{
