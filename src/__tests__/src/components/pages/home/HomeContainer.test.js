@@ -23,9 +23,5 @@ describe('<HomeContainer />', () => {
     const store = createMockStore(testState);
     const container = shallowWithStore(<HomeContainer />, store);
     expect(container).toBeInstanceOf(Object);
-
-    const home = container.dive();
-
-    expect(home.prop('className')).toBe('Home');
   });
 });

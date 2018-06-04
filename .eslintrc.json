@@ -5,6 +5,12 @@
     "jest": true
   },
   "rules": {
+    "class-methods-use-this": "off",
+
+    "arrow-parens": "off",
+
+    "import/prefer-default-export": "off",
+
     "react/prefer-stateless-function": "off",
 
     "react/prop-types": "off",

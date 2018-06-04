@@ -1,117 +1,65 @@
 import React from 'react';
+import { Redirect, Link } from 'react-router-dom';
+
+import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 import { WebDataStates } from '../../../redux/initial-state';
 
+import DiagnosisTabs from './DiagnosisTabs';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  container: {
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  fabButton: {
+    position: 'absolute',
+    bottom: theme.spacing.unit * 2,
+    right: theme.spacing.unit * 2,
+  },
+});
+
 class Feelings extends React.Component {
-  state = {
-    subject: '',
-    content: '',
-    tag: '1',
-    emotion: '1',
-  }
-
   componentDidMount() {
-    const { NOT_REQUESTED } = WebDataStates;
-    const subjectsState = this.props.subjects.state;
-
-    if (subjectsState === NOT_REQUESTED) {
-      this.props.requestSubjects();
-    }
-  }
-
-  handleInput = (e) => {
-    const { value, name } = e.target;
-
-    this.setState({ [name]: value });
-  }
-
-  handleSubmitFeeling = () => {
-    const author = this.props.user.data.id;
-    this.props.sendUserFeelings({ ...this.state, author });
-  }
-
-  filterSubjectsByCourse(courseId) {
-    const { subjects } = this.props;
-
-    return subjects.data.filter(subject => subject.course === courseId);
+    const { user } = this.props;
+    this.props.fetchDiagnosis(user.data.id);
   }
 
   render() {
-    const { user } = this.props;
-    const userSubjects = this.filterSubjectsByCourse(user.data.course.id);
+    const { user, diagnosis, classes } = this.props;
+
+    if (user.state !== WebDataStates.SUCCESS) {
+      return (<Redirect to="/" />);
+    }
 
     return (
-      <div className="Feelings container">
-        <div className="form-group">
-          <label htmlFor="postSubject">Disciplina:</label>
+      <div className={classes.root}>
+        <Grid container spacing={8} alignItems="center" className={classes.container}>
+          <Grid item xs={12}>
+            <DiagnosisTabs diagnosis={diagnosis} />
+          </Grid>
 
-          <select
-            id="postSubject"
-            name="subject"
-            className="form-control"
-            onChange={this.handleInput}
-          >
-            <option value="-1" key="-1">Selecione uma disciplina</option>
-
-            {userSubjects.map(sub =>
-              <option key={sub.id} value={sub.id}>{sub.name}</option>)}
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="postContent">
-            Descreva o que está sentindo a cerda de uma aula ou do seu dia:
-          </label>
-
-          <textarea
-            id="postContent"
-            name="content"
-            className="form-control"
-            placeholder="Estou me sentindo..."
-            onChange={this.handleInput}
-          />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="postTag">
-            Escolha uma tag de acordo com o que está sentindo
-            (por algum motivo, esta como uma lista...)
-          </label>
-
-          <input
-            type="text"
-            id="postTag"
-            name="tag"
-            className="form-control"
-            value="1"
-            onChange={() => 'Why API WHY ?!?!'}
-          />
-        </div>
-
-        <div className="form-group">
-          Você está se sentindo:
-          (por algum motivo esta como uma lista)
-
-          <input
-            type="text"
-            id="postEmotion"
-            name="emotion"
-            className="form-control"
-            value="1"
-            onChange={() => 'Why API WHY ?!?!'}
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="btn btn-light"
-          onClick={this.handleSubmitFeeling}
-        >
-          Enviar
-        </button>
+          <Link to="/create-feelings" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="fab"
+              color="primary"
+              aria-label="add"
+              className={classes.fabButton}
+            >
+              <AddIcon />
+            </Button>
+          </Link>
+        </Grid>
       </div>
     );
   }
 }
 
-export default Feelings;
+export default withStyles(styles)(Feelings);
