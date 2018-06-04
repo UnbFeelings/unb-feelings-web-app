@@ -7,6 +7,7 @@ import SignUpContainer from '../pages/sign-up/SignUpContainer';
 
 // Private routes
 import FeelingsContainer from '../pages/feelings/FeelingsContainer';
+import SubjectsChart from '../pages/charts/SubjectsChart';
 import CreateFeelingContainer from '../pages/create-feeling/CreateFeelingContainer';
 import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
@@ -21,6 +22,11 @@ const Routes = ({ user }) => (
     <Route
       path="/university-posts"
       component={UniversityPosts}
+      user={user}
+    />
+    <Route
+      path="/subjects-chart"
+      component={SubjectsChart}
       user={user}
     />
     <Route
