@@ -17,8 +17,9 @@ const links = [
   { text: 'Feelings', url: '/feelings', icon: InboxIcon },
   { text: 'UnB Feelings', url: '/university-posts', icon: InboxIcon },
   { text: 'Feelings Charts', url: '/my-subject-chart', icon: InboxIcon },
-  { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
-  { text: 'Subject Timeline', url: '/subject-timeline', icon: InboxIcon },
+  { text: 'Matérias Charts', url: '/subjects-chart', icon: InboxIcon },
+  // { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
+  // { text: 'Subject Timeline', url: '/subject-timeline', icon: InboxIcon },
 ];
 
 /**
