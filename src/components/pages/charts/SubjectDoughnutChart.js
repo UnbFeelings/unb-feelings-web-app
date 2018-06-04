@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 const styles = theme => ({
   root: {
@@ -29,50 +29,49 @@ const styles = theme => ({
 });
 
 
-class SubjectDoughnutChart extends React.Component{
+class SubjectDoughnutChart extends React.Component {
   displayName: 'DoughnutExample'
 
-  renderChart(subject){
+  renderChart(subject) {
     const { classes } = this.props;
     return (
       <div>
         <h2 className={classes.subjectName}>{subject.subject_name}</h2>
-        <Doughnut data=
-          {{
+        <Doughnut
+          data={{
             labels: [
-          		'Emoções ruins',
-          		'Emoções boas'
+              'Emoções ruins',
+              'Emoções boas',
             ],
             datasets: [{
-          		data: [subject.bad_count, subject.good_count],
-          		backgroundColor: [
-          		'#FF6384',
-          		'#FFCE56'
-          		],
-          		hoverBackgroundColor: [
-          		'#FF6384',
-          		'#FFCE56'
-          		]
-            }]
+              data: [subject.bad_count, subject.good_count],
+              backgroundColor: [
+                '#FF6384',
+                '#FFCE56',
+            ],
+            hoverBackgroundColor: [
+                '#FF6384',
+                '#FFCE56',
+              ],
+            }],
           }}
         />
       </div>
-    )
+    );
   }
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.counter)
+    // console.log(this.props.counter);
     return (
       <div className={classes.root}>
         <h2 className={classes.title}>Gráficos de Posts de cada disciplina: </h2>
         {
 
-          this.props.counter.map(subject => this.renderChart(subject) )  }
+          this.props.counter.map(subject => this.renderChart(subject)) }
       </div>
     );
   }
-
 }
 
-export default withStyles(styles)(SubjectDoughnutChart)
+export default withStyles(styles)(SubjectDoughnutChart);

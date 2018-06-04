@@ -1,9 +1,8 @@
 import React from 'react';
 import axios from '../../../configs/axios';
-import SubjectDoughnutChart from './SubjectDoughnutChart.js'
+import SubjectDoughnutChart from './SubjectDoughnutChart';
 
 class SubjectsChart extends React.Component {
-
   constructor() {
     super();
     this.state = { subjectPostCount: [] };
@@ -23,7 +22,7 @@ class SubjectsChart extends React.Component {
   render() {
     return (
       <div >
-        <SubjectDoughnutChart counter = {this.state.subjectPostCount}/>
+        <SubjectDoughnutChart counter={this.state.subjectPostCount} />
       </div>
     );
   }
