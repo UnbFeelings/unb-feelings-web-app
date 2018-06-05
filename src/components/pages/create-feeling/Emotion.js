@@ -19,14 +19,22 @@ const styles = theme => ({
 });
 
 class Emotion extends React.Component {
+  static getDerivedStateFromProps(props) {
+    if (props.emotion !== undefined) {
+      return { emotion: props.emotion };
+    }
+
+    return null;
+  }
+
   state = {
-    emoton: 'g',
+    emotion: 'g',
   };
 
   handleSelectChange = (e) => {
     this.props.onChange(e);
     this.setState({
-      emoton: e.target.value,
+      emotion: e.target.value,
     });
   }
 
@@ -42,7 +50,7 @@ class Emotion extends React.Component {
             id="emotion"
             name="emotion"
             className={classes.group}
-            value={this.state.emoton}
+            value={this.state.emotion}
             onChange={this.handleSelectChange}
           >
             <FormControlLabel keu="aa" value="g" control={<Radio />} label="Feliz" />

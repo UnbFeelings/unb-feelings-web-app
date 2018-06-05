@@ -71,8 +71,12 @@ class CreateFeeling extends React.Component {
 
     const successCallback = () => {
       // After a successful post creation, display a message to the user
+      // and clear the form so the user can create a new post
       this.setState({
         displayFeelingCreatedMessage: true,
+        subject: '',
+        content: '',
+        emotion: 'g',
       });
     };
 
@@ -141,7 +145,7 @@ class CreateFeeling extends React.Component {
           </Grid>
 
           <Grid item xs={12}>
-            <Emotion onChange={this.handleChange('emotion')} />
+            <Emotion onChange={this.handleChange('emotion')} emotion={this.state.emotion} />
           </Grid>
 
           <Button
