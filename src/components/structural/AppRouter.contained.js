@@ -21,13 +21,18 @@ class AppRouter extends React.Component {
     }
   }
 
+  redirectUserOnLogOff = () => {
+    this.props.logUserOff();
+    window.location.href = '/';
+  }
+
   render() {
-    const { user, logUserOff } = this.props;
+    const { user } = this.props;
 
     return (
       <BrowserRouter>
         {user.state === WebDataStates.SUCCESS ?
-          <TopAppBarWithDrawer logUserOff={logUserOff}>
+          <TopAppBarWithDrawer logUserOff={this.redirectUserOnLogOff}>
             <Routes user={user} />
           </TopAppBarWithDrawer>
         :
