@@ -63,7 +63,7 @@ class Home extends React.Component {
           <Grid item sm={4} xs={12} />
 
           <Grid item sm={4} xs={12}>
-            <Grid gutterBottom style={{ textAlign: 'center' }}>
+            <Grid style={{ textAlign: 'center' }}>
               <UnbFeelingsLogo />
             </Grid>
 

@@ -10,6 +10,8 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import SentimentDissatisfied from '@material-ui/icons/SentimentDissatisfied';
+import SentimentSatisfied from '@material-ui/icons/SentimentSatisfied';
 
 import axios from '../../../configs/axios';
 
@@ -51,7 +53,7 @@ const styles = theme => ({
 
 class SubjectTimeline extends React.Component {
   state = {
-    selected_subject: 0,
+    selectedSubject: 0,
     subjPosts: [],
     subjectList: [],
     name: '',
@@ -65,29 +67,26 @@ class SubjectTimeline extends React.Component {
     this.fetchUserInfo();
   }
 
-  handleChange = (event) => {
-    // console.log(event.target.value)
-    this.setState({
-      selected_subject: event.target.value,
-    });
-    this.fetchPosts();
-    this.fetchUserInfo();
-  };
+  setAvatarURL = (name) => {
+    // Red, Green and Blue
+    const COLORS = ['700', '070', '007'];
+    const avatarName = name.replace(/ /g, '+');
+    const ramdomIndex = Math.floor(Math.random() * 3);
+    const BASE_URL = 'https://ui-avatars.com/api/';
+    const url = `${BASE_URL}?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
+    return url;
+  }
 
   async fetchPosts() {
-    // fetching posts
-    // console.log("Fetching posts")
-    // console.log(this.state.selected_subject)
+    const { selectedSubject } = this.state;
+
+    if (selectedSubject === 0) {
+      return;
+    }
+
     try {
-      const response = await axios.get(`posts/subject/${this.state.selected_subject}/`);
+      const response = await axios.get(`posts/subject/${selectedSubject}/`);
       const subjPosts = response.data;
       this.setState({
         subjPosts,
@@ -112,16 +111,6 @@ class SubjectTimeline extends React.Component {
     }
   }
 
-  setAvatarURL = (name) => {
-    // Red, Green and Blue
-    const COLORS = ['700', '070', '007'];
-    const avatarName = name.replace(/ /g, '+');
-    const ramdomIndex = Math.floor(Math.random() * 3);
-    let url = `https://ui-avatars.com/api/?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
-
-    return url;
-  }
-
   async fetchUserInfo() {
     // fetching anonymous name and avatar for an user
     try {
@@ -131,14 +120,32 @@ class SubjectTimeline extends React.Component {
         name,
       });
 
-      let avatarURL = this.setAvatarURL(name)
+      const avatarURL = this.setAvatarURL(name);
       this.setState({
         avatarURL,
       });
     } catch (e) {
+      console.log('Could not fetch user info');
       console.log(e);
     }
   }
+
+  handleChange = (event) => {
+    // console.log(event.target.value)
+    this.setState({
+      selectedSubject: event.target.value,
+    });
+    this.fetchPosts();
+    this.fetchUserInfo();
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
 
 
   renderSubjectSelecter() {
@@ -152,13 +159,13 @@ class SubjectTimeline extends React.Component {
             open={this.state.open}
             onClose={this.handleClose}
             onOpen={this.handleOpen}
-            value={this.state.selected_subject}
+            value={this.state.selectedSubject}
             onChange={this.handleChange}
             inputProps={{
-              name: 'selected_subject',
-              id: 'selected_subject',
+              name: 'selectedSubject',
+              id: 'selectedSubject',
             }}
-            style={{width: '100%'}}
+            style={{ width: '100%' }}
           >
             {this.state.subjectList.results.map(sub =>
               <MenuItem key={sub.id} value={sub.id}>{sub.name}</MenuItem>)
@@ -181,11 +188,15 @@ class SubjectTimeline extends React.Component {
                 <div>
                   <ListItemText inset primary={this.state.name} secondary={post.created_at} />
                 </div>
-                <div className={classes.emotionIcon}>
-                  {post.emotion === 'b' ? <Avatar src="https://www.materialui.co/materialIcons/social/sentiment_satisfied_black_192x192.png" /> :
-                  <Avatar src="https://www.materialui.co/materialIcons/social/sentiment_dissatisfied_black_192x192.png" />}
 
+                <div className={classes.emotionIcon}>
+                  {post.emotion === 'b' ?
+                    <SentimentSatisfied />
+                    :
+                    <SentimentDissatisfied />
+                  }
                 </div>
+
                 <div className={classes.hashtags}>
                   {post.tag.map((theTag => (
                     <div key={post.tag.id} className={classes.hashtag}>
