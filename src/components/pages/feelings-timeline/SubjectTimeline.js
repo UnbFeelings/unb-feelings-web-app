@@ -70,7 +70,7 @@ class SubjectTimeline extends React.Component {
   setAvatarURL = (name) => {
     // Red, Green and Blue
     const COLORS = ['700', '070', '007'];
-    const avatarName = name.replace(/ /g, '+');
+    const avatarName = encodeURIComponent(name);
     const ramdomIndex = Math.floor(Math.random() * 3);
     const BASE_URL = 'https://ui-avatars.com/api/';
     const url = `${BASE_URL}?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
@@ -190,7 +190,7 @@ class SubjectTimeline extends React.Component {
                 </div>
 
                 <div className={classes.emotionIcon}>
-                  {post.emotion === 'b' ?
+                  {post.emotion === 'g' ?
                     <SentimentSatisfied />
                     :
                     <SentimentDissatisfied />
