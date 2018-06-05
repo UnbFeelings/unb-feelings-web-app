@@ -64,7 +64,7 @@ class SubjectDoughnutChart extends React.Component {
     // console.log(this.props.counter);
     return (
       <div className={classes.root}>
-        <h2 className={classes.title}>Gráficos de Posts de cada disciplina: </h2>
+        <h2 className={classes.title}>Diagnóstico para cada disciplina: </h2>
         {
 
           this.props.counter.map(subject => this.renderChart(subject)) }
