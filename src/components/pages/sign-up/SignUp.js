@@ -102,7 +102,7 @@ class SignUp extends React.Component {
                     message={() => user.data.email.join('')}
                   />
 
-                  <Typography variant="body2" gutterBottom>
+                  <Typography variant="body2">
                     Nós nunca vamos compartilhar seu e-mail com mais ninguém.
                   </Typography>
                 </Grid>

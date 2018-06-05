@@ -7,19 +7,23 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
+import Person from '@material-ui/icons/Person';
+import School from '@material-ui/icons/School';
+import Group from '@material-ui/icons/Group';
+import Equalizer from '@material-ui/icons/Equalizer';
+import DonutSmall from '@material-ui/icons/DonutSmall';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
 const links = [
-  { text: 'Feelings', url: '/feelings', icon: InboxIcon },
-  { text: 'UnB Feelings', url: '/university-posts', icon: InboxIcon },
-  { text: 'Feelings Charts', url: '/my-subject-chart', icon: InboxIcon },
-  { text: 'Matérias Charts', url: '/subjects-chart', icon: InboxIcon },
+  { text: 'Meus Sentimentos', url: '/feelings', icon: Person },
+  { text: 'Sentimentos por Disciplina', url: '/subject-timeline', icon: Group },
+  { text: 'Sentimentos na UnB', url: '/university-posts', icon: School },
+  { text: 'Meu Diagnóstico', url: '/my-subject-chart', icon: Equalizer },
+  { text: 'Diagnóstico por Disciplina', url: '/subjects-chart', icon: DonutSmall },
   // { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
-  // { text: 'Subject Timeline', url: '/subject-timeline', icon: InboxIcon },
 ];
 
 /**
