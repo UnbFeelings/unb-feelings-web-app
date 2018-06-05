@@ -20,6 +20,7 @@ const styles = theme => ({
   },
   container: {
     height: '99vh',
+    backgroundColor: '#4d5ebb',
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -80,7 +81,7 @@ class SignUp extends React.Component {
           <Grid item sm={4} xs={12} />
 
           <Grid item sm={4} xs={12}>
-            <Typography variant="display1" gutterBottom>
+            <Typography variant="display1" align="center" style={{ color: '#fff' }} gutterBottom>
               Cadastro
             </Typography>
 
