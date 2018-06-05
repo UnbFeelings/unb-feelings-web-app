@@ -18,9 +18,8 @@ const styles = theme => ({
     maxWidth: '800px',
     width: '100%',
     backgroundColor: theme.palette.background.paper,
-    marginLeft: '20%',
-    marginRight: '20%',
-
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 
   hashtags: {
@@ -33,13 +32,13 @@ const styles = theme => ({
   hashtag: {
     marginRight: '1%',
   },
-
   formControl: {
     maxWidth: '800px',
     width: '100%',
     hight: '200px',
-    marginLeft: '20%',
-    marginRight: '20%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    display: 'block',
     marginTop: '10px',
     minWidth: 120,
     backgroundColor: 'white',
@@ -55,12 +54,14 @@ class SubjectTimeline extends React.Component {
     selected_subject: 0,
     subjPosts: [],
     subjectList: [],
+    name: '',
     open: false,
   };
 
   async componentWillMount() {
     this.fetchPosts();
     this.fetchSubjects();
+    this.fetchAnonymousName();
   }
 
   handleChange = (event) => {
@@ -109,6 +110,19 @@ class SubjectTimeline extends React.Component {
     }
   }
 
+  async fetchAnonymousName() {
+    // fetching anonymous name for an user
+    try {
+      const response = await axios.get('/anonymous-name/');
+      const name = response.data.anonymous_name;
+      this.setState({
+        name,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
   renderSubjectSelecter() {
     const { classes } = this.props;
@@ -127,6 +141,7 @@ class SubjectTimeline extends React.Component {
               name: 'selected_subject',
               id: 'selected_subject',
             }}
+            style={{width: '100%'}}
           >
             {this.state.subjectList.results.map(sub =>
               <MenuItem key={sub.id} value={sub.id}>{sub.name}</MenuItem>)
@@ -147,7 +162,7 @@ class SubjectTimeline extends React.Component {
               <ListItem>
                 <Avatar src="http://br.kogstatic.com/gen_images/b4/ab/b4abd72f6c8a4f20b755c475ddccd85a.png" />
                 <div>
-                  <ListItemText inset primary="Nome aleatório" secondary={post.created_at} />
+                  <ListItemText inset primary={this.state.name} secondary={post.created_at} />
                 </div>
                 <div className={classes.emotionIcon}>
                   {post.emotion === 'b' ? <Avatar src="https://www.materialui.co/materialIcons/social/sentiment_satisfied_black_192x192.png" /> :
