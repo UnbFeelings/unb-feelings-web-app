@@ -8,8 +8,8 @@ const styles = theme => ({
     width: '100%',
     backgroundColor: theme.palette.background.paper,
     marginTop: '10px',
-    marginLeft: '20%',
-    marginRight: '20%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     borderRadius: 10,
   },
 
