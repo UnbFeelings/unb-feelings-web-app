@@ -55,13 +55,14 @@ class SubjectTimeline extends React.Component {
     subjPosts: [],
     subjectList: [],
     name: '',
+    avatarURL: '',
     open: false,
   };
 
   async componentWillMount() {
     this.fetchPosts();
     this.fetchSubjects();
-    this.fetchAnonymousName();
+    this.fetchUserInfo();
   }
 
   handleChange = (event) => {
@@ -70,6 +71,7 @@ class SubjectTimeline extends React.Component {
       selected_subject: event.target.value,
     });
     this.fetchPosts();
+    this.fetchUserInfo();
   };
 
   handleClose = () => {
@@ -110,13 +112,28 @@ class SubjectTimeline extends React.Component {
     }
   }
 
-  async fetchAnonymousName() {
-    // fetching anonymous name for an user
+  setAvatarURL = (name) => {
+    // Red, Green and Blue
+    const COLORS = ['700', '070', '007'];
+    const avatarName = name.replace(/ /g, '+');
+    const ramdomIndex = Math.floor(Math.random() * 3);
+    let url = `https://ui-avatars.com/api/?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
+
+    return url;
+  }
+
+  async fetchUserInfo() {
+    // fetching anonymous name and avatar for an user
     try {
       const response = await axios.get('/anonymous-name/');
       const name = response.data.anonymous_name;
       this.setState({
         name,
+      });
+
+      let avatarURL = this.setAvatarURL(name)
+      this.setState({
+        avatarURL,
       });
     } catch (e) {
       console.log(e);
@@ -160,7 +177,7 @@ class SubjectTimeline extends React.Component {
           <div key={post.id}>
             <List component="nav" >
               <ListItem>
-                <Avatar src="http://br.kogstatic.com/gen_images/b4/ab/b4abd72f6c8a4f20b755c475ddccd85a.png" />
+                <Avatar src={this.state.avatarURL} />
                 <div>
                   <ListItemText inset primary={this.state.name} secondary={post.created_at} />
                 </div>
