@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
 
 import { WebDataStates } from '../../../redux/initial-state';
 
@@ -15,6 +16,10 @@ const styles = theme => ({
   },
   container: {
     height: '99vh',
+    backgroundColor: '#4d5ebb',
+  },
+  Typography: {
+    textAlign: 'center',
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -59,9 +64,9 @@ class Home extends React.Component {
           <Grid item sm={4} xs={12} />
 
           <Grid item sm={4} xs={12}>
-            <Typography variant="display1" gutterBottom>
-              UnB Feelings
-            </Typography>
+            <Grid gutterBottom style={{ textAlign: 'center' }}>
+              <UnbFeelingsLogo />
+            </Grid>
 
             <Paper className={classes.paper}>
               <form noValidate autoComplete="off">
