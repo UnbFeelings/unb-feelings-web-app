@@ -3,8 +3,9 @@ import { LineChart } from 'react-chartkick';
 import Chart from 'chart.js';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import axios from '../../../configs/axios';
 import { Divider } from '@material-ui/core';
+
+import axios from '../../../configs/axios';
 
 const styles = {
   root: {
@@ -16,7 +17,7 @@ const styles = {
   title: {
     backgroundColor: '#336799',
     marginLeft: 20,
-    width: '20vw', 
+    width: '20vw',
     marginTop: 10,
     marginBottom: 5,
     border: '1.5px solid white',
@@ -28,8 +29,9 @@ const styles = {
 
 class Charts extends Component {
   state = {
-    feelingsArray: {},
-    // feelingsArray: [
+    feelingsDict: {},
+    feelingsArray: [],
+    // feelingsDict: [
     //   {
     //     name: 'Sentimentos bons',
     //     data: {
@@ -39,76 +41,62 @@ class Charts extends Component {
     //   {
     //     name: 'Sentimentos ruins',
     //     data: {
-    //       'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2, 
+    //       'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2,
     //     },
     //   },
     // ],
   }
 
-componentDidMount() {
-  
-}
+  componentWillMount() {
+    this.getFeelings();
+  }
 
 getFeelings = async () => {
-  await axios.get('diagnosis').then(Response => { 
-    this.setState({ feelingsArray: Response.data });
-    const dictionary = this.state.feelingsArray
-    Object.keys(dictionary).forEach(function(key) {
+  await axios.get('diagnosis').then((Response) => {
+    this.setState({ feelingsDict: Response.data });
+    const dictionary = this.state.feelingsDict;
+    const newArray = null;
+    Object.keys(dictionary).forEach((key) => {
+      if (dictionary[key] === 'g') { //FAZER LÓGICA PARA CONTADOR DE EMOÇÕES NO DIA PARA ITERAR E REESTRUTURAR
+        newArray.push({
+          name: 'Sentimentos bons',
+          data: {
+            key,
+            value: CONTADOR_DE_SENTIMENTOS_BONS,
+          },
+        });
+      } else {
+        newArray.push({
+          name: 'Sentimentos ruins',
+          data: {
+            key,
+            value: CONTADOR_DE_SENTIMENTOS_RUINS,
+          },
+        });
+      }
       console.log(key, dictionary[key]);
     });
-   }).catch(Error => {
-     throw Error;
-   })
+  }).catch((Error) => {
+    throw Error;
+  });
 }
 
-componentWillMount() {
-  this.getFeelings()
-  // console.log(this.state.feelingsArray)
-}
-
-// fetchData = () => {
-//   const array = Array.from(
-//     this.state.feelingsArray.map(object => ({
-//       name: {
-//         value: object.type,
-//         error: false,
-//       },
-//       expirationDate: {
-//         value: object.expirationDate,
-//         error: false,
-//       },
-//       user: {
-//         value: object.user,
-//         error: false,
-//       },
-//       lot: {
-//         value: object.lot,
-//         error: false,
-//       },
-//       amount: {
-//         value: object.balance,
-//         error: false,
-//       },
-//     }))
-//   );
-// }
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <div>
-        <div className={classes.title}>
-          <Typography variant="headline" align="center" component="h3" color='inherit'> 
-            Gráfico de Sentimentos
-          </Typography>
-        </div>
-        <div className={classes.root}>
-          <Divider/>
-          <LineChart data={this.state.feelingsArray} />
-        </div>
+render() {
+  const { classes } = this.props;
+  return (
+    <div>
+      <div className={classes.title}>
+        <Typography variant="headline" align="center" component="h3" color="inherit">
+          Gráfico de Sentimentos
+        </Typography>
       </div>
-    );
-  }
+      <div className={classes.root}>
+        <Divider />
+        <LineChart data={this.state.feelingsDict} />
+      </div>
+    </div>
+  );
+}
 }
 
 export default withStyles(styles)(Charts);
