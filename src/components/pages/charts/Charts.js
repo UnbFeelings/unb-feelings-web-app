@@ -28,29 +28,70 @@ const styles = {
 
 class Charts extends Component {
   state = {
-    feelingsArray: [
-      {
-        name: 'Sentimentos bons',
-        data: {
-          'Segunda': 1, 'Terça': 0, 'Quarta': 2, 'Terça': 4, 'Quinta': 1, 'Sexta': 6, 'Sexta': 4, 'Sábado': 5
-        },
-      },
-      {
-        name: 'Sentimentos ruins',
-        data: {
-          'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2, 
-        },
-      },
-    ],
+    feelingsArray: {},
+    // feelingsArray: [
+    //   {
+    //     name: 'Sentimentos bons',
+    //     data: {
+    //       'Segunda': 1, 'Terça': 0, 'Quarta': 2, 'Terça': 4, 'Quinta': 1, 'Sexta': 6, 'Sexta': 4, 'Sábado': 5
+    //     },
+    //   },
+    //   {
+    //     name: 'Sentimentos ruins',
+    //     data: {
+    //       'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2, 
+    //     },
+    //   },
+    // ],
   }
 
-componentWillMount() {
-  axios.get('endpoint').then(Response => { 
+componentDidMount() {
+  
+}
+
+getFeelings = async () => {
+  await axios.get('diagnosis').then(Response => { 
     this.setState({ feelingsArray: Response.data });
+    const dictionary = this.state.feelingsArray
+    Object.keys(dictionary).forEach(function(key) {
+      console.log(key, dictionary[key]);
+    });
    }).catch(Error => {
      throw Error;
    })
 }
+
+componentWillMount() {
+  this.getFeelings()
+  // console.log(this.state.feelingsArray)
+}
+
+// fetchData = () => {
+//   const array = Array.from(
+//     this.state.feelingsArray.map(object => ({
+//       name: {
+//         value: object.type,
+//         error: false,
+//       },
+//       expirationDate: {
+//         value: object.expirationDate,
+//         error: false,
+//       },
+//       user: {
+//         value: object.user,
+//         error: false,
+//       },
+//       lot: {
+//         value: object.lot,
+//         error: false,
+//       },
+//       amount: {
+//         value: object.balance,
+//         error: false,
+//       },
+//     }))
+//   );
+// }
 
   render() {
     const { classes } = this.props;
