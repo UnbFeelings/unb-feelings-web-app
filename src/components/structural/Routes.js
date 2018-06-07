@@ -20,7 +20,7 @@ const Routes = ({ user }) => (
     <Route path="/sign-up" component={SignUpContainer} />
 
     <Route
-      path="/university-posts"
+      path="/university-posts/:userId?"
       component={UniversityPosts}
       user={user}
     />
