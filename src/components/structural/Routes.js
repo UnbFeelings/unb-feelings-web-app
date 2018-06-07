@@ -13,6 +13,7 @@ import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
 import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
+import ChartsContainer from '../pages/charts/ChartsContainer';
 
 const Routes = ({ user }) => (
   <React.Fragment>
@@ -56,7 +57,6 @@ const Routes = ({ user }) => (
     <Route
       path="/charts"
       component={ChartsContainer}
-      user={user}
     />
   </React.Fragment>
 );

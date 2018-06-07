@@ -6752,11 +6752,6 @@ react-chartjs-2@^2.7.2:
   dependencies:
     lodash "^4.17.4"
     prop-types "^15.5.8"
-react-chartkick@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/react-chartkick/-/react-chartkick-0.2.0.tgz#ab9cfab99452c15d7e55389df92908917af4a675"
-  dependencies:
-    chartkick "^2.3.5"
 
 react-dev-utils@^5.0.0:
   version "5.0.1"
