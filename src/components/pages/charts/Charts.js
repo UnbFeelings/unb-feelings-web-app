@@ -31,20 +31,6 @@ class Charts extends Component {
   state = {
     feelingsDict: {},
     feelingsArray: [],
-    // feelingsDict: [
-    //   {
-    //     name: 'Sentimentos bons',
-    //     data: {
-    //       'Segunda': 1, 'Terça': 0, 'Quarta': 2, 'Terça': 4, 'Quinta': 1, 'Sexta': 6, 'Sexta': 4, 'Sábado': 5
-    //     },
-    //   },
-    //   {
-    //     name: 'Sentimentos ruins',
-    //     data: {
-    //       'Quinta': 3, 'Quarta': 1, 'Terça': 2, 'Sexta': 2,
-    //     },
-    //   },
-    // ],
   }
 
   componentWillMount() {
@@ -55,27 +41,37 @@ getFeelings = async () => {
   await axios.get('diagnosis').then((Response) => {
     this.setState({ feelingsDict: Response.data });
     const dictionary = this.state.feelingsDict;
-    const newArray = null;
+    let newArray = [];
     Object.keys(dictionary).forEach((key) => {
-      if (dictionary[key] === 'g') { //FAZER LÓGICA PARA CONTADOR DE EMOÇÕES NO DIA PARA ITERAR E REESTRUTURAR
+      if (dictionary[key].length) { //FAZER LÓGICA PARA CONTADOR DE EMOÇÕES NO DIA PARA ITERAR E REESTRUTURAR
+        const array = dictionary[key]
+        let goodFeelings = 0
+        var badFeelings = 0
+        for (let i = 0; i < dictionary[key].length; i++) {
+          if (array[i].emotion === 'g') {
+            goodFeelings += 1
+          } else {
+            badFeelings += 1
+          }
+        }
         newArray.push({
           name: 'Sentimentos bons',
           data: {
-            key,
-            value: CONTADOR_DE_SENTIMENTOS_BONS,
+            [key]: goodFeelings,
           },
         });
       } else {
         newArray.push({
           name: 'Sentimentos ruins',
           data: {
-            key,
-            value: CONTADOR_DE_SENTIMENTOS_RUINS,
+            [key]: badFeelings,
           },
         });
       }
-      console.log(key, dictionary[key]);
+      // console.log(key, dictionary[key]);
     });
+    this.setState({ feelingsArray: newArray }) 
+    console.log(this.state.feelingsArray)
   }).catch((Error) => {
     throw Error;
   });
@@ -92,7 +88,7 @@ render() {
       </div>
       <div className={classes.root}>
         <Divider />
-        <LineChart data={this.state.feelingsDict} />
+        <LineChart data={this.state.feelingsArray} />
       </div>
     </div>
   );
