@@ -21,7 +21,7 @@ const Routes = ({ user }) => (
     <Route path="/sign-up" component={SignUpContainer} />
 
     <Route
-      path="/university-posts"
+      path="/university-posts/:userId?"
       component={UniversityPosts}
       user={user}
     />
@@ -57,6 +57,11 @@ const Routes = ({ user }) => (
     <Route
       path="/weekly-unb-chart"
       component={WeeklyUnbChart}
+      user={user}
+    />
+    <Route
+      path="/charts"
+      component={ChartsContainer}
       user={user}
     />
   </React.Fragment>
