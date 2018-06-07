@@ -23,6 +23,7 @@ const links = [
   { text: 'Sentimentos na UnB', url: '/university-posts', icon: School },
   { text: 'Meu Diagnóstico', url: '/my-subject-chart', icon: Equalizer },
   { text: 'Diagnóstico por Disciplina', url: '/subjects-chart', icon: DonutSmall },
+  { text: 'Minha semana', url: '/charts', icon: School },
   // { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
 ];
 
