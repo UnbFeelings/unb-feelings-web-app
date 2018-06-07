@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from '../../../configs/axios';
-
 import PostListItem from '../../shared/PostListItem';
 
 class UniversityPosts extends React.Component {
@@ -9,10 +8,21 @@ class UniversityPosts extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    const { userId } = this.props.match.params;
+    if (userId === undefined) {
+      this.fetchUniversityData();
+    } else {
+      this.fetchUserData(userId);
+    }
   }
 
-  fetchData() {
+  fetchUserData(userId) {
+    axios.get(`/posts/user/${userId}/`).then(resp => {
+      this.setState({ posts: resp.data.results });
+    });
+  }
+
+  fetchUniversityData() {
     axios.get('/posts/').then(resp => {
       this.setState({ posts: resp.data.results });
     });
