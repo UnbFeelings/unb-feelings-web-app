@@ -17,6 +17,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { WebDataStates } from '../../../redux/initial-state';
 
 import Emotion from './Emotion';
+import TagsField from './TagsField';
 
 
 const styles = theme => ({
@@ -47,6 +48,7 @@ class CreateFeeling extends React.Component {
     subject: '',
     content: '',
     emotion: 'g',
+    tags: '',
     displayFeelingCreatedMessage: false,
   }
 
@@ -67,7 +69,9 @@ class CreateFeeling extends React.Component {
 
   handleSubmitFeeling = () => {
     const author = this.props.user.data.id;
-    const { subject, content, emotion } = this.state;
+    const {
+      subject, content, emotion, tags,
+    } = this.state;
 
     const successCallback = () => {
       // After a successful post creation, display a message to the user
@@ -77,11 +81,12 @@ class CreateFeeling extends React.Component {
         subject: '',
         content: '',
         emotion: 'g',
+        tags: '',
       });
     };
 
     this.props.createUserFeeling({
-      subject, content, emotion, author,
+      subject, content, emotion, author, tags,
     }, successCallback);
   }
 
@@ -146,6 +151,10 @@ class CreateFeeling extends React.Component {
 
           <Grid item xs={12}>
             <Emotion onChange={this.handleChange('emotion')} emotion={this.state.emotion} />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TagsField tags={this.state.tags} handleChange={this.handleChange} />
           </Grid>
 
           <Button
