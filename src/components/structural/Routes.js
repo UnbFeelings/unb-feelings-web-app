@@ -53,6 +53,11 @@ const Routes = ({ user }) => (
       component={SubjectTimeline}
       user={user}
     />
+    <Route
+      path="/charts"
+      component={ChartsContainer}
+      user={user}
+    />
   </React.Fragment>
 );
 
