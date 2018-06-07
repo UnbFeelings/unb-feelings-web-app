@@ -3,9 +3,11 @@ import { Redirect } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import { withStyles } from '@material-ui/core/styles';
 import { Divider } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { WebDataStates } from '../../../redux/initial-state';
 
-const styles = {
+const styles = theme => ({
   root: {
     backgroundColor: '#ffffff',
     marginLeft: 20,
@@ -23,7 +25,15 @@ const styles = {
     color: 'white',
     padding: 1.5,
   },
-};
+  progressContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  progress: {
+    margin: theme.spacing.unit * 5,
+  },
+});
 
 class Charts extends Component {
   componentDidMount() {
@@ -36,6 +46,14 @@ class Charts extends Component {
 
     if (user.data.id === 0) {
       return (<Redirect to="/" />);
+    }
+
+    if (diagnosis.state !== WebDataStates.SUCCESS) {
+      return (
+        <div className={classes.progressContainer}>
+          <CircularProgress className={classes.progress} size={50} />
+        </div>
+      );
     }
 
     const goodBadDays = Object.keys(diagnosis.data).reduce((acc, curr) => {
@@ -119,6 +137,7 @@ class Charts extends Component {
         },
       ],
     };
+
     return (
       <div>
         <div className={classes.root}>
