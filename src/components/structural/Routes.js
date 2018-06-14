@@ -14,6 +14,7 @@ import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
 import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
 import ChartsContainer from '../pages/charts/ChartsContainer';
+import WeeklyUnbChart from '../pages/charts/WeeklyUnbChart';
 
 const Routes = ({ user }) => (
   <React.Fragment>
@@ -55,9 +56,16 @@ const Routes = ({ user }) => (
       user={user}
     />
     <Route
+      path="/weekly-unb-chart"
+      component={WeeklyUnbChart}
+      user={user}
+    />
+    <Route
       path="/charts"
       component={ChartsContainer}
+      user={user}
     />
+    
   </React.Fragment>
 );
 
