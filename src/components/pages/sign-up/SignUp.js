@@ -1,13 +1,45 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 
 import { WebDataStates } from '../../../redux/initial-state';
-
-import UnbFeelingsLogo from '../../shared/UnbFeelingsLogo';
-import DisplayOn from '../../shared/DisplayOn';
 import DisplayError from '../../shared/DisplayError';
 
-import './SignUp.css';
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  container: {
+    height: '99vh',
+    backgroundColor: '#4d5ebb',
+  },
+  paper: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    maxWidth: 400,
+  },
+  textField: {
+    width: '100%',
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+    width: '100%',
+  },
+});
 
 class SignUp extends React.Component {
   state = {
@@ -25,11 +57,11 @@ class SignUp extends React.Component {
     }
   }
 
-  handleInput = (e) => {
-    const { value, name } = e.target;
-
-    this.setState({ [name]: value });
-  }
+  handleChange = name => (event) => {
+    this.setState({
+      [name]: event.target.value,
+    });
+  };
 
   handleUserRegister = () => {
     this.props.registerUser(this.state);
@@ -37,36 +69,32 @@ class SignUp extends React.Component {
 
   render() {
     const { ERROR, SUCCESS } = WebDataStates;
-    const { email, password } = this.state;
-    const { courses, user } = this.props;
+    const { courses, user, classes } = this.props;
 
     if (user.state === SUCCESS) {
       return (<Redirect to="/feelings" from="/sign-up" />);
     }
 
     return (
-      <div className="SignUp">
-        <div className="container">
-          <div className="row">
+      <div className={classes.root}>
+        <Grid container spacing={8} alignItems="center" className={classes.container}>
+          <Grid item sm={4} xs={12} />
 
-            <div className="col-md-12 col-sm-12 SignUp_logo">
-              <UnbFeelingsLogo />
-            </div>
+          <Grid item sm={4} xs={12}>
+            <Typography variant="display1" align="center" style={{ color: '#fff' }} gutterBottom>
+              Cadastro
+            </Typography>
 
-            <div className="col-md-12 col-sm-12 SignUp_form">
-              <form>
-                <div className="form-group">
-                  <label htmlFor="userEmail">Email</label>
-
-                  <input
-                    type="email"
-                    className="form-control"
-                    name="email"
-                    id="userEmail"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                    onChange={this.handleInput}
-                    value={email}
+            <Paper className={classes.paper}>
+              <form className={classes.form} noValidate autoComplete="off">
+                <Grid item xs={12}>
+                  <TextField
+                    id="email"
+                    label="Email"
+                    className={classes.textField}
+                    value={this.state.email}
+                    onChange={this.handleChange('email')}
+                    margin="normal"
                   />
 
                   <DisplayError
@@ -74,80 +102,82 @@ class SignUp extends React.Component {
                     message={() => user.data.email.join('')}
                   />
 
-                  <small id="emailHelp" className="form-text text-muted">
+                  <Typography variant="body2">
                     Nós nunca vamos compartilhar seu e-mail com mais ninguém.
-                  </small>
-                </div>
+                  </Typography>
+                </Grid>
 
-                <div className="form-group">
-                  <label htmlFor="userPass">Senha</label>
-                  <input
+                <Grid item xs={12}>
+                  <TextField
                     type="password"
-                    className="form-control"
-                    name="password"
-                    id="userPass"
-                    placeholder="Password"
-                    onChange={this.handleInput}
-                    value={password}
+                    id="password"
+                    label="Password"
+                    className={classes.textField}
+                    value={this.state.password}
+                    onChange={this.handleChange('password')}
+                    margin="normal"
                   />
 
                   <DisplayError
                     check={user.state === ERROR && user.data.password}
                     message={() => user.data.password.join('')}
                   />
-                </div>
+                </Grid>
 
-                <div className="form-group">
-                  <label htmlFor="userCourse">Curso</label>
-
-                  <select
-                    className="form-control"
-                    id="userCourse"
-                    name="course"
-                    onChange={this.handleInput}
-                  >
-                    <option value="-1" key={-1}>Selecione seu curso</option>
-
-                    {courses.data.map(course =>
-                      <option key={course.id} value={course.id}>{course.name}</option>)}
-                  </select>
+                <Grid item xs={12}>
+                  <FormControl className={classes.formControl}>
+                    <InputLabel htmlFor="course">Curso</InputLabel>
+                    <Select
+                      id="course"
+                      value={this.state.course}
+                      onChange={this.handleChange('course')}
+                      inputProps={{
+                        name: 'course',
+                        id: 'course',
+                      }}
+                    >
+                      {courses.data.map(course => (
+                        <MenuItem key={course.id} value={course.id}>
+                          {course.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
 
                   <DisplayError
                     check={user.state === ERROR && user.data.course}
                     message={() => user.data.course.join('')}
                   />
-                </div>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <Button
+                    variant="raised"
+                    className={classes.button}
+                    onClick={this.handleUserRegister}
+                  >
+                    Cadastrar
+                  </Button>
+
+                  <Link to="/" style={{ textDecoration: 'none' }}>
+                    <Button
+                      variant="raised"
+                      color="primary"
+                      className={classes.button}
+                    >
+                      Cancelar
+                    </Button>
+                  </Link>
+                </Grid>
               </form>
+            </Paper>
+          </Grid>
 
-              <DisplayOn device="PC">
-                <button
-                  type="submit"
-                  className="btn btn-light"
-                  onClick={this.handleUserRegister}
-                >
-                  Cadastrar
-                </button>
-                {' '}
-                <Link to="/" className="btn btn-outline-light">Cancelar</Link>
-              </DisplayOn>
-
-              <DisplayOn device="mobile">
-                <button
-                  type="submit"
-                  className="btn btn-light btn-block"
-                  onClick={this.handleUserRegister}
-                >
-                  Cadastrar
-                </button>
-                {' '}
-                <Link to="/" className="btn btn-outline-light btn-block">Cancelar</Link>
-              </DisplayOn>
-            </div>
-          </div>
-        </div>
+          <Grid item sm={4} xs={12} />
+        </Grid>
       </div>
     );
   }
 }
 
-export default SignUp;
+export default withStyles(styles)(SignUp);

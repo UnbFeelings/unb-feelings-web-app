@@ -7,7 +7,8 @@ import { SET_USER } from '../../redux/types';
 import { getStoredUser, setUserStore } from '../../configs/local-storage';
 import { setAuthToken } from '../../configs/axios';
 
-import TopMenu from '../shared/TopMenu';
+import TopAppBarWithDrawer from './TopAppBarWithDrawer';
+
 import Routes from './Routes';
 
 class AppRouter extends React.Component {
@@ -20,20 +21,25 @@ class AppRouter extends React.Component {
     }
   }
 
+  redirectUserOnLogOff = () => {
+    this.props.logUserOff();
+    window.location.href = '/';
+  }
+
   render() {
-    const { user, logUserOff } = this.props;
+    const { user } = this.props;
 
     return (
       <BrowserRouter>
-        <div>
-          {user.state === WebDataStates.SUCCESS ?
-            <TopMenu logUserOff={logUserOff} />
-            :
-            null
-          }
-
-          <Routes user={user} />
-        </div>
+        {user.state === WebDataStates.SUCCESS ?
+          <TopAppBarWithDrawer logUserOff={this.redirectUserOnLogOff}>
+            <Routes user={user} />
+          </TopAppBarWithDrawer>
+        :
+          <div>
+            <Routes user={user} />
+          </div>
+        }
       </BrowserRouter>
     );
   }

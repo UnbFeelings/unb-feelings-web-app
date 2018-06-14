@@ -17,15 +17,16 @@
     "redux-test-utils": "^0.2.2"
   },
   "dependencies": {
+    "@material-ui/core": "^1.0.0-rc.0",
+    "@material-ui/icons": "^1.1.0",
     "axios": "^0.18.0",
-    "bootstrap": "^4.1.1",
+    "chart.js": "^2.7.2",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-chartjs-2": "^2.7.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
-    "react-responsive": "^4.1.0",
     "react-router-dom": "^4.2.2",
-    "reactstrap": "^6.0.1",
     "redux": "^4.0.0"
   },
   "scripts": {

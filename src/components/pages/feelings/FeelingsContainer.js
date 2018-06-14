@@ -1,62 +1,34 @@
 import { connect } from 'react-redux';
-import Feelings from './Feelings';
 
 import axios from '../../../configs/axios';
-import { SET_SUBJECTS } from '../../../redux/types';
+import { SET_DIAGNOSIS } from '../../../redux/types';
 import { WebDataStates } from '../../../redux/initial-state';
 
-const mapStateToProps = ({ user, subjects }) => ({
-  user, subjects,
+import Feelings from './Feelings';
+
+const mapStateToProps = ({ user, diagnosis }) => ({
+  user, diagnosis,
 });
 
 const mapDispatchToProps = dispatch => ({
-  async requestSubjects() {
-    const { data, status } = await axios.get('/subjects/');
+  async fetchDiagnosis(studentId) {
+    const { status, data } = await axios.get(`/diagnosis/?target=student&target_id=${studentId}`);
 
     if (status === 200) {
       dispatch({
-        type: SET_SUBJECTS,
-        subjects: {
+        type: SET_DIAGNOSIS,
+        diagnosis: {
           state: WebDataStates.SUCCESS,
-          data: data.results,
-        },
-      });
-    } else {
-      console.error('Could not fetch subjects');
-      console.log(data);
-
-      dispatch({
-        type: SET_SUBJECTS,
-        subjects: {
-          state: WebDataStates.ERROR,
           data,
         },
       });
     }
   },
-
-  async sendUserFeelings({
-    subject, content, tag, emotion, author,
-  }) {
-    try {
-      const { status, data } = await axios.post('/posts/', {
-        subject,
-        content,
-        tag: [tag],
-        emotion: [emotion],
-        author,
-      });
-
-      console.log('OK OK OK');
-      console.log(status);
-      console.log(data);
-    } catch (err) {
-      console.log('ERROR');
-      console.log(err.response.data);
-    }
-  },
 });
 
-const FeelingsContainer = connect(mapStateToProps, mapDispatchToProps)(Feelings);
+const FeelingsContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Feelings);
 
 export default FeelingsContainer;

@@ -1,11 +1,16 @@
 version: '3'
 
 services:
-  react:
-    build: .
-    command: npm start
+  dev:
+    command: yarn start
+    build:
+      context: .
+      dockerfile: ./compose/dev/Dockerfile
     volumes:
       - .:/unb-feelings-web-app
       - /unb-feelings-web-app/node_modules
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_HOST_URL=http://127.0.0.1:8000

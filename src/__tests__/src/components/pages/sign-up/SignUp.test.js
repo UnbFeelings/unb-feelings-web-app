@@ -17,7 +17,7 @@ describe('SignUp />', () => {
       courses={initialState.courses}
       user={initialState.user}
       requestCourses={requestCourses}
-    />);
+    />).dive();
 
     expect(requestCoursesIsCalled).toBe(true);
   });
@@ -27,15 +27,15 @@ describe('SignUp />', () => {
       courses={initialState.courses}
       user={initialState.user}
       requestCourses={() => false}
-    />);
+    />).dive();
 
     expect(wrapper.state('email')).toBe('');
     expect(wrapper.state('password')).toBe('');
     expect(wrapper.state('course')).toBe('');
 
-    const email = wrapper.find('input#userEmail');
-    const password = wrapper.find('input#userPass');
-    const course = wrapper.find('select#userCourse');
+    const email = wrapper.find('#email');
+    const password = wrapper.find('#password');
+    const course = wrapper.find('#course');
 
     email.simulate('change', {
       target: {
