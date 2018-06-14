@@ -13,6 +13,7 @@ import FeelingsTimeline from '../pages/feelings-timeline/FeelingsTimeline';
 import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
 import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
+import ChartsContainer from '../pages/charts/ChartsContainer';
 import WeeklyUnbChart from '../pages/charts/WeeklyUnbChart';
 
 const Routes = ({ user }) => (
@@ -21,7 +22,7 @@ const Routes = ({ user }) => (
     <Route path="/sign-up" component={SignUpContainer} />
 
     <Route
-      path="/university-posts"
+      path="/university-posts/:userId?"
       component={UniversityPosts}
       user={user}
     />
@@ -59,6 +60,12 @@ const Routes = ({ user }) => (
       component={WeeklyUnbChart}
       user={user}
     />
+    <Route
+      path="/charts"
+      component={ChartsContainer}
+      user={user}
+    />
+    
   </React.Fragment>
 );
 
