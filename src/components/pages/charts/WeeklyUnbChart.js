@@ -14,7 +14,7 @@ class WeeklyUnbChart extends React.Component {
 
   fetchSubjectPostCount() {
     // fetching post count for each subject
-    axios.get('http://0.0.0.0:8000/api/diagnosis/').then((response) => {
+    axios.get('http://0.0.0.0:8000/api/diagnosis/weekly_posts_count/').then((response) => {
       this.setState({ weekPostCount: response.data });
     });
   }

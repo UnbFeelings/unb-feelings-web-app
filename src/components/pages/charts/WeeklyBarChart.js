@@ -24,29 +24,45 @@ const styles = theme => ({
 });
 
 class WeeklyBarChart extends React.Component {
-  // fetchBadCount(){
-  //   // this should not exist, the counter should be implemented in the backend
-  //
-  //   var badCount = [0, 0, 0, 0, 0, 0, 0]
-  //   // the condition below makes sure that this function only tries to
-  //   // access a postion on the array if it is already defined
-  //   if (this.props.weekCount.sunday !== undefined){
-  //
-  //     for (let aux = 0; aux < this.props.weekCount.sunday.length; aux ++){
-  //       if (this.props.weekCount.sunday.emotion === 'b'){
-  //         badCount[0]  = badCount[0] + 1;
-  //       }
-  //     }
-  //
-  //   }
-  //   console.log(badCount)
-  //   return (badCount)
-  // }
+  fetchBadCount(count){
+    var bad_count = [0 , 0 , 0 , 0 , 0, 0, 0]
+
+    try{
+        bad_count = [count.sunday.bad_count,
+                     count.monday.bad_count,
+                     count.tuesday.bad_count,
+                     count.wednesday.bad_count,
+                     count.thursday.bad_count,
+                     count.friday.bad_count,
+                     count.saturday.bad_count
+             ]
+    }catch (e){ }
+
+    return (bad_count)
+  }
+
+  fetchGoodCount(count){
+    var good_count = [0 , 0 , 0 , 0 , 0, 0, 0]
+
+    try{
+        good_count = [count.sunday.good_count,
+                     count.monday.good_count,
+                     count.tuesday.good_count,
+                     count.wednesday.good_count,
+                     count.thursday.good_count,
+                     count.friday.good_count,
+                     count.saturday.good_count
+             ]
+    }catch (e){ }
+
+    return (good_count)
+  }
 
   render() {
     const { classes } = this.props;
     // console.log(this.props.weekCount)
     // this.fetchBadCount()
+    console.log(this.props.weekCount)
     return (
       <div className={classes.root}>
         <div className={classes.chart}>
@@ -69,7 +85,7 @@ class WeeklyBarChart extends React.Component {
                     hoverBackgroundColor: 'rgb(255, 91, 91)',
                     hoverBorderColor: 'rgba(255,99,132,1)',
                     // replace this by a fetch or counting function call
-                    data: [1, 2, 3, 4, 5, 6, 7],
+                    data: this.fetchBadCount(this.props.weekCount),
                   },
                   {
                     label: 'Emoções boas',
@@ -79,7 +95,7 @@ class WeeklyBarChart extends React.Component {
                     hoverBackgroundColor: 'rgba(107, 255, 131, 0.74)',
                     hoverBorderColor: 'rgba(16, 248, 55, 0.74)',
                     // replace this by a fetch or counting function call
-                    data: [1, 2, 3, 4, 5, 6, 7],
+                    data: this.fetchGoodCount(this.props.weekCount),
                   },
                 ],
               }
