@@ -24,45 +24,46 @@ const styles = theme => ({
 });
 
 class WeeklyBarChart extends React.Component {
-  fetchBadCount(count){
-    var bad_count = [0 , 0 , 0 , 0 , 0, 0, 0]
+  fetchBadCount(count) {
+    let badCount = [0, 0, 0, 0, 0, 0, 0];
 
-    try{
-        bad_count = [count.sunday.bad_count,
-                     count.monday.bad_count,
-                     count.tuesday.bad_count,
-                     count.wednesday.bad_count,
-                     count.thursday.bad_count,
-                     count.friday.bad_count,
-                     count.saturday.bad_count
-             ]
-    }catch (e){ }
+    try {
+      badCount = [count.sunday.bad_count,
+        count.monday.bad_count,
+        count.tuesday.bad_count,
+        count.wednesday.bad_count,
+        count.thursday.bad_count,
+        count.friday.bad_count,
+        count.saturday.bad_count,
+      ];
+    } catch (e) {
+      // console.log(e);
+    }
 
-    return (bad_count)
+    return (badCount);
   }
 
-  fetchGoodCount(count){
-    var good_count = [0 , 0 , 0 , 0 , 0, 0, 0]
+  fetchGoodCount(count) {
+    let goodCount = [0, 0, 0, 0, 0, 0, 0];
 
-    try{
-        good_count = [count.sunday.good_count,
-                     count.monday.good_count,
-                     count.tuesday.good_count,
-                     count.wednesday.good_count,
-                     count.thursday.good_count,
-                     count.friday.good_count,
-                     count.saturday.good_count
-             ]
-    }catch (e){ }
+    try {
+      goodCount = [count.sunday.good_count,
+        count.monday.good_count,
+        count.tuesday.good_count,
+        count.wednesday.good_count,
+        count.thursday.good_count,
+        count.friday.good_count,
+        count.saturday.good_count,
+      ];
+    } catch (e) {
+      // console.log(e);
+    }
 
-    return (good_count)
+    return (goodCount);
   }
 
   render() {
     const { classes } = this.props;
-    // console.log(this.props.weekCount)
-    // this.fetchBadCount()
-    console.log(this.props.weekCount)
     return (
       <div className={classes.root}>
         <div className={classes.chart}>
