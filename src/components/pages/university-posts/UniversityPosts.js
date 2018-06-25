@@ -49,7 +49,7 @@ class UniversityPosts extends React.Component {
 
   supportForm = () => {
     if (!this.state.postsFromUser) {
-      return;
+      return null;
     }
 
     const { userId } = this.props.match.params;
@@ -57,9 +57,7 @@ class UniversityPosts extends React.Component {
     return <SupportForm studentTo={userId} />;
   };
 
-  createTimeLine = () => {
-    return this.state.posts.map(post => this.postTimeLine(post))
-  };
+  createTimeLine = () => this.state.posts.map(post => this.postTimeLine(post));
 
   render() {
     return (

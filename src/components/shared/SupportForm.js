@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from '../../configs/axios';
-
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -13,6 +11,8 @@ import CardContent from '@material-ui/core/CardContent';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Card from '@material-ui/core/Card';
+
+import axios from '../../configs/axios';
 
 const styles = theme => ({
   close: {
@@ -65,7 +65,7 @@ class SupportForm extends React.Component {
       <Card raised>
         <CardContent>
           <CardHeader
-            title={'Apoiar este perfil'}
+            title="Apoiar este perfil"
           />
           <FormControl fullWidth className={classes.margin} error aria-describedby="message-error">
             <TextField
