@@ -102,9 +102,9 @@ class SubjectTimeline extends React.Component {
     try {
       const response = await axios.get('/subjects/');
       const subjectList = response.data;
-      this.setState({
-        subjectList,
-      });
+      // Sort subjects in ascending order by name
+      subjectList.results.sort((a, b) => (a.name > b.name ? 1 : -1));
+      this.setState({ subjectList });
       // console.log(this.state.subjectList)
     } catch (e) {
       // console.log(e);
