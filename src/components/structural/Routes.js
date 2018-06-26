@@ -14,6 +14,7 @@ import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
 import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
 import ChartsContainer from '../pages/charts/ChartsContainer';
+import SupportTimeline from '../pages/support/SupportTimeline';
 
 const Routes = ({ user }) => (
   <React.Fragment>
@@ -57,6 +58,16 @@ const Routes = ({ user }) => (
     <Route
       path="/charts"
       component={ChartsContainer}
+    />
+    <Route
+      path="/supports-sent"
+      component={SupportTimeline}
+      user={user}
+    />
+    <Route
+      path="/supports-received"
+      component={SupportTimeline}
+      user={user}
     />
   </React.Fragment>
 );

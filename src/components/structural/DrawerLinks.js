@@ -12,6 +12,8 @@ import School from '@material-ui/icons/School';
 import Group from '@material-ui/icons/Group';
 import Equalizer from '@material-ui/icons/Equalizer';
 import DonutSmall from '@material-ui/icons/DonutSmall';
+import CallMade from '@material-ui/icons/CallMade';
+import CallReceived from '@material-ui/icons/CallReceived';
 
 const styles = theme => ({
   toolbar: theme.mixins.toolbar,
@@ -25,6 +27,8 @@ const links = [
   { text: 'Diagnóstico por Disciplina', url: '/subjects-chart', icon: DonutSmall },
   { text: 'Minha semana', url: '/charts', icon: School },
   // { text: 'Feelings Timeline', url: '/feelings-timeline', icon: InboxIcon },
+  { text: 'Apoios Prestados', url: '/supports-sent', icon: CallMade },
+  { text: 'Apoios Recebidos', url: '/supports-received', icon: CallReceived },
 ];
 
 /**

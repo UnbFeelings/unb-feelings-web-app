@@ -22,13 +22,15 @@ describe('<Routes />', () => {
     expect(routes.get(7).props.path).toBe('/feelings-timeline');
     expect(routes.get(8).props.path).toBe('/subject-timeline');
     expect(routes.get(9).props.path).toBe('/charts');
+    expect(routes.get(10).props.path).toBe('/supports-sent');
+    expect(routes.get(11).props.path).toBe('/supports-received');
   });
 
-  it('has 10 routes', () => {
+  it('has 12 routes', () => {
     const wrapper = shallow(<Routes
       user={initialState.user}
     />);
 
-    expect(wrapper.find('Route')).toHaveLength(10);
+    expect(wrapper.find('Route')).toHaveLength(12);
   });
 });
