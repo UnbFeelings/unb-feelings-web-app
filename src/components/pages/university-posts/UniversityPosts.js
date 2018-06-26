@@ -36,6 +36,7 @@ class UniversityPosts extends React.Component {
           emotion={post.emotion}
           tags={post.tag}
           key={post.id}
+          author={post.author}
         />
       </a>
     );
