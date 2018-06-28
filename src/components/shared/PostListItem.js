@@ -85,13 +85,15 @@ class PostListItem extends React.Component {
          <Card className={this.props.classes.root} elevation={4}>
             <CardHeader
              avatar={
-               <Avatar src={this.state.avatarURL} />
+                 <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+                  <Avatar src={this.state.avatarURL} />
+                </a>
              }
             action={
-              <SimpleMenu author={this.props.key} />
+              <SimpleMenu author={this.props.author} />
               }
             />
-          <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+
            <Typography component="p">
              {this.props.emotion === 'g' ?
                <IconThumbUp className={this.props.classes.goodEmotion} />
@@ -112,7 +114,7 @@ class PostListItem extends React.Component {
               null
             }
            </Typography>
-           </a>
+
 
          </Card>
      );

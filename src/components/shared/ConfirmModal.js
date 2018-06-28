@@ -37,6 +37,21 @@ class SimpleModal extends React.Component {
     this.setState({ open: true });
   };
 
+  handleBlock = async () => {
+    const blocked = this.props.author
+    try {
+      const response = await axios.post('/block/', {
+        blocked: blocked,
+      });
+
+      this.setState({ open: false });
+      window.location.reload();
+    } catch (e) {
+      console.log('Could not fetch user info');
+      console.log(e);
+    }
+  }
+
   handleClose = () => {
     this.setState({ open: false });
   };
@@ -74,7 +89,7 @@ class SimpleModal extends React.Component {
               Você não será mais capaz de visualizar nenhum conteúdo produzido por ele.
             </Typography>
             <Button onClick={this.handleClose}>Não</Button>
-            <Button color="secondary" onClick={this.handleOpen}>Sim</Button>
+            <Button color="secondary" onClick={this.handleBlock}>Sim</Button>
           </div>
         </Modal>
       </div>
