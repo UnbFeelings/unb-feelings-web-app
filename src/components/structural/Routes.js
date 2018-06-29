@@ -14,6 +14,7 @@ import SubjectTimeline from '../pages/feelings-timeline/SubjectTimeline';
 import UniversityPosts from '../pages/university-posts/UniversityPosts';
 import MySubjectChart from '../pages/my-subject-chart/MySubjectChart';
 import ChartsContainer from '../pages/charts/ChartsContainer';
+import MyBlocks from '../pages/list-blocks/MyBlocks';
 
 const Routes = ({ user }) => (
   <React.Fragment>
@@ -33,6 +34,11 @@ const Routes = ({ user }) => (
     <Route
       path="/my-subject-chart"
       component={MySubjectChart}
+      user={user}
+    />
+    <Route
+      path="/my-blocks"
+      component={MyBlocks}
       user={user}
     />
     <Route
