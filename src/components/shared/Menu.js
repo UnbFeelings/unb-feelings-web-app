@@ -1,13 +1,13 @@
-import React from "react";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import IconButton from "@material-ui/core/IconButton";
+import React from 'react';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SimpleModalWrapped from './ConfirmModal'
+import SimpleModalWrapped from './ConfirmModal';
 
 class SimpleMenu extends React.Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
   };
 
   handleClick = event => {
@@ -25,7 +25,7 @@ class SimpleMenu extends React.Component {
       <div>
         <IconButton
           aria-label="More"
-          aria-owns={anchorEl ? "long-menu" : null}
+          aria-owns={anchorEl ? 'long-menu' : null}
           aria-haspopup="true"
           onClick={this.handleClick}
         >

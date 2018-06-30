@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,7 +11,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-
+import Menu from  '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ReorderIcon from '@material-ui/icons/Reorder';
 import DrawerLinks from './DrawerLinks';
 
 const drawerWidth = 240;
@@ -63,14 +65,28 @@ class TopAppBarWithDrawer extends React.Component {
 
   state = {
     mobileOpen: false,
+    anchorEl: null,
   };
 
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
+  handleMenuClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleCloseMenu = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  redirectToMyBlocks = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
     const { classes, theme, logUserOff } = this.props;
+    const { anchorEl } = this.state;
 
     return (
       <div className={classes.root}>
@@ -89,7 +105,30 @@ class TopAppBarWithDrawer extends React.Component {
               UnB Feelings
             </Typography>
 
-            <Button color="inherit" onClick={logUserOff}>Sair</Button>
+
+            <div>
+              <IconButton
+                aria-label="More"
+                aria-owns={anchorEl ? 'long-menu' : null}
+                aria-haspopup="true"
+                onClick={this.handleMenuClick}
+              >
+                <ReorderIcon />
+              </IconButton>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleCloseMenu}
+              >
+                <MenuItem> <Button color="primary" onClick={logUserOff}>Sair</Button> </MenuItem>
+                <MenuItem>
+                <Link color="inherit" to="/my-blocks" style={{ textDecoration: 'none' }}>
+                  <Button color="primary">Lista de Bloqueados</Button>
+                </Link>
+                </MenuItem>
+              </Menu>
+            </div>
           </Toolbar>
 
         </AppBar>

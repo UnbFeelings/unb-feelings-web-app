@@ -1,10 +1,10 @@
 import React from 'react';
 
-import BlockCard from './BlockCard'
 import List from '@material-ui/core/List';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import BlockCard from './BlockCard';
 import axios from '../../../configs/axios';
 
 class MyBlocks extends React.Component {
@@ -14,20 +14,16 @@ class MyBlocks extends React.Component {
 
   componentDidMount() {
     this.fetchUserData();
-
   }
 
   fetchUserData() {
-    axios.get(`users/blocks/`).then(resp => {
+    axios.get('users/blocks/').then(resp => {
       this.setState({ blocks: resp.data.results });
-      console.log(this.getState())
     });
   }
 
   blockInfo(blocked) {
-    return (
-        <BlockCard user_id={blocked.id} />
-    );
+    return (<BlockCard user_id={blocked.id}/>);
   }
 
   render() {

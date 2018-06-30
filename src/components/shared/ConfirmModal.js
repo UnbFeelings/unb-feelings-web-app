@@ -43,7 +43,7 @@ class SimpleModal extends React.Component {
       const response = await axios.post('/block/', {
         blocked: blocked,
       });
-
+      console.log(response)
       this.setState({ open: false });
       window.location.reload();
     } catch (e) {

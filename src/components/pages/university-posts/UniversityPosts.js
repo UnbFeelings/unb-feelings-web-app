@@ -30,13 +30,13 @@ class UniversityPosts extends React.Component {
 
   postTimeLine(post) {
     return (
-        <PostListItem
-          subject={post.subject.name}
-          emotion={post.emotion}
-          tags={post.tag}
-          key={post.id}
-          author={post.author}
-        />
+      <PostListItem
+        subject={post.subject.name}
+        emotion={post.emotion}
+        tags={post.tag}
+        key={post.id}
+        author={post.author}
+      />
     );
   }
 

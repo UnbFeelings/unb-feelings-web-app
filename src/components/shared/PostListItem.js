@@ -10,7 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import CardHeader from '@material-ui/core/CardHeader';
 
 import axios from '../../configs/axios';
-import SimpleMenu from './Menu'
+import SimpleMenu from './Menu';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -49,7 +49,7 @@ const ListTags = ({ tags, className }) => {
 
 class PostListItem extends React.Component {
   state = {
-    avatarURL: ''
+    avatarURL: '',
   };
 
   componentDidMount() {
@@ -82,13 +82,13 @@ class PostListItem extends React.Component {
 
    render() {
      return (
-         <Card className={this.props.classes.root} elevation={4}>
-            <CardHeader
-             avatar={
-                 <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+       <Card className={this.props.classes.root} elevation={4}>
+          <CardHeader
+              avatar={
+                <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
                   <Avatar src={this.state.avatarURL} />
                 </a>
-             }
+              }
             action={
               <SimpleMenu author={this.props.author} />
               }

@@ -25,8 +25,6 @@ const styles = theme => ({
 
 });
 
-
-
 class BlockCard extends React.Component {
   state = {
     avatarURL: '',
@@ -44,6 +42,20 @@ class BlockCard extends React.Component {
      const BASE_URL = 'https://ui-avatars.com/api/';
      const url = `${BASE_URL}?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
      return url;
+   }
+
+   unblockUser = async () => {
+     const userId =this.props.user_id;
+
+     try{
+
+       const response = await axios.get(`/block/${userId}/`);
+       console.log(response);
+       window.location.reload();
+     } catch (e) {
+       console.log('Could not unblock user');
+       console.log(e);
+     }
    }
 
    async fetchUserInfo() {
@@ -72,7 +84,7 @@ class BlockCard extends React.Component {
               primary={this.state.name}
             />
             <ListItemSecondaryAction>
-              <IconButton aria-label="Delete">
+              <IconButton aria-label="Delete" onClick={this.unblockUser}>
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>
