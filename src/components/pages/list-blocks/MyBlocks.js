@@ -23,7 +23,7 @@ class MyBlocks extends React.Component {
   }
 
   blockInfo(blocked) {
-    return (<BlockCard user_id={blocked.id}/>);
+    return (<BlockCard user_id={blocked.id} />);
   }
 
   render() {
@@ -41,7 +41,7 @@ class MyBlocks extends React.Component {
             </List>
           </div>
         </Grid>
-    </div>
+      </div>
     );
   }
 }

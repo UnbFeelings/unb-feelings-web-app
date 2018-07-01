@@ -83,40 +83,40 @@ class PostListItem extends React.Component {
    render() {
      return (
        <Card className={this.props.classes.root} elevation={4}>
-          <CardHeader
-              avatar={
-                <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
-                  <Avatar src={this.state.avatarURL} />
-                </a>
+         <CardHeader
+           avatar={
+             <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+               <Avatar src={this.state.avatarURL} />
+             </a>
               }
-            action={
-              <SimpleMenu author={this.props.author} />
+           action={
+             <SimpleMenu author={this.props.author} />
               }
-            />
+         />
 
-           <Typography component="p">
-             {this.props.emotion === 'g' ?
-               <IconThumbUp className={this.props.classes.goodEmotion} />
+         <Typography component="p">
+           {this.props.emotion === 'g' ?
+             <IconThumbUp className={this.props.classes.goodEmotion} />
               :
-               <IconThumbDown className={this.props.classes.badEmotion} />
+             <IconThumbDown className={this.props.classes.badEmotion} />
             }
-             {' '}
-             {this.props.subject}
+           {' '}
+           {this.props.subject}
 
-           </Typography>
+         </Typography>
 
-           <Typography component="p">
-             {this.props.tags.length > 0 ?
-               <React.Fragment>
-                 <ListTags tags={this.props.tags} className={this.props.classes.chip} />
-               </React.Fragment>
+         <Typography component="p">
+           {this.props.tags.length > 0 ?
+             <React.Fragment>
+               <ListTags tags={this.props.tags} className={this.props.classes.chip} />
+             </React.Fragment>
               :
               null
             }
-           </Typography>
+         </Typography>
 
 
-         </Card>
+       </Card>
      );
    }
 }

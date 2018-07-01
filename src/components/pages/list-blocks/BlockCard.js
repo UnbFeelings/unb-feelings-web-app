@@ -45,10 +45,9 @@ class BlockCard extends React.Component {
    }
 
    unblockUser = async () => {
-     const userId =this.props.user_id;
+     const userId = this.props.user_id;
 
-     try{
-
+     try {
        const response = await axios.get(`/block/${userId}/`);
        console.log(response);
        window.location.reload();
@@ -65,8 +64,8 @@ class BlockCard extends React.Component {
        const name = response.data.anonymous_name;
        const avatarURL = this.setAvatarURL(name);
        this.setState({
-         avatarURL: avatarURL,
-         name: name,
+         avatarURL,
+         name,
        });
      } catch (e) {
        console.log('Could not fetch user info');
@@ -77,18 +76,18 @@ class BlockCard extends React.Component {
    render() {
      return (
        <ListItem>
-          <ListItemAvatar>
-              <Avatar src={this.state.avatarURL} />
-            </ListItemAvatar>
-            <ListItemText
-              primary={this.state.name}
-            />
-            <ListItemSecondaryAction>
-              <IconButton aria-label="Delete" onClick={this.unblockUser}>
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
-        </ListItem>
+         <ListItemAvatar>
+           <Avatar src={this.state.avatarURL} />
+         </ListItemAvatar>
+         <ListItemText
+           primary={this.state.name}
+         />
+         <ListItemSecondaryAction>
+           <IconButton aria-label="Delete" onClick={this.unblockUser}>
+             <DeleteIcon />
+           </IconButton>
+         </ListItemSecondaryAction>
+       </ListItem>
      );
    }
 }

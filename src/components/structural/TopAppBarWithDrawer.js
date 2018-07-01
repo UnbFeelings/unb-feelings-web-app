@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import Menu from  '@material-ui/core/Menu';
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ReorderIcon from '@material-ui/icons/Reorder';
 import DrawerLinks from './DrawerLinks';
@@ -123,9 +123,9 @@ class TopAppBarWithDrawer extends React.Component {
               >
                 <MenuItem> <Button color="primary" onClick={logUserOff}>Sair</Button> </MenuItem>
                 <MenuItem>
-                <Link color="inherit" to="/my-blocks" style={{ textDecoration: 'none' }}>
-                  <Button color="primary">Lista de Bloqueados</Button>
-                </Link>
+                  <Link color="inherit" to="/my-blocks" style={{ textDecoration: 'none' }}>
+                    <Button color="primary">Lista de Bloqueados</Button>
+                  </Link>
                 </MenuItem>
               </Menu>
             </div>

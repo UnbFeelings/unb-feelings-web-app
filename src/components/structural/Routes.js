@@ -37,11 +37,6 @@ const Routes = ({ user }) => (
       user={user}
     />
     <Route
-      path="/my-blocks"
-      component={MyBlocks}
-      user={user}
-    />
-    <Route
       path="/feelings"
       component={FeelingsContainer}
     />
@@ -63,6 +58,11 @@ const Routes = ({ user }) => (
     <Route
       path="/charts"
       component={ChartsContainer}
+    />
+    <Route
+      path="/my-blocks"
+      component={MyBlocks}
+      user={user}
     />
   </React.Fragment>
 );

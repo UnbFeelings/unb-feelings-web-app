@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
@@ -38,12 +37,12 @@ class SimpleModal extends React.Component {
   };
 
   handleBlock = async () => {
-    const blocked = this.props.author
+    const blocked = this.props.author;
     try {
       const response = await axios.post('/block/', {
-        blocked: blocked,
+        blocked,
       });
-      console.log(response)
+      console.log(response);
       this.setState({ open: false });
       window.location.reload();
     } catch (e) {
@@ -60,7 +59,7 @@ class SimpleModal extends React.Component {
     // fetching anonymous name and avatar for an user
     try {
       const response = await axios.get('/anonymous-name/');
-      console.log(response)
+      console.log(response);
     } catch (e) {
       console.log('Could not block');
       console.log(e);
@@ -97,9 +96,6 @@ class SimpleModal extends React.Component {
   }
 }
 
-SimpleModal.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 // We need an intermediary variable for handling the recursive nesting.
 const SimpleModalWrapped = withStyles(styles)(SimpleModal);
