@@ -36,19 +36,10 @@ class SimpleModal extends React.Component {
     this.setState({ open: true });
   };
 
-  handleBlock = async () => {
-    const blocked = this.props.author;
-    try {
-      const response = await axios.post('/block/', {
-        blocked,
-      });
-      console.log(response);
-      this.setState({ open: false });
-      window.location.reload();
-    } catch (e) {
-      console.log('Could not fetch user info');
-      console.log(e);
-    }
+  confirmAction = async () => {
+    this.props.action();
+    this.setState({ open: false });
+    window.location.reload();
   }
 
   handleClose = () => {
@@ -66,13 +57,12 @@ class SimpleModal extends React.Component {
     }
   }
 
-
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-        <Button color="secondary" onClick={this.handleOpen}>Bloquear Autor</Button>
+        <Button color="secondary" onClick={this.handleOpen}>{this.props.content}</Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
@@ -81,14 +71,13 @@ class SimpleModal extends React.Component {
         >
           <div style={getModalStyle()} className={classes.paper}>
             <Typography variant="title" id="modal-title">
-              Bloquear usuário
+              {this.props.title}
             </Typography>
             <Typography variant="subheading" id="simple-modal-description">
-              Você tem certeza que gostaria de bloquear o autor deste post?
-              Você não será mais capaz de visualizar nenhum conteúdo produzido por ele.
+              {this.props.subheading}
             </Typography>
             <Button onClick={this.handleClose}>Não</Button>
-            <Button color="secondary" onClick={this.handleBlock}>Sim</Button>
+            <Button color="secondary" onClick={this.confirmAction}>Sim</Button>
           </div>
         </Modal>
       </div>

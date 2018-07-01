@@ -10,6 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import axios from '../../../configs/axios';
+import SimpleModalWrapped from '../../shared/ConfirmModal';
 
 
 const styles = theme => ({
@@ -48,7 +49,7 @@ class BlockCard extends React.Component {
      const userId = this.props.user_id;
 
      try {
-       const response = await axios.get(`/block/${userId}/`);
+       const response = await axios.delete(`/block/${userId}/`);
        console.log(response);
        window.location.reload();
      } catch (e) {
@@ -83,8 +84,16 @@ class BlockCard extends React.Component {
            primary={this.state.name}
          />
          <ListItemSecondaryAction>
-           <IconButton aria-label="Delete" onClick={this.unblockUser}>
-             <DeleteIcon />
+           <IconButton aria-label="Delete">
+             <SimpleModalWrapped
+               action={this.unblockUser}
+               content={<DeleteIcon />}
+               title="Desbloquear usuário"
+               subheading="
+              Você tem certeza que gostaria de desbloquear este estudante?
+              Você voltará a visualizar todo o conteúdo produzido por ele.
+              "
+             />
            </IconButton>
          </ListItemSecondaryAction>
        </ListItem>
