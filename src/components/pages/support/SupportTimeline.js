@@ -54,11 +54,13 @@ class SupportTimeline extends React.Component {
   };
 
   renderSupport = (item) => (
-    <SupportItem
-      key={item.id}
-      item={item}
-      removeItem={this.removeSupport}
-    />
+    <a href={`/university-posts/${item.student_to}`} style={{ textDecoration: 'none' }}>
+      <SupportItem
+        key={item.id}
+        item={item}
+        removeItem={this.removeSupport}
+      />
+    </a>
   );
 
   handleCloseSnackbar = () => {
