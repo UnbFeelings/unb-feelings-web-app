@@ -16,7 +16,7 @@ class SupportItem extends React.Component {
     avatarURL: '',
   };
 
-  async componentDidMount() {
+  async componentWillMount() {
     try {
       const avatarURL = await fetchUserRandomInfo();
       this.setState({ avatarURL });
@@ -52,7 +52,7 @@ class SupportItem extends React.Component {
       </div>
     );
   }
-};
+}
 
 SupportItem.propTypes = {
   item: PropTypes.shape({
