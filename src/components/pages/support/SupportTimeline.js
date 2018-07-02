@@ -54,9 +54,12 @@ class SupportTimeline extends React.Component {
   };
 
   renderSupport = (item) => (
-    <a href={`/university-posts/${item.student_to}`} style={{ textDecoration: 'none' }}>
+    <a
+      key={item.id}
+      href={`/university-posts/${item.student_to}`}
+      style={{ textDecoration: 'none' }}
+    >
       <SupportItem
-        key={item.id}
         item={item}
         removeItem={this.removeSupport}
       />
