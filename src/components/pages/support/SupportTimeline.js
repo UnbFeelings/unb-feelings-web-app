@@ -5,7 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 import axios from '../../../configs/axios';
 import Endpoints from '../../../configs/endpoints';
-import SupportItem from './SupportItem';
+import SupportItem from '../../shared/SupportItem';
 
 class SupportTimeline extends React.Component {
   state = {
@@ -81,7 +81,7 @@ class SupportTimeline extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {this.createSupportList()}
 
         <Snackbar
@@ -107,7 +107,7 @@ class SupportTimeline extends React.Component {
             </IconButton>,
           ]}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { fetchUserRandomInfo } from '../../../utils/randomProfile';
+import { fetchUserRandomInfo } from '../../utils/randomProfile';
 
 class SupportItem extends React.Component {
   state = {
