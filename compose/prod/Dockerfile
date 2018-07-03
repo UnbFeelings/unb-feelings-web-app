@@ -12,6 +12,9 @@ COPY . /unb-feelings-web-app
 
 RUN yarn install
 
+ENV REACT_APP_API_HOST_URL http://api-port
+ENV NODE_ENV production
+
 RUN yarn build
 
 
