@@ -29,16 +29,22 @@ class SupportItem extends React.Component {
     return (
       <div style={{ margin: 32 }}>
         <Card raised>
-          <CardContent>
-            <Grid container wrap="nowrap" spacing={16}>
-              <Grid item>
-                <Avatar src={this.state.avatarURL} />
+          <a
+            key={this.props.item.id}
+            href={`/university-posts/${this.props.item.student_to}`}
+            style={{ textDecoration: 'none' }}
+          >
+            <CardContent>
+              <Grid container wrap="nowrap" spacing={16}>
+                <Grid item>
+                  <Avatar src={this.state.avatarURL} />
+                </Grid>
+                <Grid item xs>
+                  <Typography>{this.props.item.message}</Typography>
+                </Grid>
               </Grid>
-              <Grid item xs>
-                <Typography>{this.props.item.message}</Typography>
-              </Grid>
-            </Grid>
-          </CardContent>
+            </CardContent>
+          </a>
           <CardActions>
             <Button
               size="small"
