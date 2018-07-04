@@ -6,11 +6,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import axios from '../../../configs/axios';
 import Endpoints from '../../../configs/endpoints';
 import SupportItem from '../../shared/SupportItem';
+import SimpleModalWrapped from '../../shared/ConfirmModal';
 
 class SupportTimeline extends React.Component {
   state = {
     supports: { results: [] },
     // gettingData: false,
+    showModal: false,
     snackbar: {
       display: false,
       message: '',
@@ -43,6 +45,10 @@ class SupportTimeline extends React.Component {
   };
 
   removeSupport = async id => {
+    this.setState({ showModal: true, supportToRemove: id })
+  };
+
+  confirmRemoval = async id => {
     try {
       await axios.delete(`${Endpoints.SUPPORT}/${id}/`);
       this.setState({ snackbar: { display: true, message: 'Apoio removido com sucesso' } });
@@ -50,8 +56,10 @@ class SupportTimeline extends React.Component {
     } catch (err) {
       // console.log('removeSupport - err', err);
       this.setState({ snackbar: { display: true, message: 'Ocorreu um erro, tente novamente.' } });
+    } finally {
+      this.setState({ showModal: false, supportToRemove: '' });
     }
-  };
+  }
 
   renderSupport = (item) => (
     <SupportItem
@@ -77,6 +85,15 @@ class SupportTimeline extends React.Component {
     return (
       <React.Fragment>
         {this.createSupportList()}
+
+        <SimpleModalWrapped
+          visible={this.state.showModal}
+          title='Deseja excluir este apoio?'
+          description='Tem certeza que deseja excluir este apoio? Essa ação não poderá ser desfeita'
+          action='Excluir'
+          onConfirm={() => this.confirmRemoval(this.state.supportToRemove)}
+          onCancel={() => this.setState({ showModal: !this.state.showModal })}
+        />
 
         <Snackbar
           anchorOrigin={{
