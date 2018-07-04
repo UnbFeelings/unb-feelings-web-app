@@ -57,7 +57,6 @@ class SimpleModal extends React.Component {
 
 SimpleModal.propTypes = {
   visible: PropTypes.bool.isRequired,
-  classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   action: PropTypes.string.isRequired,

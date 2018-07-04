@@ -45,7 +45,7 @@ class SupportTimeline extends React.Component {
   };
 
   removeSupport = async id => {
-    this.setState({ showModal: true, supportToRemove: id })
+    this.setState({ showModal: true, supportToRemove: id });
   };
 
   confirmRemoval = async id => {
@@ -88,9 +88,9 @@ class SupportTimeline extends React.Component {
 
         <SimpleModalWrapped
           visible={this.state.showModal}
-          title='Deseja excluir este apoio?'
-          description='Tem certeza que deseja excluir este apoio? Essa ação não poderá ser desfeita'
-          action='Excluir'
+          title="Deseja excluir este apoio?"
+          description="Tem certeza que deseja excluir este apoio? Essa ação não poderá ser desfeita"
+          action="Excluir"
           onConfirm={() => this.confirmRemoval(this.state.supportToRemove)}
           onCancel={() => this.setState({ showModal: !this.state.showModal })}
         />
