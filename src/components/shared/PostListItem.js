@@ -1,14 +1,16 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import IconThumbDown from '@material-ui/icons/ThumbDown';
 import IconThumbUp from '@material-ui/icons/ThumbUp';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
 
 import axios from '../../configs/axios';
+import SimpleMenu from './Menu';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -44,11 +46,11 @@ const ListTags = ({ tags, className }) => {
   return tagsJSX;
 };
 
+
 class PostListItem extends React.Component {
   state = {
     avatarURL: '',
   };
-
 
   componentDidMount() {
     this.fetchUserInfo();
@@ -80,17 +82,24 @@ class PostListItem extends React.Component {
 
    render() {
      return (
-       <Paper className={this.props.classes.root} elevation={4}>
-         <Typography variant="headline" component="h3" className={this.props.classes.typographyStyle} >
-           <Avatar src={this.state.avatarURL} />
-         </Typography>
+       <Card className={this.props.classes.root} elevation={4}>
+         <CardHeader
+           avatar={
+             <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+               <Avatar src={this.state.avatarURL} />
+             </a>
+              }
+           action={
+             <SimpleMenu author={this.props.author} />
+              }
+         />
 
          <Typography component="p">
            {this.props.emotion === 'g' ?
              <IconThumbUp className={this.props.classes.goodEmotion} />
-            :
+              :
              <IconThumbDown className={this.props.classes.badEmotion} />
-          }
+            }
            {' '}
            {this.props.subject}
 
@@ -101,12 +110,13 @@ class PostListItem extends React.Component {
              <React.Fragment>
                <ListTags tags={this.props.tags} className={this.props.classes.chip} />
              </React.Fragment>
-            :
-            null
-          }
+              :
+              null
+            }
          </Typography>
 
-       </Paper>
+
+       </Card>
      );
    }
 }
