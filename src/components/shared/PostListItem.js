@@ -66,8 +66,10 @@ class PostListItem extends React.Component {
    async fetchUserInfo() {
      // fetching anonymous name and avatar for an user
      try {
-       const author = this.props.author
-       const response = await axios.get('/anonymous-name/?user=' + author);
+       const {
+         author,
+       } = this.props;
+       const response = await axios.get(`/anonymous-name/?user=${author}`);
        const name = response.data.anonymous_name;
        const avatarURL = this.setAvatarURL(name);
        this.setState({
