@@ -6,7 +6,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import axios from '../../../configs/axios';
 import Endpoints from '../../../configs/endpoints';
 import SupportItem from '../../shared/SupportItem';
-import SimpleModalWrapped from '../../shared/ConfirmModal';
+import SimpleModalWrapped from '../../shared/ConfirmDeletionModal';
 
 class SupportTimeline extends React.Component {
   state = {
