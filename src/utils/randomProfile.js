@@ -4,7 +4,7 @@ export const setAvatarURL = (name) => {
   // Red, Green and Blue
   const COLORS = ['700', '070', '007'];
   const avatarName = encodeURIComponent(name);
-  const ramdomIndex = Math.floor(avatarName.length % 2);
+  const ramdomIndex = Math.floor(avatarName.length % 3);
   const BASE_URL = 'https://ui-avatars.com/api/';
   const url = `${BASE_URL}?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
   return url;
