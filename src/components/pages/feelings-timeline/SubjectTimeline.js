@@ -114,8 +114,7 @@ class SubjectTimeline extends React.Component {
   async fetchUserInfo() {
     // fetching anonymous name and avatar for an user
     try {
-      const response = await axios.get('/anonymous-name/');
-      const name = response.data.anonymous_name;
+      const name = 'Usuário Anônimo';
       this.setState({
         name,
       });
