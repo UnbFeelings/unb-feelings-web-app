@@ -1,14 +1,16 @@
 import React from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import IconThumbDown from '@material-ui/icons/ThumbDown';
 import IconThumbUp from '@material-ui/icons/ThumbUp';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import CardHeader from '@material-ui/core/CardHeader';
 
-import axios from '../../configs/axios';
+import { fetchUserRandomInfo } from '../../utils/randomProfile';
+import SimpleMenu from './Menu';
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -44,73 +46,60 @@ const ListTags = ({ tags, className }) => {
   return tagsJSX;
 };
 
+
 class PostListItem extends React.Component {
   state = {
     avatarURL: '',
   };
 
-
-  componentDidMount() {
-    this.fetchUserInfo();
+  async componentWillMount() {
+    try {
+      const {
+        author,
+      } = this.props;
+      const avatarURL = await fetchUserRandomInfo(author);
+      this.setState({ avatarURL });
+    } catch (e) {
+      console.log('Could not fetch user info', e);
+    }
   }
-   setAvatarURL = (name) => {
-     // Red, Green and Blue
-     const COLORS = ['700', '070', '007'];
-     const avatarName = encodeURIComponent(name);
-     const ramdomIndex = Math.floor(avatarName.length % 2);
-     const BASE_URL = 'https://ui-avatars.com/api/';
-     const url = `${BASE_URL}?name=${avatarName}&color=fff&background=${COLORS[ramdomIndex]}`;
-     return url;
-   }
 
-   async fetchUserInfo() {
-     // fetching anonymous name and avatar for an user
-     try {
-       const {
-         author,
-       } = this.props;
-       const response = await axios.get(`/anonymous-name/?user=${author}`);
-       const name = response.data.anonymous_name;
-       const avatarURL = this.setAvatarURL(name);
-       this.setState({
-         avatarURL,
-       });
-     } catch (e) {
-       console.log('Could not fetch user info');
-       console.log(e);
-     }
-   }
-
-   render() {
-     return (
-       <Paper className={this.props.classes.root} elevation={4}>
-         <Typography variant="headline" component="h3" className={this.props.classes.typographyStyle} >
-           <Avatar src={this.state.avatarURL} />
-         </Typography>
-
-         <Typography component="p">
-           {this.props.emotion === 'g' ?
-             <IconThumbUp className={this.props.classes.goodEmotion} />
-            :
-             <IconThumbDown className={this.props.classes.badEmotion} />
+  render() {
+    return (
+      <Card className={this.props.classes.root} elevation={4}>
+        <CardHeader
+          avatar={
+            <a key={this.props.key} href={`/university-posts/${this.props.author}`}>
+              <Avatar src={this.state.avatarURL} />
+            </a>
           }
-           {' '}
-           {this.props.subject}
+          action={<SimpleMenu author={this.props.author} />}
+        />
 
-         </Typography>
-
-         <Typography component="p">
-           {this.props.tags.length > 0 ?
-             <React.Fragment>
-               <ListTags tags={this.props.tags} className={this.props.classes.chip} />
-             </React.Fragment>
+        <Typography component="p">
+          {
+            this.props.emotion === 'g' ?
+              <IconThumbUp className={this.props.classes.goodEmotion} />
             :
-            null
+              <IconThumbDown className={this.props.classes.badEmotion} />
           }
-         </Typography>
+          {' '}
+          {this.props.subject}
+        </Typography>
 
-       </Paper>
-     );
-   }
+        <Typography component="p">
+          {
+            this.props.tags.length > 0 ?
+              <React.Fragment>
+                <ListTags tags={this.props.tags} className={this.props.classes.chip} />
+              </React.Fragment>
+            :
+              null
+          }
+        </Typography>
+      </Card>
+    );
+  }
 }
+
 export default withStyles(styles)(PostListItem);
