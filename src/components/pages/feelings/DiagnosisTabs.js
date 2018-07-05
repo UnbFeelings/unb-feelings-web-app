@@ -33,6 +33,7 @@ class DiagnosisTabs extends React.Component {
           subject={post.subject.name}
           emotion={post.emotion}
           tags={post.tag}
+          author={post.author}
         />
       ));
 

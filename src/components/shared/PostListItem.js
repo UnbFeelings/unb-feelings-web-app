@@ -54,7 +54,10 @@ class PostListItem extends React.Component {
 
   async componentWillMount() {
     try {
-      const avatarURL = await fetchUserRandomInfo();
+      const {
+        author,
+      } = this.props;
+      const avatarURL = await fetchUserRandomInfo(author);
       this.setState({ avatarURL });
     } catch (e) {
       console.log('Could not fetch user info', e);
